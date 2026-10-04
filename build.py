@@ -533,7 +533,7 @@ def thumb(kind, label="", seed=1, height_ratio=9/16):
     return f'<span class="thumb">{svg}{lab}</span>'
 
 # ------------------------------------------------------------------ 商品データ
-STATUS = {"sale": ("販売中", "st-sale"), "fwd": ("フォワード検証中", "st-fwd"),
+STATUS = {"sale": ("販売中", "st-sale"), "fwd": ("デモでフォワード検証中", "st-fwd"),
           "prep": ("準備中", "st-prep"), "dev": ("開発中", "st-dev")}
 PRODUCTS = [
     dict(id="tengan", name="天眼金龍", sub="TripleMA-ASTシステム【ゴールド専用】", type="ea", status="sale",
@@ -541,17 +541,17 @@ PRODUCTS = [
          desc="TripleMAとSuperTrendの二重フィルターで、上昇はロング、下降はショートでトレンドに乗るEAです。", img="tengan-card.jpg"),
     dict(id="lh", name="LiquidityHunter GOLD", sub="ボックス × 流動性狩り × 反発", type="ea", status="fwd",
          sym="XAUUSD", tf="M5", kind="hunt", seed=3,
-         desc="レンジの下抜けで損切りを巻き込んだあとの反発を狙うEAです。実口座でフォワード検証を続けています。"),
+         desc="レンジの下抜けで損切りを巻き込んだあとの反発を狙うEAです。デモ口座でフォワード検証を続けています。"),
     dict(id="lh-btc", name="LiquidityHunter BTCUSD", sub="ビットコイン版", type="ea", status="fwd",
          sym="BTCUSD", tf="M5", kind="hunt", seed=8,
          desc="同じ流動性狩りのロジックを、値動きの大きいビットコインに合わせて調整した版です。"),
     dict(id="lh-nk", name="LiquidityHunter NIKKEI225", sub="日経225版", type="ea", status="fwd",
          sym="NIKKEI225", tf="M5", kind="hunt", seed=14,
          desc="日経225向けに調整した版です。3銘柄の中で、期間を分けた検証の結果が最も安定していました。"),
-    dict(id="junbari", name="順バリ王", sub="アジア時間VWAP × 欧州・NY順張り", type="ea", status="dev",
+    dict(id="junbari", name="順バリ王", sub="アジア時間VWAP × 欧州・NY順張り", type="ea", status="fwd",
          sym="XAUUSD", tf="M15", kind="vwap", seed=11,
          desc="アジア時間のVWAPの形からその日の方向を判定し、欧州・NY時間の押し目と戻りを狙います。"),
-    dict(id="lowadx", name="LowADX Breakout", sub="低ADXからのチャネルブレイク", type="ea", status="dev",
+    dict(id="lowadx", name="LowADX Breakout", sub="低ADXからのチャネルブレイク", type="ea", status="fwd",
          sym="XAUUSD", tf="H1", kind="breakout", seed=5,
          desc="ADXが低い静かな相場から、20本の高値・安値を抜けた方向へ順張りでついていくEAです。"),
     dict(id="tengan-vis", name="天眼金龍 Visualizer", sub="天眼金龍のシグナル表示インジケーター", type="ind", status="prep",
