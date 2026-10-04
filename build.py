@@ -582,9 +582,9 @@ PRODUCTS = [
     dict(id="sr", name="SR_AutoLevels", sub="サポレジ自動描画インジケーター", type="ind", status="free",
          sym="MULTI", tf="H1・H4・D1", kind="sr", seed=17, detail="sr-autolevels.html", img="sr-card.jpg",
          desc="重要なサポート・レジスタンスを自動で引き、タッチ回数と出来高スパイクの実績をラベルで表示します。H1・H4・日足を重ねて表示。"),
-    dict(id="dow", name="Million_DowTrend", sub="ダウ理論トレンド判定", type="ind", status="prep",
-         sym="MULTI", tf="ALL", kind="dow", seed=29,
-         desc="高値・安値の切り上げと切り下げを自動判定し、トレンドの継続と転換をチャート上に表示します。"),
+    dict(id="dow", name="Million_DowTrend", sub="ダウ理論トレンド判定", type="ind", status="free",
+         sym="MULTI", tf="ALL", kind="dow", seed=29, detail="dow-trend.html", img="dow-card.jpg",
+         desc="高値・安値の切り上げと切り下げを自動判定し、トレンドの継続と転換をチャート上に表示します。H1・H4・日足のトレンドを一覧で確認できます。"),
 ]
 
 def pcard(p):
@@ -1493,6 +1493,102 @@ def sr_body():
   </div>
 </section>'''
 
+def dow_body():
+    dl = "downloads/Million_DowTrend_v303.ex5"
+    return '''<div class="wrap" style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="products.html#indicators">インジケーター</a> <span aria-hidden="true">/</span> <span>Million_DowTrend</span></nav></div>''' + f'''
+<div class="wrap detail">
+  <div style="display:grid;gap:18px">
+    <figure class="shot"><img src="dow-h4.jpg" alt="Million_DowTrendをXAUUSDの4時間足に表示した画面。高値と安値にHH・HL・LH・LLのラベル、戻り高値と直近安値のライン、左下にH1・H4・日足のトレンド一覧" width="1600" height="773"><figcaption>XAUUSD 4時間足での表示例。山と谷にHH・HL・LH・LLのラベル、点線で波の流れ、黄色の破線が戻り高値と直近安値。左下のパネルで各時間足のトレンドを確認できます。</figcaption></figure>
+  </div>
+  <aside class="dl-box" id="download">
+    <span class="chip st-free" style="justify-self:start">無料公開 ・ v3.03</span>
+    <h1 style="font-size:clamp(24px,3vw,32px)">Million_DowTrend</h1>
+    <p class="fullname" style="font-size:13px;color:var(--muted);margin-top:-6px">ダウ理論トレンド判定インジケーター（MT5）</p>
+    <p>高値と安値の切り上げ・切り下げを自動で判定し、いまが上昇トレンドか下降トレンドかをチャート上に表示します。トレンドが変わる価格（押し安値・戻り高値）も線で示します。</p>
+    <a class="btn btn-dl" href="{dl}" download>無料でダウンロード（.ex5）</a>
+    <ul class="terms" style="margin:0;padding-left:1.1em">
+      <li>MetaTrader 5用です。登録やメールアドレスの入力は不要です。</li>
+      <li>個人での利用は自由です。再配布・販売・改変品の配布はご遠慮ください。</li>
+      <li>売買を推奨するものではなく、利益を保証するものでもありません。</li>
+    </ul>
+  </aside>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Features</div><h2>できること</h2></div></div>
+    <div class="feats">
+      <div class="feat"><h3>波の高値・安値を自動で判定</h3><p>確定した足だけで山と谷を見つけ、前の山・谷と比べてHH・HL・LH・LLのラベルを付けます。小さすぎる波はATRで除くので、細かいノイズに振り回されません。</p></div>
+      <div class="feat"><h3>転換は終値のブレイクで判定</h3><p>下降トレンド中に終値が戻り高値を上抜けたら「上昇転換」、上昇トレンド中に終値が押し安値を下抜けたら「下降転換」。確定足で判定するため、あとから表示が変わりません。</p></div>
+      <div class="feat"><h3>H1・H4・日足を一覧で確認</h3><p>左下のパネルに、開いているチャートとH1・H4・日足のトレンドを並べて表示します。上位足と同じ方向かどうかが、時間足を切り替えずに分かります。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">How to read</div><h2>表示の読み方</h2></div></div>
+    <div class="data-tbl" style="max-width:52em">
+      <table style="min-width:0">
+        <thead><tr><th>表示</th><th>意味</th></tr></thead>
+        <tbody>
+          <tr><td>HH</td><td>高値の切り上げ（前の高値より高い）</td></tr>
+          <tr><td>HL</td><td>安値の切り上げ（前の安値より高い）</td></tr>
+          <tr><td>LH</td><td>高値の切り下げ（前の高値より低い）</td></tr>
+          <tr><td>LL</td><td>安値の切り下げ（前の安値より低い）</td></tr>
+          <tr><td>上昇転換 / 下降転換</td><td>終値が戻り高値・押し安値を抜け、トレンドが入れ替わった足</td></tr>
+          <tr><td>押し安値</td><td>上昇トレンド中、終値でここを割ると下降転換になる価格</td></tr>
+          <tr><td>戻り高値</td><td>下降トレンド中、終値でここを超えると上昇転換になる価格</td></tr>
+          <tr><td>直近高値 / 直近安値</td><td>最新の山・谷。トレンドの判定には使わない参考の価格</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:13px;max-width:46em">HHとHLが続けば上昇トレンド、LHとLLが続けば下降トレンドです。ダウ理論の基本は<a href="fx-11.html">FX入門 第11章「チャートの読み方」</a>で解説しています。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Example</div><h2>1時間足での表示</h2></div><p>短い時間足では転換が増えます。上位足のトレンドと合わせて見るのがおすすめです。</p></div>
+    <figure class="shot"><img src="dow-h1.jpg" alt="Million_DowTrendをXAUUSDの1時間足に表示した画面。上昇転換と下降転換のマーカー、直近高値と押し安値のライン" width="1600" height="773" loading="lazy"><figcaption><b>1時間足</b>：H1は上昇転換、H4は下降トレンド。パネルを見ると、短期の上昇が上位足の流れに逆らっていることが分かります。</figcaption></figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Install</div><h2>導入のしかた</h2></div></div>
+    <ol class="steps" style="padding:0;margin:0">
+      <li><div><b>ファイルをダウンロードする</b><p>上のボタンから <code>Million_DowTrend_v303.ex5</code> をダウンロードします。</p></div></li>
+      <li><div><b>MT5のフォルダに入れる</b><p>MT5の「ファイル」→「データフォルダを開く」から <code>MQL5\\Indicators</code> にファイルを置きます。</p></div></li>
+      <li><div><b>MT5を再起動する</b><p>ナビゲーターの「インディケータ」に Million_DowTrend が表示されます。</p></div></li>
+      <li><div><b>チャートに付ける</b><p>チャートへドラッグして「OK」を押せば完了です。どの時間足でも使えます。</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">FAQ</div><h2>よくある質問</h2></div></div>
+    <div class="faq">
+      <details><summary>本当に無料ですか？</summary><p>はい、無料です。登録やメールアドレスの入力もいりません。</p></details>
+      <details><summary>あとから表示が変わる（リペイントする）ことはありますか？</summary><p>ありません。山と谷は左右5本の足が確定してから決まり、転換も確定した足の終値で判定します。そのぶん、表示は実際の山・谷から数本遅れます。</p></details>
+      <details><summary>波が細かすぎる・大きすぎるときは？</summary><p>設定の「スイング判定の左右バー数」を大きくすると大きな波だけ、小さくすると細かい波も拾います。「最小の波の大きさ」でも調整できます。</p></details>
+      <details><summary>ゴールド以外でも使えますか？</summary><p>使えます。銘柄や時間足を問わず動きます。</p></details>
+      <details><summary>転換のサインで売買すれば勝てますか？</summary><p>転換は「過去の高値・安値を抜けた」という事実を示すもので、その後の値動きを保証するものではありません。損切りの位置や取引量は、<a href="fx-12.html">FX入門 第12章</a>の考え方を参考に、ご自身で決めてください。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Next</div><h2>あわせて使う</h2></div></div>
+    <div class="next-grid" style="max-width:52em">
+      <a class="next-card" href="sr-autolevels.html"><span class="k">FREE</span><b>SR_AutoLevels</b><span>重要なサポート・レジスタンスを自動で引く無料インジケーター。押し安値・戻り高値と重なる節目の確認に。</span></a>
+      <a class="next-card" href="fx-11.html"><span class="k">LEARN</span><b>FX入門 第11章</b><span>ローソク足、時間足、ダウ理論の基本を解説しています。</span></a>
+    </div>
+  </div>
+</section>'''
+
 PAGES = [
     ("index.html", "さうざーFX", "ゴールド（XAUUSD）を中心にEA・インジケーターを開発・販売するさうざーFXの公式サイト。FX入門講座も公開中。", "home", index_body),
     ("products.html", "商品一覧｜さうざーFX", "さうざーFXのEA・インジケーターの一覧。ゴールド、ビットコイン、日経225。", "products", products_body),
@@ -1505,6 +1601,7 @@ PAGES = [
     ("blog.html", "コラム｜さうざーFX", "FXとゴールドの基礎知識。", "blog", blog_body),
     ("about.html", "運営者情報｜さうざーFX", "さうざーFXの運営者情報。", "about", about_body),
     ("sr-autolevels.html", "SR_AutoLevels（無料）｜さうざーFX", "重要なサポート・レジスタンスを自動で引くMT5インジケーターを無料配布。H1・H4・日足のラインを重ねて表示。", "products", sr_body),
+    ("dow-trend.html", "Million_DowTrend（無料）｜さうざーFX", "ダウ理論で高値・安値の切り上げと切り下げを自動判定するMT5インジケーターを無料配布。H1・H4・日足のトレンドを一覧表示。", "products", dow_body),
     ("legal.html", "免責事項・プライバシーポリシー｜さうざーFX", "免責事項、広告表記、プライバシーポリシー。", "", legal_body),
 ]
 
