@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>EA講座｜さうざーFX</title>
-<meta name="description" content="EAの選び方、動かし方、成績の読み方、止めどきを章ごとに学べる講座。">
+<title>SR_AutoLevels（無料）｜さうざーFX</title>
+<meta name="description" content="重要なサポート・レジスタンスを自動で引くMT5インジケーターを無料配布。H1・H4・日足のラインを重ねて表示。">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta property="og:title" content="EA講座｜さうざーFX">
-<meta property="og:description" content="EAの選び方、動かし方、成績の読み方、止めどきを章ごとに学べる講座。">
+<meta property="og:title" content="SR_AutoLevels（無料）｜さうざーFX">
+<meta property="og:description" content="重要なサポート・レジスタンスを自動で引くMT5インジケーターを無料配布。H1・H4・日足のラインを重ねて表示。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="さうざーFX">
 <meta property="og:image" content="https://sauza-fx.netlify.app/og-image.jpg">
@@ -440,62 +440,97 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
   <div class="wrap hd">
     <a class="logo" href="./"><img class="logo-mark" src="logo-mark.png" alt="" width="36" height="36"><span><b>さうざーFX</b><small>GOLD EA LAB</small></span></a>
     <button class="menu-btn" type="button" aria-expanded="false">メニュー</button>
-    <nav class="gnav" aria-label="メインメニュー"><a href="./">ホーム</a><a href="fx-basics.html">FX入門</a><a href="course.html" aria-current="page">EA講座</a><a href="products.html">商品一覧</a><a href="blog.html">コラム</a><a href="about.html">運営者</a><a class="nav-x" href="https://x.com/alex767_fx" target="_blank" rel="noopener">X @alex767_fx</a></nav>
+    <nav class="gnav" aria-label="メインメニュー"><a href="./">ホーム</a><a href="fx-basics.html">FX入門</a><a href="course.html">EA講座</a><a href="products.html" aria-current="page">商品一覧</a><a href="blog.html">コラム</a><a href="about.html">運営者</a><a class="nav-x" href="https://x.com/alex767_fx" target="_blank" rel="noopener">X @alex767_fx</a></nav>
   </div>
 </header>
 <main>
-<div class="page-head"><div class="wrap">
-  <nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <span>EA講座</span></nav>
-  <h1>EA講座</h1>
-  <p>EAを選び、動かし、止めるための判断材料を、ゴールドEAを開発している立場から順番にまとめていきます。</p>
-</div></div>
-<section class="section" style="padding-bottom:40px">
-  <div class="wrap course-intro">
-    <div class="prose">
-      <p>EAを入れておけば勝手に増える、と考えて始めると、最初の大きなドローダウンで手が止まります。どのEAを選ぶか、いくらで動かすか、いつ止めるか。この3つを自分で決められるようになることが、この講座の目的です。</p>
-      <p>さうざーFXはゴールド（XAUUSD）のEAを中心に作っているので、例は主にゴールドで説明します。検証の考え方は、実際の開発で使っているものです。</p>
-      <div class="toc-meta"><span>全<b>6</b>部・<b>21</b>章</span><span>公開中 <b>1</b>章</span><span>順次追加していきます</span></div>
+<div class="wrap" style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="products.html#indicators">インジケーター</a> <span aria-hidden="true">/</span> <span>SR_AutoLevels</span></nav></div>
+<div class="wrap detail">
+  <div style="display:grid;gap:18px">
+    <figure class="shot"><img src="sr-h1.jpg" alt="SR_AutoLevelsをXAUUSDの1時間足に表示した画面。H1の実線、H4の破線、日足の点線のサポート・レジスタンスと、タッチ回数のラベル" width="1600" height="777"><figcaption>XAUUSD 1時間足での表示例。実線がH1、破線がH4、点線が日足のライン。水色の点は出来高スパイク。</figcaption></figure>
+  </div>
+  <aside class="dl-box" id="download">
+    <span class="chip st-free" style="justify-self:start">無料公開 ・ v1.20</span>
+    <h1 style="font-size:clamp(24px,3vw,32px)">SR_AutoLevels</h1>
+    <p class="fullname" style="font-size:13px;color:var(--muted);margin-top:-6px">重要サポレジ自動描画インジケーター（MT5）</p>
+    <p>過去の高値・安値から、何度も意識された価格帯を自動で探して水平線を引きます。ラインごとにタッチ回数と出来高スパイクの実績を表示するので、どの線が強いかがひと目で分かります。</p>
+    <a class="btn btn-dl" href="downloads/SR_AutoLevels_v120.ex5" download>無料でダウンロード（.ex5）</a>
+    <ul class="terms" style="margin:0;padding-left:1.1em">
+      <li>MetaTrader 5用です。登録やメールアドレスの入力は不要です。</li>
+      <li>個人での利用は自由です。再配布・販売・改変品の配布はご遠慮ください。</li>
+      <li>売買を推奨するものではなく、利益を保証するものでもありません。</li>
+    </ul>
+  </aside>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Features</div><h2>できること</h2></div></div>
+    <div class="feats">
+      <div class="feat"><h3>強い節目を自動で選ぶ</h3><p>直近500本の山と谷から、何度も止められた価格帯を探します。タッチ回数、出来高、出来高スパイクの回数で点数をつけ、強い順に線を引きます。</p></div>
+      <div class="feat"><h3>3つの時間足を重ねて表示</h3><p>1時間足チャートではH1・H4・日足、4時間足ではH4・日足、日足チャートでは日足のみ。上位足と同じ価格帯にある線はまとめ、ラベルに「+H4」のように表示します。</p></div>
+      <div class="feat"><h3>本物のブレイクを知らせる</h3><p>重要ラインに出来高スパイクを伴って価格が届いたときに通知します。同じラインで攻防が3回続くと「攻防激化」として知らせます。</p></div>
     </div>
-    <aside class="promise">
-      <h3>この講座で守ること</h3>
-      <ul>
-        <li>「稼げる」とは書きません。過去の成績は将来の成績を約束しません。</li>
-        <li>本文には業者の名前を出しません。口座の名前を出すのは第10章だけです。</li>
-        <li>紹介報酬が発生するリンクには、その旨を明記します。</li>
-      </ul>
-    </aside>
   </div>
 </section>
 
-<section class="section" style="padding-top:8px">
-  <div class="wrap"><div class="part">
-  <div class="part-h"><span class="k">PART 1</span><h3>EAの基本</h3><p>自動売買が何をしてくれて、何をしてくれないのか。</p></div>
-  <ol class="ch"><li><span class="no">01</span><span class="t"><b>EA（自動売買）とは</b><span>任せられることと、任せられないこと</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">02</span><span class="t"><b>EAが1回の取引をするまで</b><span>シグナルの判定から決済までを順に追う</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">03</span><span class="t"><b>ゴールドをEAで取引する理由と難しさ</b><span>値幅、スプレッド、動きやすい時間帯</span></span><span class="chip st-prep">準備中</span></li></ol>
-</div><div class="part">
-  <div class="part-h"><span class="k">PART 2</span><h3>動かす準備</h3><p>口座、MT5、VPS、EA本体。動かすまでに必要なものをそろえます。</p></div>
-  <ol class="ch"><li><span class="no">04</span><span class="t"><b>必要なものの全体図</b><span>口座・MT5・VPS・EAと、準備の確認表</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">05</span><span class="t"><b>MT5へのEAの入れ方と設定</b><span>データフォルダからアルゴ取引のオンまで</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">06</span><span class="t"><b>VPSで24時間動かす</b><span>自宅のパソコンを付けっぱなしにしない方法</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">07</span><span class="t"><b>毎日確認すること</b><span>操作ログ、マジックナンバー、保有ポジション</span></span><span class="chip st-prep">準備中</span></li></ol>
-</div><div class="part">
-  <div class="part-h"><span class="k">PART 3</span><h3>口座の選び方</h3><p>同じEAでも、口座の条件で成績が変わります。</p></div>
-  <ol class="ch"><li><span class="no">08</span><span class="t"><b>ゴールドEAに向く口座の条件</b><span>スプレッド、銘柄名、最小ロット、約定</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">09</span><span class="t"><b>国内口座と海外口座の違い</b><span>金融庁の登録、レバレッジ、税金</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">10</span><span class="t"><b>さうざーFXが検証に使っている口座</b><span>業者名を出すのはこのページだけ。紹介報酬の有無も明記します</span></span><span class="chip st-prep">準備中</span></li></ol>
-</div><div class="part">
-  <div class="part-h"><span class="k">PART 4</span><h3>成績の読み方</h3><p>販売ページの数字を、自分で確かめられるようになるための章です。</p></div>
-  <ol class="ch"><li><span class="no">11</span><span class="t"><b>PF・最大DD・勝率・損益比</b><span>4つの数字が表していること</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">12</span><span class="t"><b>バックテストはなぜ良く見えるのか</b><span>過剰最適化とカーブフィッティング</span></span><span class="chip st-prep">準備中</span></li><li class="ready"><span class="no">13</span><span class="t"><b><a href="course-oos.html">期間を分けて確かめる</a></b><span>調整に使っていない期間でも同じ結果が出るか</span></span><span class="chip st-read">読めます</span></li><li><span class="no">14</span><span class="t"><b>販売ページで確かめること</b><span>購入前に見る10の項目</span></span><span class="chip st-prep">準備中</span></li></ol>
-</div><div class="part">
-  <div class="part-h"><span class="k">PART 5</span><h3>資金と運用</h3><p>動かし始めてから迷うことを先に決めておきます。</p></div>
-  <ol class="ch"><li><span class="no">15</span><span class="t"><b>証拠金とロットの決め方</b><span>最小ロットのせいで複利が効かない問題</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">16</span><span class="t"><b>ドローダウン中にやること</b><span>触ってよいこと、触ってはいけないこと</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">17</span><span class="t"><b>止めどきの決め方</b><span>感情ではなく、事前に決めた数字で止める</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">18</span><span class="t"><b>複数のEAを組み合わせる</b><span>相関が低い組み合わせで資金曲線をならす</span></span><span class="chip st-prep">準備中</span></li></ol>
-</div><div class="part">
-  <div class="part-h"><span class="k">PART 6</span><h3>さうざーFXの開発記録</h3><p>うまくいかなかった検証も含めて、開発の経過を公開します。</p></div>
-  <ol class="ch"><li><span class="no">19</span><span class="t"><b>22の手法を検証して、残ったのは2つ</b><span>有名な手法をゴールドで試した結果</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">20</span><span class="t"><b>買いと売りを分けて検証する</b><span>ロングとショートの成績を別々に確かめる理由</span></span><span class="chip st-prep">準備中</span></li><li><span class="no">21</span><span class="t"><b>実運用で確認していること</b><span>バックテストと実際の注文がずれていないかを確かめる</span></span><span class="chip st-prep">準備中</span></li></ol>
-</div></div>
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">How to read</div><h2>ラベルの読み方</h2></div></div>
+    <div class="label-demo">4383.19  [D1] ×4 *2 高VOL +H4 +H1</div>
+    <div class="data-tbl" style="max-width:52em">
+      <table style="min-width:0">
+        <thead><tr><th>表示</th><th>意味</th></tr></thead>
+        <tbody>
+          <tr><td>4383.19</td><td>ラインの価格</td></tr>
+          <tr><td>[D1]</td><td>日足で見つかったライン（基準の時間足のラインには付きません）</td></tr>
+          <tr><td>×4</td><td>この価格帯で4回止められた（タッチ回数）</td></tr>
+          <tr><td>*2</td><td>そのうち2回は、出来高が急に増えた足（スパイク）を伴った</td></tr>
+          <tr><td>高VOL</td><td>この価格帯での平均出来高が、全体平均の1.3倍以上</td></tr>
+          <tr><td>+H4 +H1</td><td>H4とH1でも同じ価格帯にラインがある（複数の時間足で意識されている強い節目）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:13px;max-width:46em">FXやCFDには取引所の出来高がないため、出来高にはティック出来高（値動きの回数）を使っています。取引の活発さの目安としてご覧ください。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <figure class="shot"><img src="sr-d1.jpg" alt="SR_AutoLevelsを日足チャートに表示した画面。日足のサポート・レジスタンスのみが表示されている" width="1600" height="739" loading="lazy"><figcaption>日足チャートでは日足のラインだけを表示し、長期の節目を確認できます。</figcaption></figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Install</div><h2>導入のしかた</h2></div></div>
+    <ol class="steps" style="padding:0;margin:0">
+      <li><div><b>ファイルをダウンロードする</b><p>上のボタンから <code>SR_AutoLevels_v120.ex5</code> をダウンロードします。</p></div></li>
+      <li><div><b>MT5のフォルダに入れる</b><p>MT5の「ファイル」→「データフォルダを開く」から <code>MQL5\Indicators</code> にファイルを置きます。</p></div></li>
+      <li><div><b>MT5を再起動する</b><p>ナビゲーターの「インディケータ」に SR_AutoLevels が表示されます。</p></div></li>
+      <li><div><b>チャートに付ける</b><p>チャートへドラッグして「OK」を押せば完了です。1時間足のチャートがおすすめです。</p></div></li>
+    </ol>
+  </div>
 </section>
 
 <section class="section">
   <div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">FAQ</div><h2>よくある質問</h2></div></div>
     <div class="faq">
-      <details><summary>誰に向けた講座ですか？</summary><p>これからEAを使ってみたい方と、すでに使っているけれど選び方や止めどきに迷っている方に向けています。FXの用語に慣れていない方は、先に<a href="beginners.html">初めての方へ</a>を読むと進めやすくなります。</p></details>
-      <details><summary>この講座を読めば勝てますか？</summary><p>勝ちを約束するものではありません。EAを選んで動かすときに、何を見てどう判断するかの材料をまとめた講座です。</p></details>
-      <details><summary>さうざーFXのEAを買わないと役に立ちませんか？</summary><p>いいえ。成績の読み方や資金管理の考え方は、どの開発者のEAにも当てはまります。他社のEAを選ぶときの確認にも使ってください。</p></details>
+      <details><summary>本当に無料ですか？</summary><p>はい、無料です。登録やメールアドレスの入力もいりません。</p></details>
+      <details><summary>ゴールド以外でも使えますか？</summary><p>使えます。銘柄を問わず動きます。ただし、初期設定はXAUUSDの1時間足で調整しています。</p></details>
+      <details><summary>ラインが表示されません</summary><p>H4・日足のデータを読み込むまで、数秒から数十秒かかることがあります。表示されないときは、時間足を一度切り替えてください。</p></details>
+      <details><summary>このラインで売買すれば勝てますか？</summary><p>ラインは「過去に意識された価格帯」を示すもので、将来の値動きを保証するものではありません。損切りの位置や取引量は、<a href="fx-12.html">FX入門 第12章</a>の考え方を参考に、ご自身で決めてください。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Next</div><h2>あわせて読む</h2></div></div>
+    <div class="next-grid" style="max-width:52em">
+      <a class="next-card" href="tengan-kinryu.html"><span class="k">EA</span><b>天眼金龍</b><span>ゴールド専用のトレンドフォローEA。v1.4のバックテスト結果を公開しています。</span></a>
+      <a class="next-card" href="fx-basics.html"><span class="k">LEARN</span><b>FX入門（全15章）</b><span>サポート・レジスタンスの前に、FXの基本から順番に学べます。</span></a>
     </div>
   </div>
 </section>

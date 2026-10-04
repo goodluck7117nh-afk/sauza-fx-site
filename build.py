@@ -266,6 +266,22 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .grp + .grp{margin-top:44px}
 .grp-h{font-size:22px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
 .grp-h::after{content:"";flex:1;height:1px;background:var(--line)}
+.st-free{background:#123A2A;color:#6FE0A8}
+.free-band{display:grid;grid-template-columns:1.1fr .9fr;gap:0;background:linear-gradient(135deg,#12261D,#0E1114);border:1px solid #2A5A44;border-radius:var(--radius);overflow:hidden;text-decoration:none;color:inherit}
+.free-band:hover{border-color:#6FE0A8}
+.free-band img{width:100%;height:100%;object-fit:cover;display:block}
+.free-band .fb{padding:26px 28px;display:grid;gap:10px;align-content:center}
+.free-band h3{font-size:24px}
+.free-band p{font-size:14px;color:#BDB6A6}
+.dl-box{background:var(--surface);border:1px solid #2A5A44;border-radius:var(--radius);padding:24px;display:grid;gap:14px}
+.dl-box .btn-dl{background:linear-gradient(180deg,#5FD39A,#2E9E6E);border-color:#2E9E6E;color:#07140D;font-size:16px;padding:14px 22px}
+.dl-box .terms{font-size:12px;color:var(--muted);line-height:1.7}
+.dl-box .terms li{margin-bottom:2px}
+.label-demo{font-family:var(--mono);background:#07080A;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;color:#FF6A3D;font-size:14px;overflow-x:auto;white-space:nowrap}
+.shot{margin:0}
+.shot img{display:block;width:100%;height:auto;border-radius:var(--radius);border:1px solid var(--line)}
+.shot figcaption{font-size:12px;color:var(--muted);margin-top:8px}
+@media (max-width:860px){.free-band{grid-template-columns:1fr}}
 /* footer */
 .site-footer{border-top:1px solid var(--line);background:var(--surface);margin-top:24px}
 .ft{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-block:44px 28px}
@@ -533,7 +549,7 @@ def thumb(kind, label="", seed=1, height_ratio=9/16):
     return f'<span class="thumb">{svg}{lab}</span>'
 
 # ------------------------------------------------------------------ 商品データ
-STATUS = {"sale": ("販売中", "st-sale"), "fwd": ("デモでフォワード検証中", "st-fwd"),
+STATUS = {"free": ("無料公開", "st-free"), "sale": ("販売中", "st-sale"), "fwd": ("デモでフォワード検証中", "st-fwd"),
           "prep": ("準備中", "st-prep"), "dev": ("開発中", "st-dev")}
 PRODUCTS = [
     dict(id="tengan", name="天眼金龍", sub="TripleMA-ASTシステム【ゴールド専用】", type="ea", status="sale",
@@ -563,9 +579,9 @@ PRODUCTS = [
     dict(id="lowadx-vis", name="LowADX Breakout インジケーター", sub="低ADXブレイクアウトの確認用", type="ind", status="prep",
          sym="XAUUSD", tf="H1", kind="breakout", seed=47,
          desc="ADXが低い状態と20本の高値・安値のチャネルを表示し、ブレイクアウトの候補をチャート上で確認できます。"),
-    dict(id="sr", name="SR_AutoLevels", sub="サポレジ自動描画インジケーター", type="ind", status="prep",
-         sym="MULTI", tf="ALL", kind="sr", seed=17,
-         desc="重要なサポート・レジスタンスを自動で引き、タッチ回数と大口スパイクの実績をラベルで表示します。"),
+    dict(id="sr", name="SR_AutoLevels", sub="サポレジ自動描画インジケーター", type="ind", status="free",
+         sym="MULTI", tf="H1・H4・D1", kind="sr", seed=17, detail="sr-autolevels.html", img="sr-card.jpg",
+         desc="重要なサポート・レジスタンスを自動で引き、タッチ回数と出来高スパイクの実績をラベルで表示します。H1・H4・日足を重ねて表示。"),
     dict(id="dow", name="Million_DowTrend", sub="ダウ理論トレンド判定", type="ind", status="prep",
          sym="MULTI", tf="ALL", kind="dow", seed=29,
          desc="高値・安値の切り上げと切り下げを自動判定し、トレンドの継続と転換をチャート上に表示します。"),
@@ -577,6 +593,8 @@ def pcard(p):
     name_html = f'<a href="{p["detail"]}">{p["name"]}</a>' if p.get("detail") else p["name"]
     if p["status"] == "sale" and p.get("detail"):
         act = f'<a class="btn btn-primary btn-sm" href="{p["detail"]}">詳細を見る</a>'
+    elif p["status"] == "free" and p.get("detail"):
+        act = f'<a class="btn btn-primary btn-sm" href="{p["detail"]}">無料でダウンロード</a>'
     else:
         act = '<span class="btn btn-sm" aria-disabled="true">公開までお待ちください</span>'
     typ = "EA" if p["type"] == "ea" else "インジケーター"
@@ -734,6 +752,20 @@ def index_body():
   <div class="hero-logo"><img src="logo.jpg" alt="さうざーFX（SAUZER FX）のロゴ" width="640" height="640"></div>
 </div>
 </div>
+
+<section class="section" style="padding-bottom:0">
+  <div class="wrap">
+    <a class="free-band" href="sr-autolevels.html">
+      <img src="sr-card.jpg" alt="SR_AutoLevelsでサポート・レジスタンスが自動描画されたゴールドのチャート" width="800" height="448">
+      <div class="fb">
+        <span class="chip st-free" style="justify-self:start">無料公開中</span>
+        <h3>SR_AutoLevels</h3>
+        <p>重要なサポート・レジスタンスを自動で引くMT5インジケーターを、無料で配布しています。H1・H4・日足のラインを重ねて表示し、何度も止められた価格帯をタッチ回数で示します。</p>
+        <span class="btn btn-primary btn-sm" style="justify-self:start">無料でダウンロード →</span>
+      </div>
+    </a>
+  </div>
+</section>
 
 <section class="section feature-sec">
   <div class="wrap">
@@ -1364,6 +1396,99 @@ def fx_article_body(c):
   </article>
 </div>'''
 
+def sr_body():
+    dl = "downloads/SR_AutoLevels_v120.ex5"
+    return '''<div class="wrap" style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="products.html#indicators">インジケーター</a> <span aria-hidden="true">/</span> <span>SR_AutoLevels</span></nav></div>''' + f'''
+<div class="wrap detail">
+  <div style="display:grid;gap:18px">
+    <figure class="shot"><img src="sr-h1.jpg" alt="SR_AutoLevelsをXAUUSDの1時間足に表示した画面。H1の実線、H4の破線、日足の点線のサポート・レジスタンスと、タッチ回数のラベル" width="1600" height="777"><figcaption>XAUUSD 1時間足での表示例。実線がH1、破線がH4、点線が日足のライン。水色の点は出来高スパイク。</figcaption></figure>
+  </div>
+  <aside class="dl-box" id="download">
+    <span class="chip st-free" style="justify-self:start">無料公開 ・ v1.20</span>
+    <h1 style="font-size:clamp(24px,3vw,32px)">SR_AutoLevels</h1>
+    <p class="fullname" style="font-size:13px;color:var(--muted);margin-top:-6px">重要サポレジ自動描画インジケーター（MT5）</p>
+    <p>過去の高値・安値から、何度も意識された価格帯を自動で探して水平線を引きます。ラインごとにタッチ回数と出来高スパイクの実績を表示するので、どの線が強いかがひと目で分かります。</p>
+    <a class="btn btn-dl" href="{dl}" download>無料でダウンロード（.ex5）</a>
+    <ul class="terms" style="margin:0;padding-left:1.1em">
+      <li>MetaTrader 5用です。登録やメールアドレスの入力は不要です。</li>
+      <li>個人での利用は自由です。再配布・販売・改変品の配布はご遠慮ください。</li>
+      <li>売買を推奨するものではなく、利益を保証するものでもありません。</li>
+    </ul>
+  </aside>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Features</div><h2>できること</h2></div></div>
+    <div class="feats">
+      <div class="feat"><h3>強い節目を自動で選ぶ</h3><p>直近500本の山と谷から、何度も止められた価格帯を探します。タッチ回数、出来高、出来高スパイクの回数で点数をつけ、強い順に線を引きます。</p></div>
+      <div class="feat"><h3>3つの時間足を重ねて表示</h3><p>1時間足チャートではH1・H4・日足、4時間足ではH4・日足、日足チャートでは日足のみ。上位足と同じ価格帯にある線はまとめ、ラベルに「+H4」のように表示します。</p></div>
+      <div class="feat"><h3>本物のブレイクを知らせる</h3><p>重要ラインに出来高スパイクを伴って価格が届いたときに通知します。同じラインで攻防が3回続くと「攻防激化」として知らせます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">How to read</div><h2>ラベルの読み方</h2></div></div>
+    <div class="label-demo">4383.19  [D1] ×4 *2 高VOL +H4 +H1</div>
+    <div class="data-tbl" style="max-width:52em">
+      <table style="min-width:0">
+        <thead><tr><th>表示</th><th>意味</th></tr></thead>
+        <tbody>
+          <tr><td>4383.19</td><td>ラインの価格</td></tr>
+          <tr><td>[D1]</td><td>日足で見つかったライン（基準の時間足のラインには付きません）</td></tr>
+          <tr><td>×4</td><td>この価格帯で4回止められた（タッチ回数）</td></tr>
+          <tr><td>*2</td><td>そのうち2回は、出来高が急に増えた足（スパイク）を伴った</td></tr>
+          <tr><td>高VOL</td><td>この価格帯での平均出来高が、全体平均の1.3倍以上</td></tr>
+          <tr><td>+H4 +H1</td><td>H4とH1でも同じ価格帯にラインがある（複数の時間足で意識されている強い節目）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:13px;max-width:46em">FXやCFDには取引所の出来高がないため、出来高にはティック出来高（値動きの回数）を使っています。取引の活発さの目安としてご覧ください。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <figure class="shot"><img src="sr-d1.jpg" alt="SR_AutoLevelsを日足チャートに表示した画面。日足のサポート・レジスタンスのみが表示されている" width="1600" height="739" loading="lazy"><figcaption>日足チャートでは日足のラインだけを表示し、長期の節目を確認できます。</figcaption></figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Install</div><h2>導入のしかた</h2></div></div>
+    <ol class="steps" style="padding:0;margin:0">
+      <li><div><b>ファイルをダウンロードする</b><p>上のボタンから <code>SR_AutoLevels_v120.ex5</code> をダウンロードします。</p></div></li>
+      <li><div><b>MT5のフォルダに入れる</b><p>MT5の「ファイル」→「データフォルダを開く」から <code>MQL5\\Indicators</code> にファイルを置きます。</p></div></li>
+      <li><div><b>MT5を再起動する</b><p>ナビゲーターの「インディケータ」に SR_AutoLevels が表示されます。</p></div></li>
+      <li><div><b>チャートに付ける</b><p>チャートへドラッグして「OK」を押せば完了です。1時間足のチャートがおすすめです。</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">FAQ</div><h2>よくある質問</h2></div></div>
+    <div class="faq">
+      <details><summary>本当に無料ですか？</summary><p>はい、無料です。登録やメールアドレスの入力もいりません。</p></details>
+      <details><summary>ゴールド以外でも使えますか？</summary><p>使えます。銘柄を問わず動きます。ただし、初期設定はXAUUSDの1時間足で調整しています。</p></details>
+      <details><summary>ラインが表示されません</summary><p>H4・日足のデータを読み込むまで、数秒から数十秒かかることがあります。表示されないときは、時間足を一度切り替えてください。</p></details>
+      <details><summary>このラインで売買すれば勝てますか？</summary><p>ラインは「過去に意識された価格帯」を示すもので、将来の値動きを保証するものではありません。損切りの位置や取引量は、<a href="fx-12.html">FX入門 第12章</a>の考え方を参考に、ご自身で決めてください。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Next</div><h2>あわせて読む</h2></div></div>
+    <div class="next-grid" style="max-width:52em">
+      <a class="next-card" href="tengan-kinryu.html"><span class="k">EA</span><b>天眼金龍</b><span>ゴールド専用のトレンドフォローEA。v1.4のバックテスト結果を公開しています。</span></a>
+      <a class="next-card" href="fx-basics.html"><span class="k">LEARN</span><b>FX入門（全15章）</b><span>サポート・レジスタンスの前に、FXの基本から順番に学べます。</span></a>
+    </div>
+  </div>
+</section>'''
+
 PAGES = [
     ("index.html", "さうざーFX", "ゴールド（XAUUSD）を中心にEA・インジケーターを開発・販売するさうざーFXの公式サイト。FX入門講座も公開中。", "home", index_body),
     ("products.html", "商品一覧｜さうざーFX", "さうざーFXのEA・インジケーターの一覧。ゴールド、ビットコイン、日経225。", "products", products_body),
@@ -1375,6 +1500,7 @@ PAGES = [
     ("course-oos.html", "期間を分けて確かめる｜EA講座｜さうざーFX", "バックテストを調整期間と確認期間に分けて、過剰最適化を見抜く方法。", "course", article_body),
     ("blog.html", "コラム｜さうざーFX", "FXとゴールドの基礎知識。", "blog", blog_body),
     ("about.html", "運営者情報｜さうざーFX", "さうざーFXの運営者情報。", "about", about_body),
+    ("sr-autolevels.html", "SR_AutoLevels（無料）｜さうざーFX", "重要なサポート・レジスタンスを自動で引くMT5インジケーターを無料配布。H1・H4・日足のラインを重ねて表示。", "products", sr_body),
     ("legal.html", "免責事項・プライバシーポリシー｜さうざーFX", "免責事項、広告表記、プライバシーポリシー。", "", legal_body),
 ]
 
