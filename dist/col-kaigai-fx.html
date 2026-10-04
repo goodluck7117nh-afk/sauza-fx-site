@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>海外FXのメリット・デメリット｜税金・ブローカー選びの全知識【さうざーFX】</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Share+Tech+Mono&display=swap');
+:root{--gold:#C9A84C;--gold-light:#E8C96A;--gold-dim:#8B7035;--dark:#0A0A0F;--dark2:#111118;--dark3:#1A1A24;--dark4:#222230;--text:#E8E4D8;--text-dim:#9A9485;--accent:#4CADE8;--green:#4CE8A8;--red:#E84C6A;--orange:#E8A84C;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--dark);color:var(--text);font-family:'Noto Sans JP',sans-serif;line-height:1.9;font-size:15px;}
+
+.hero{background:var(--dark2);border-bottom:1px solid var(--gold-dim);padding:56px 24px 44px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(201,168,76,0.10) 0%,transparent 70%);}
+.hero-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.35em;color:var(--gold-dim);margin-bottom:14px;position:relative;}
+.hero h1{font-family:'Noto Serif JP',serif;font-size:clamp(18px,3.5vw,28px);font-weight:700;line-height:1.55;margin-bottom:14px;position:relative;}
+.hero h1 em{font-style:normal;color:var(--gold-light);}
+.hero-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:0.1em;position:relative;}
+
+.container{max-width:680px;margin:0 auto;padding:0 20px;}
+.lead{padding:36px 0 28px;border-bottom:1px solid rgba(201,168,76,0.15);}
+.lead p{font-size:15px;color:var(--text-dim);margin-bottom:12px;}
+.lead p strong{color:var(--text);}
+
+section{padding:36px 0 24px;border-bottom:1px solid rgba(201,168,76,0.10);}
+section:last-of-type{border-bottom:none;}
+.section-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.3em;color:var(--gold);margin-bottom:6px;}
+.section-title{font-family:'Noto Serif JP',serif;font-size:clamp(16px,2.5vw,20px);font-weight:600;color:var(--text);margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid var(--gold-dim);}
+p{color:var(--text-dim);margin-bottom:14px;}
+p strong{color:var(--text);}
+p em{font-style:normal;color:var(--gold-light);}
+
+/* メリット・デメリットカード */
+.merit-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0;}
+@media(max-width:520px){.merit-grid{grid-template-columns:1fr;}}
+.merit-col{border-radius:8px;padding:20px 18px;}
+.merit-col.good{background:rgba(76,232,168,0.05);border:1px solid rgba(76,232,168,0.2);}
+.merit-col.bad{background:rgba(232,76,106,0.05);border:1px solid rgba(232,76,106,0.2);}
+.merit-col .col-title{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.2em;margin-bottom:14px;font-weight:600;}
+.merit-col.good .col-title{color:var(--green);}
+.merit-col.bad .col-title{color:var(--red);}
+.merit-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;font-size:13px;}
+.merit-item:last-child{margin-bottom:0;}
+.merit-item .icon{flex-shrink:0;margin-top:2px;font-size:14px;}
+.merit-item .text{color:var(--text-dim);line-height:1.7;}
+.merit-item .text strong{color:var(--text);}
+
+/* 比較表 */
+.compare-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13px;}
+.compare-table th{background:var(--dark3);color:var(--gold);font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.15em;padding:10px 12px;border-bottom:1px solid var(--gold-dim);text-align:left;}
+.compare-table td{padding:11px 12px;border-bottom:1px solid rgba(255,255,255,0.05);color:var(--text-dim);vertical-align:middle;}
+.compare-table tr:last-child td{border-bottom:none;}
+.compare-table .item{color:var(--text);font-weight:500;}
+.compare-table .domestic{color:var(--text-dim);}
+.compare-table .overseas{color:var(--gold-light);}
+.compare-table .win{color:var(--green);font-weight:600;}
+.compare-table .lose{color:var(--red);}
+
+/* 税金ボックス */
+.tax-box{background:var(--dark3);border:1px solid rgba(232,168,76,0.3);border-radius:8px;padding:22px 20px;margin:20px 0;}
+.tax-box .tb-title{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--orange);margin-bottom:14px;}
+.tax-row{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px;}
+.tax-row:last-child{border-bottom:none;}
+.tax-label{color:var(--text-dim);min-width:100px;font-size:12px;}
+.tax-val{font-family:'Share Tech Mono',monospace;font-weight:600;}
+.tax-val.domestic{color:var(--text-dim);}
+.tax-val.overseas{color:var(--gold-light);}
+.tax-note{font-size:11px;color:var(--text-dim);margin-left:auto;}
+
+/* Vantageボックス */
+.vantage-box{background:linear-gradient(135deg,rgba(201,168,76,0.08) 0%,rgba(76,173,232,0.06) 100%);border:2px solid var(--gold-dim);border-radius:10px;padding:26px 24px;margin:22px 0;}
+.vb-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.vb-badge{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.2em;background:rgba(201,168,76,0.15);border:1px solid var(--gold-dim);color:var(--gold);padding:4px 12px;border-radius:2px;}
+.vb-title{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:600;color:var(--gold-light);}
+.vb-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+@media(max-width:480px){.vb-grid{grid-template-columns:1fr;}}
+.vb-item{background:var(--dark3);border-radius:6px;padding:12px 14px;}
+.vb-item .vi-label{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);margin-bottom:4px;letter-spacing:0.1em;}
+.vb-item .vi-val{font-size:13px;color:var(--text);}
+.vb-item .vi-val em{font-style:normal;color:var(--green);}
+.vb-cta{display:block;text-align:center;background:var(--gold);color:#0A0A0F;font-weight:700;font-family:'Share Tech Mono',monospace;padding:14px 32px;border-radius:4px;text-decoration:none;font-size:13px;letter-spacing:0.1em;}
+.vb-cta:hover{opacity:0.9;}
+.vb-sub{font-size:11px;color:var(--text-dim);text-align:center;margin-top:8px;}
+
+/* インサイト */
+.insight-box{background:rgba(76,173,232,0.06);border:1px solid rgba(76,173,232,0.25);border-radius:6px;padding:18px 20px;margin:18px 0;}
+.insight-box .insight-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--accent);margin-bottom:8px;}
+.insight-box p{color:var(--text);margin:0;font-size:14px;line-height:1.8;}
+
+.warn-box{background:var(--dark2);border-left:3px solid var(--text-dim);padding:14px 18px;margin:28px 0 0;font-size:12px;color:var(--text-dim);border-radius:0 4px 4px 0;}
+footer{background:var(--dark2);border-top:1px solid var(--gold-dim);padding:24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:0.1em;}
+footer span{color:var(--gold);}
+</style>
+<link href="favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="apple-touch-icon.png" rel="apple-touch-icon"/></head>
+<body><div id="sauza-topbar" style="background:#0B0E12;border-bottom:1px solid #2A2F36;font-family:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',system-ui,sans-serif;position:relative;z-index:50">
+<div style="max-width:960px;margin:0 auto;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px">
+<a href="./" style="color:#D9A84A;text-decoration:none;font-weight:700;letter-spacing:.04em;display:flex;align-items:center;gap:8px"><img alt="" height="28" src="logo-mark.png" style="border-radius:6px;display:block" width="28"/>さうざーFX</a>
+<span style="display:flex;gap:16px;flex-wrap:wrap"><a href="blog.html" style="color:#ECEDEA;text-decoration:none">← コラム一覧</a><a href="products.html" style="color:#9BA3AA;text-decoration:none">商品一覧</a></span>
+</div><div style="max-width:960px;margin:0 auto;padding:0 16px 10px;font-size:12px;line-height:1.7;color:#B9B2A2">海外FX業者の多くは、日本の金融庁に登録していません。トラブルの際に日本の法律で保護されない場合があります。利用するかどうかは、リスクを理解したうえでご判断ください。</div>
+</div>
+<div class="hero">
+<div class="hero-eyebrow">COLUMN ／ さうざーFX</div>
+<h1>海外FXの<em>メリット・デメリット</em>を<br/>正直にまとめてみた</h1>
+<div class="hero-meta">税金・レバレッジ・ブローカー選びまで網羅</div>
+</div>
+<div class="container">
+<div class="lead">
+<p>「海外FXって怪しくない？」「税金はどうなるの？」——よく聞かれる質問です。</p>
+<p>天眼TripleMA-ASTシステムはVantage（海外FX）での運用を前提に開発しています。このコラムでは<strong>メリット・デメリットを包み隠さず</strong>、特に税金まわりを正直に解説します。</p>
+</div>
+<!-- SECTION 1: メリット・デメリット -->
+<section>
+<div class="section-label">SECTION 01</div>
+<div class="section-title">海外FXのメリット・デメリット</div>
+<div class="merit-grid">
+<div class="merit-col good">
+<div class="col-title">✅ メリット</div>
+<div class="merit-item"><span class="icon">⚡</span><div class="text"><strong>高レバレッジ（最大500倍）</strong><br/>国内FXは最大25倍。少額資金でも大きなポジションを持てる。</div></div>
+<div class="merit-item"><span class="icon">🛡</span><div class="text"><strong>ゼロカット保証</strong><br/>口座残高以上の損失が出ても追証（追加入金）が発生しない。</div></div>
+<div class="merit-item"><span class="icon">💰</span><div class="text"><strong>ボーナス・キャンペーン</strong><br/>口座開設ボーナスや入金ボーナスが充実。国内FXには原則なし。</div></div>
+<div class="merit-item"><span class="icon">🏆</span><div class="text"><strong>豊富な取引銘柄</strong><br/>ゴールド・原油・仮想通貨など国内より取扱い銘柄が多い。</div></div>
+<div class="merit-item"><span class="icon">📊</span><div class="text"><strong>税率が有利なケースも</strong><br/>利益が大きくなるほど国内FXより節税できる可能性がある（後述）。</div></div>
+</div>
+<div class="merit-col bad">
+<div class="col-title">⚠️ デメリット</div>
+<div class="merit-item"><span class="icon">🌐</span><div class="text"><strong>日本の金融庁未登録</strong><br/>国内の法的保護外。信頼できるブローカー選びが重要。</div></div>
+<div class="merit-item"><span class="icon">💱</span><div class="text"><strong>入出金が少し手間</strong><br/>銀行送金・クレジットカード・仮想通貨などで入金する必要がある。</div></div>
+<div class="merit-item"><span class="icon">📝</span><div class="text"><strong>確定申告が必要</strong><br/>国内FXと違い源泉徴収なし。自分で申告する必要がある。</div></div>
+<div class="merit-item"><span class="icon">📉</span><div class="text"><strong>損失の繰越控除なし</strong><br/>国内FXは3年間繰越可能。海外FXは原則その年限りで完結。</div></div>
+<div class="merit-item"><span class="icon">🔤</span><div class="text"><strong>サポートが英語ベース</strong><br/>ブローカーによっては日本語サポートが限定的。</div></div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: 国内vs海外比較 -->
+<section>
+<div class="section-label">SECTION 02</div>
+<div class="section-title">国内FX vs 海外FX 比較表</div>
+<table class="compare-table">
+<thead>
+<tr><th>項目</th><th>国内FX</th><th>海外FX（Vantage）</th></tr>
+</thead>
+<tbody>
+<tr><td class="item">レバレッジ</td><td class="domestic lose">最大25倍</td><td class="overseas win">最大500倍</td></tr>
+<tr><td class="item">追証（追加入金）</td><td class="domestic lose">あり</td><td class="overseas win">なし（ゼロカット）</td></tr>
+<tr><td class="item">税率</td><td class="domestic">申告分離課税 20.315%</td><td class="overseas">総合課税 15〜55%</td></tr>
+<tr><td class="item">損失繰越</td><td class="domestic win">3年間可能</td><td class="overseas lose">原則不可</td></tr>
+<tr><td class="item">確定申告</td><td class="domestic">20万円超で必要</td><td class="overseas lose">利益があれば必要</td></tr>
+<tr><td class="item">金融庁規制</td><td class="domestic win">登録業者</td><td class="overseas">海外規制（ASIC等）</td></tr>
+<tr><td class="item">ボーナス</td><td class="domestic lose">原則なし</td><td class="overseas win">あり</td></tr>
+<tr><td class="item">XAUUSD取引</td><td class="domestic lose">取扱い少ない</td><td class="overseas win">主要銘柄として対応</td></tr>
+</tbody>
+</table>
+</section>
+<!-- SECTION 3: 税金 -->
+<section>
+<div class="section-label">SECTION 03</div>
+<div class="section-title">税金の話を正直に</div>
+<p>海外FXで最も注意が必要なのが税金です。<strong>国内FXと仕組みが全く異なります。</strong></p>
+<div class="tax-box">
+<div class="tb-title">税金の仕組み比較</div>
+<div class="tax-row">
+<span class="tax-label">課税方式</span>
+<span class="tax-val domestic">国内：申告分離課税</span>
+<span class="tax-note">→</span>
+<span class="tax-val overseas">海外：総合課税（雑所得）</span>
+</div>
+<div class="tax-row">
+<span class="tax-label">税率</span>
+<span class="tax-val domestic">国内：一律 20.315%</span>
+<span class="tax-note">→</span>
+<span class="tax-val overseas">海外：15〜55%（所得による）</span>
+</div>
+<div class="tax-row">
+<span class="tax-label">損失繰越</span>
+<span class="tax-val domestic">国内：3年間OK</span>
+<span class="tax-note">→</span>
+<span class="tax-val overseas">海外：原則その年のみ</span>
+</div>
+<div class="tax-row">
+<span class="tax-label">他所得との損益通算</span>
+<span class="tax-val domestic">国内：FX同士のみ</span>
+<span class="tax-note">→</span>
+<span class="tax-val overseas">海外：雑所得内で通算可</span>
+</div>
+</div>
+<p>海外FXの利益は<strong>「雑所得」として総合課税</strong>の対象になります。給与所得などと合算されるため、利益が増えるほど税率が上がる仕組みです。</p>
+<div class="insight-box">
+<div class="insight-label">税率の目安</div>
+<p>年間所得195万円以下：<strong>税率15%</strong>（住民税含む）<br/>
+      年間所得330万円以下：<strong>税率20%</strong><br/>
+      年間所得695万円以下：<strong>税率30%</strong><br/>
+      年間所得1,800万円超：<strong>税率50〜55%</strong><br/>
+<br/>
+      利益が小さいうちは国内FX（20.315%）より有利。<strong>利益が大きくなったら税理士に相談</strong>することをおすすめします。</p>
+</div>
+<p>なお、海外FXには<strong>源泉徴収がない</strong>ため、利益が出た場合は毎年2月〜3月に自分で確定申告を行う必要があります。年間20万円を超えたら必ず申告してください。</p>
+</section>
+<!-- SECTION 4: Vantage -->
+<section>
+<div class="section-label">SECTION 04</div>
+<div class="section-title">ブローカーはVantageで安心な理由</div>
+<p>海外FXで最も怖いのは「ブローカーが突然消える」リスクです。天眼TripleMA-ASTシステムで採用したVantageは<strong>世界規模の規制を受けた信頼性の高いブローカー</strong>です。</p>
+<div class="vantage-box">
+<div class="vb-header">
+<span class="vb-badge">RECOMMENDED</span>
+<span class="vb-title">Vantage（バンテージ）</span>
+</div>
+<div class="vb-grid">
+<div class="vb-item">
+<div class="vi-label">設立</div>
+<div class="vi-val"><em>2009年</em>（15年以上の実績）</div>
+</div>
+<div class="vb-item">
+<div class="vi-label">規制・ライセンス</div>
+<div class="vi-val"><em>ASIC（豪）・FCA（英）・CIMA（ケイマン）</em></div>
+</div>
+<div class="vb-item">
+<div class="vi-label">レバレッジ</div>
+<div class="vi-val">最大<em>500倍</em></div>
+</div>
+<div class="vb-item">
+<div class="vi-label">ゼロカット</div>
+<div class="vi-val"><em>完全保証</em>（追証なし）</div>
+</div>
+<div class="vb-item">
+<div class="vi-label">最低入金</div>
+<div class="vi-val"><em>$50〜</em>（少額から始められる）</div>
+</div>
+<div class="vb-item">
+<div class="vi-label">MT5対応</div>
+<div class="vi-val"><em>完全対応</em>（EA稼働可能）</div>
+</div>
+<div class="vb-item">
+<div class="vi-label">XAUUSD スプレッド</div>
+<div class="vi-val">Raw口座で<em>0.1〜0.3pips</em>と安定</div>
+</div>
+<div class="vb-item">
+<div class="vi-label">日本語サポート</div>
+<div class="vi-val"><em>対応あり</em>（チャット・メール）</div>
+</div>
+</div>
+
+
+</div>
+<p>特にEAを使う場合、<strong>スプレッドの安定性とゼロカット保証</strong>は非常に重要です。スプレッドが広い口座ではバックテストと実運用で結果に大きなズレが生じます。Vantageのraw口座はXAUUSDのスプレッドが安定しており、天眼EAとの相性は検証済みです。</p>
+<div class="warn-box">
+      ※本記事は情報提供を目的としており、投資助言・税務アドバイスではありません。税金に関しては税理士など専門家にご相談ください。投資判断はご自身の責任で行ってください。
+    </div>
+</section>
+</div>
+<footer>
+<span>さうざーFX</span> ／ 天眼TripleMA-ASTシステム ／ 事前告知コラム
+</footer>
+</body>
+</html>

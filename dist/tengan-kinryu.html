@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>天眼金龍｜さうざーFX</title>
+<meta name="description" content="XAUUSD H1専用EA「天眼金龍 -TripleMA-ASTシステム【ゴールド専用】」の詳細。">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="天眼金龍｜さうざーFX">
+<meta property="og:description" content="XAUUSD H1専用EA「天眼金龍 -TripleMA-ASTシステム【ゴールド専用】」の詳細。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="さうざーFX">
+<meta property="og:image" content="https://sauza-fx.netlify.app/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@alex767_fx">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0A0B0D; --surface:#121418; --surface-2:#181B20; --ink:#ECE7DA; --muted:#9C978B; --line:#262A30;
+  --gold:#D4A445; --gold-ink:#E3B95E; --gold-soft:#2A2214; --on-gold:#15110A;
+  --thumb:#07080A; --thumb-grid:#1C222A; --thumb-ink:#7F8B96;
+  --up:#4CC08F; --down:#E3765F; --ok:#5ACB98; --ok-soft:#13261D; --wip:#A2A6AB; --wip-soft:#20242A;
+  --warn:#E3B45A; --warn-soft:#2A2312;
+  --serif:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --radius:6px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.85;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.4;margin:0;text-wrap:balance;font-weight:800}
+p{margin:0}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:20px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+/* PR bar + header */
+.prbar{background:var(--surface-2);color:var(--muted);font-size:12px;text-align:center;padding:6px 16px;line-height:1.6}
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;gap:24px;min-height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.logo-mark{width:36px;height:36px;border-radius:8px;display:block;object-fit:cover;background:#0B0B0D}
+.logo b{font-family:var(--serif);font-size:21px;letter-spacing:.04em;font-weight:800;color:var(--gold-ink)}
+.logo small{display:block;font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:.12em;line-height:1;margin-top:2px}
+.gnav{display:flex;gap:4px;margin-left:auto;align-items:center}
+.gnav a{text-decoration:none;font-size:14px;padding:8px 12px;border-radius:4px;color:var(--muted)}
+.gnav a:hover{color:var(--ink);background:var(--surface-2)}
+.gnav a[aria-current="page"]{color:var(--ink);font-weight:700}
+.gnav a.nav-x{margin-left:8px;border:1px solid var(--line);color:var(--ink)}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:4px;padding:8px 12px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer}
+@media (max-width:860px){
+  .menu-btn{display:block}
+  .gnav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;background:var(--surface);border-bottom:1px solid var(--line);padding:8px 20px 16px}
+  .gnav a{padding:12px 4px;border-bottom:1px solid var(--line);border-radius:0}
+  .gnav a.nav-x{margin:12px 0 0;border:1px solid var(--line);border-radius:4px;text-align:center}
+  .site-header.open .gnav{display:flex}
+}
+
+/* common */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;font-size:14px;padding:12px 22px;border-radius:4px;border:1px solid var(--line);line-height:1.3;cursor:pointer}
+.btn-primary{background:linear-gradient(180deg,#E6BC68,#C8952F);border-color:#C8952F;color:var(--on-gold)}
+.btn-gold{background:linear-gradient(180deg,#E6BC68,#C8952F);border-color:#C8952F;color:var(--on-gold)}
+.btn-ghost{background:transparent;color:var(--gold-ink);border-color:color-mix(in srgb,var(--gold) 55%,transparent)}
+.btn-sm{padding:8px 14px;font-size:13px}
+.btn[aria-disabled="true"]{background:var(--surface-2);border-color:var(--line);color:var(--muted);cursor:default}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--gold-ink);text-transform:uppercase}
+.section{padding-block:64px}
+.section + .section{border-top:1px solid var(--line)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head h2{font-size:clamp(23px,2.8vw,30px);margin-top:6px}
+.sec-head p{color:var(--muted);font-size:14px;max-width:32em}
+.more-link{font-size:14px;font-weight:700;color:var(--gold-ink);text-decoration:none;white-space:nowrap}
+.more-link:hover{text-decoration:underline}
+.muted{color:var(--muted)}
+.chip{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:999px;line-height:1.7;white-space:nowrap}
+.st-sale{background:var(--gold-soft);color:var(--gold-ink)}
+.st-fwd{background:var(--ok-soft);color:var(--ok)}
+.st-prep,.st-dev{background:var(--wip-soft);color:var(--wip)}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:0 6px;line-height:1.8}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* page title band */
+.page-head{padding-block:40px 32px;border-bottom:1px solid var(--line)}
+.crumb{font-size:12.5px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap}
+.crumb a{color:var(--muted);text-decoration:none}
+.crumb a:hover{color:var(--ink);text-decoration:underline}
+.page-head h1{font-size:clamp(26px,3.6vw,38px);margin-top:10px}
+.page-head p{color:var(--muted);margin-top:10px;max-width:38em}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:56px 64px}
+.hero h1{font-size:clamp(30px,4.4vw,50px);margin-block:16px 18px;letter-spacing:.01em}
+.hero h1 em{font-style:normal;color:var(--gold-ink)}
+.hero .lead{color:var(--muted);max-width:33em}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.spec-line{display:flex;gap:6px;flex-wrap:wrap}
+.feature-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.feature-card .thumb{border-radius:0}
+.feature-card .fc-body{padding:18px 20px 20px;display:grid;gap:10px}
+.feature-card .fc-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.feature-card h2{font-size:22px}
+.feature-card p{font-size:13.5px;color:var(--muted)}
+.feature-card .fc-actions{display:flex;gap:8px;flex-wrap:wrap}
+
+/* entry tiles */
+.entries{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.entry{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:start;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.entry:hover{border-color:var(--gold)}
+.entry .ico{grid-row:span 2;width:40px;height:40px;border-radius:6px;background:var(--gold-soft);display:grid;place-items:center}
+.entry .ico svg{width:22px;height:22px;stroke:var(--gold-ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.entry b{font-size:16px}
+.entry span{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* product grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.pcard:hover{border-color:color-mix(in srgb,var(--gold) 60%,var(--line))}
+.thumb{display:block;background:var(--thumb);aspect-ratio:16/9;width:100%;max-width:100%;position:relative}
+.thumb svg{display:block;width:100%;height:100%}
+.thumb .t-label{position:absolute;left:10px;top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--thumb-ink)}
+.pcard .pb{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.pcard .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pcard h3{font-size:17.5px}
+.pcard h3 a{text-decoration:none}
+.pcard h3 a:hover{text-decoration:underline}
+.pcard .sub{font-size:12.5px;color:var(--muted);line-height:1.6}
+.pcard .pact{margin-top:auto;padding-top:8px}
+.pcard .pact .btn{width:100%}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.filters button{font:inherit;font-size:13px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
+.count{font-size:13px;color:var(--muted);margin-bottom:12px}
+
+/* thumbnail svg classes */
+.g-line{stroke:var(--thumb-grid);stroke-width:1}
+.c-up{fill:var(--up);stroke:var(--up)}
+.c-dn{fill:var(--down);stroke:var(--down)}
+.o-gold{stroke:#D9A84A;fill:none;stroke-width:2.2}
+.o-box{fill:rgba(217,168,74,.10);stroke:#D9A84A;stroke-width:1;stroke-dasharray:4 3}
+.o-lvl{stroke:#D9A84A;stroke-width:1.2;stroke-dasharray:6 4}
+.o-dot{fill:#D9A84A}
+.o-txt{fill:#D9A84A;font-family:"JetBrains Mono",monospace;font-size:10px}
+
+/* policy */
+.policy{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.policy div{border-top:2px solid var(--gold);padding-top:16px}
+.policy h3{font-size:18px;margin-bottom:8px}
+.policy p{font-size:14px;color:var(--muted)}
+
+/* blog */
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.post{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:8px}
+.post .meta{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted)}
+.post h3{font-size:17px}
+.post p{font-size:13.5px;color:var(--muted)}
+.post .soon{margin-top:auto;font-size:12px;color:var(--muted);padding-top:6px}
+
+/* detail */
+.detail{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;padding-block:36px 56px;align-items:start}
+.detail .thumb{border-radius:var(--radius)}
+.buybox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:grid;gap:14px}
+.buybox h1{font-size:clamp(24px,3vw,32px)}
+.buybox .fullname{font-size:13px;color:var(--muted);margin-top:-6px}
+.buybox .actions{display:grid;gap:8px}
+.buybox .note{font-size:12px;color:var(--muted);line-height:1.7}
+.spec{width:100%;border-collapse:collapse;font-size:14px}
+.spec th,.spec td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{width:34%;color:var(--muted);font-weight:500;background:var(--surface-2)}
+.spec-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.spec-wrap .spec tr:last-child th,.spec-wrap .spec tr:last-child td{border-bottom:0}
+.prose{max-width:44em}
+.prose p + p{margin-top:12px}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.feat h3{font-size:17px;margin-bottom:8px}
+.feat p{font-size:14px;color:var(--muted)}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:f}
+.flow li{list-style:none;position:relative;padding:18px 20px 18px 20px;background:var(--surface);border:1px solid var(--line);margin-left:-1px}
+.flow li:first-child{border-radius:var(--radius) 0 0 var(--radius);margin-left:0}
+.flow li:last-child{border-radius:0 var(--radius) var(--radius) 0;border-color:var(--gold);background:var(--gold-soft)}
+.flow b{display:block;font-size:15px}
+.flow span{font-size:13px;color:var(--muted);line-height:1.6;display:block;margin-top:4px}
+.flow .k{font-family:var(--mono);font-size:11px;color:var(--gold-ink);letter-spacing:.08em}
+.faq{display:grid;gap:10px;max-width:52em}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:0 18px}
+.faq summary{cursor:pointer;padding:14px 0;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--gold-ink)}
+.faq details[open] summary::after{content:"−"}
+.faq summary::-webkit-details-marker{display:none}
+.faq details p{padding-bottom:16px;font-size:14px;color:var(--muted)}
+.alert{background:var(--warn-soft);color:var(--ink);border-radius:var(--radius);padding:16px 18px;font-size:13.5px;line-height:1.8}
+.alert b{color:var(--warn)}
+
+/* beginners */
+.steps{display:grid;gap:0;counter-reset:s;max-width:52em}
+.steps li{list-style:none;display:grid;grid-template-columns:44px 1fr;gap:16px;padding-bottom:26px;position:relative}
+.steps li::before{counter-increment:s;content:counter(s);width:36px;height:36px;border-radius:50%;background:var(--gold);color:var(--on-gold);display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:14px}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:17px;top:40px;bottom:4px;width:2px;background:var(--line)}
+.steps b{display:block;font-size:16px;margin-top:4px}
+.steps p{font-size:14px;color:var(--muted);margin-top:4px}
+.steps code{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);padding:1px 6px;border-radius:3px;color:var(--ink)}
+.needs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cmp .box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.cmp h3{font-size:18px;margin-bottom:6px}
+.cmp p{font-size:13.5px;color:var(--muted)}
+.tbl{overflow-x:auto;margin-top:14px}
+.tbl table{border-collapse:collapse;width:100%;min-width:440px;font-size:13px}
+.tbl th,.tbl td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-size:12px;color:var(--muted);font-weight:700}
+.slot{display:inline-block;font-size:11px;color:var(--gold-ink);border:1px dashed var(--gold);padding:1px 8px;border-radius:3px;white-space:nowrap}
+
+/* about / legal */
+.dl{display:grid;grid-template-columns:9em 1fr;gap:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);max-width:52em}
+.dl dt,.dl dd{margin:0;padding:14px 16px;border-bottom:1px solid var(--line);font-size:14px}
+.dl dt{color:var(--muted);background:var(--surface-2)}
+.dl dt:last-of-type,.dl dd:last-of-type{border-bottom:0}
+.legal{max-width:46em;display:grid;gap:40px}
+.legal h2{font-size:22px;margin-bottom:12px}
+.legal p,.legal li{font-size:14.5px}
+.legal ul,.legal ol{padding-left:1.3em;margin:8px 0 0;display:grid;gap:6px}
+.legal p + p{margin-top:10px}
+
+.about-brand{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center;max-width:52em}
+.about-brand img{width:100%;height:auto;border-radius:12px;display:block}
+@media (max-width:520px){.about-brand{grid-template-columns:1fr}.about-brand img{max-width:220px}}
+.thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.banner{margin:0}
+.banner img{display:block;width:100%;height:auto;border-radius:var(--radius)}
+.banner figcaption{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.7}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;display:grid;gap:2px}
+.s-label{font-size:12.5px;color:var(--muted)}
+.s-val{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:clamp(24px,3vw,30px);font-weight:600;line-height:1.3}
+.s-val small{font-size:.5em;margin-left:3px;color:var(--muted);font-weight:400}
+.s-sub{font-size:12px;color:var(--muted);line-height:1.6}
+@media (max-width:860px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:420px){.stats{grid-template-columns:1fr}}
+.hero-band{background:radial-gradient(ellipse 60% 70% at 78% 45%,rgba(212,164,69,.16),transparent 70%),linear-gradient(180deg,#0B0D12 0%,#0A0B0D 100%);border-bottom:1px solid var(--line);overflow:hidden}
+.hero-band .hero{grid-template-columns:1.1fr .9fr;padding-block:64px 72px}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;letter-spacing:.24em;color:var(--gold-ink)}
+.hero-eyebrow span{display:inline-block;width:32px;height:2px;background:var(--gold)}
+.hero-band h1{font-size:clamp(34px,5.2vw,64px);line-height:1.22;color:#F4F0E6}
+.hero-band h1 em{background:linear-gradient(180deg,#F6D98C 0%,#D9A84A 55%,#A87A22 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-band .lead{color:#BDB6A6;font-size:16px}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
+.hero-stats b{display:block;font-family:var(--serif);font-size:28px;color:var(--gold-ink);line-height:1.2}
+.hero-stats span{font-size:12.5px;color:var(--muted)}
+.hero-logo{position:relative;display:grid;place-items:center}
+.hero-logo::before{content:"";position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle,rgba(230,188,104,.35),transparent 65%);filter:blur(30px)}
+.hero-logo img{position:relative;width:min(100%,460px);height:auto;display:block;mix-blend-mode:lighten}
+.feature-wide{display:grid;grid-template-columns:1.15fr .85fr;gap:0;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.feature-wide:hover{border-color:var(--gold)}
+.feature-wide img{width:100%;height:100%;object-fit:cover;display:block}
+.fw-body{padding:24px 26px;display:grid;gap:10px;align-content:start}
+.fw-body h3{font-size:26px}
+.fw-sub{font-size:13px;color:var(--muted);margin-top:-6px}
+.fw-body p{font-size:14px}
+.fw-stats{display:flex;gap:24px;margin:4px 0 0;flex-wrap:wrap}
+.fw-stats dt{font-size:11.5px;color:var(--muted)}
+.fw-stats dd{margin:0;font-family:var(--mono);font-size:22px;font-weight:600;color:var(--gold-ink)}
+.fw-note{font-size:11.5px !important;color:var(--muted);line-height:1.6}
+@media (max-width:860px){.hero-band .hero{grid-template-columns:1fr}.hero-logo{order:-1}.hero-logo img{width:min(70%,320px)}.feature-wide{grid-template-columns:1fr}}
+.grp + .grp{margin-top:44px}
+.grp-h{font-size:22px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.grp-h::after{content:"";flex:1;height:1px;background:var(--line)}
+/* footer */
+.site-footer{border-top:1px solid var(--line);background:var(--surface);margin-top:24px}
+.ft{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-block:44px 28px}
+.ft h4{font-family:var(--sans);font-size:13px;margin-bottom:10px}
+.ft ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.ft a{font-size:13px;color:var(--muted);text-decoration:none}
+.ft a:hover{color:var(--ink);text-decoration:underline}
+.ft .about-ft p{font-size:13px;color:var(--muted);margin-top:10px;max-width:24em}
+.ft-bottom{border-top:1px solid var(--line);padding-block:18px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.risk{font-size:12px;color:var(--muted);line-height:1.7;padding-bottom:20px}
+
+@media (max-width:1000px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:860px){
+  .hero,.detail{grid-template-columns:1fr;gap:32px}
+  .entries,.policy,.posts,.feats,.needs{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .cmp{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .flow li{margin-left:0;margin-top:-1px}
+  .flow li:first-child{border-radius:var(--radius) var(--radius) 0 0;margin-top:0}
+  .flow li:last-child{border-radius:0 0 var(--radius) var(--radius)}
+  .ft{grid-template-columns:1fr 1fr}
+  .ft .about-ft{grid-column:1/-1}
+  .section{padding-block:48px}
+}
+@media (max-width:520px){
+  .grid{grid-template-columns:1fr}
+  .dl{grid-template-columns:1fr}
+  .dl dt{border-bottom:0;padding-bottom:4px}
+  .dl dd{padding-top:4px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* ---------- EA講座 ---------- */
+:root{--s-is:#5E8FCC;--s-oos:#B88A30}
+.course-intro{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:start}
+.course-intro .prose p{font-size:15.5px}
+.promise{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
+.promise h3{font-family:var(--sans);font-size:14px;margin-bottom:10px}
+.promise ul{margin:0;padding-left:1.1em;display:grid;gap:6px;font-size:13.5px;color:var(--muted)}
+.toc-meta{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:18px}
+.toc-meta b{color:var(--ink);font-family:var(--mono);font-variant-numeric:tabular-nums}
+.part{display:grid;grid-template-columns:220px 1fr;gap:28px;padding-block:28px;border-top:1px solid var(--line)}
+.part:first-child{border-top:0;padding-top:0}
+.part-h .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--gold-ink)}
+.part-h h3{font-size:20px;margin-block:4px 6px}
+.part-h p{font-size:13px;color:var(--muted);line-height:1.7}
+.ch{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden}
+.ch li{display:grid;grid-template-columns:3em 1fr auto;gap:14px;align-items:center;padding:13px 16px;border-top:1px solid var(--line)}
+.ch li:first-child{border-top:0}
+.ch .no{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ch .t b{display:block;font-size:15px;font-weight:700;line-height:1.5}
+.ch .t span{display:block;font-size:12.5px;color:var(--muted);line-height:1.6}
+.ch li.ready{background:var(--gold-soft)}
+.ch li.ready .t b a{text-decoration:none}
+.ch li.ready .t b a:hover{text-decoration:underline}
+.ch li.ready .no{color:var(--gold-ink)}
+.st-read{background:var(--gold);color:var(--on-gold)}
+@media (max-width:860px){
+  .course-intro,.part{grid-template-columns:1fr;gap:16px}
+  .ch li{grid-template-columns:2.4em 1fr;}
+  .ch li .chip{grid-column:2;justify-self:start}
+}
+
+.post-link{text-decoration:none;color:inherit}
+.post-link:hover{border-color:var(--gold)}
+.post-link .soon{color:var(--gold-ink);font-weight:700}
+.jump{font-size:13px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none}
+.jump:hover{border-color:var(--gold)}
+.data-note{font-size:13px;color:var(--muted);background:var(--surface-2);border-radius:var(--radius);padding:10px 14px;margin-bottom:18px}
+/* ---------- FX入門 図 ---------- */
+.chart-svg .d-path{fill:none;stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.chart-svg .d-up-f{fill:var(--up)}
+.chart-svg .d-dn-f{fill:var(--down)}
+.chart-svg .d-up-s{stroke:var(--up)}
+.chart-svg .d-dn-s{stroke:var(--down)}
+.chart-svg .d-lbl{fill:var(--ink);font-size:12px;font-weight:700}
+.chart-svg .d-gain{fill:var(--gold-ink);font-size:13px;font-weight:700}
+.chart-svg .d-note line{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
+.chart-svg .d-note text{fill:var(--ink);font-size:12px}
+.chart-svg .d-band{fill:var(--s-is);opacity:.75}
+.chart-svg .d-hot{fill:none;stroke:var(--gold);stroke-width:2;stroke-dasharray:5 4}
+.next-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-block:16px}
+.next-card{display:grid;gap:4px;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
+.next-card:hover{border-color:var(--gold)}
+.next-card .k{font-family:var(--mono);font-size:11px;color:var(--gold-ink);letter-spacing:.1em}
+.next-card b{font-size:16px}
+.next-card span:last-child{font-size:13.5px;color:var(--muted);line-height:1.7}
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-top:36px}
+.summary h2{font-size:17px !important;margin:0 0 8px !important}
+.summary ul{margin:0}
+.step-tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--gold-ink)}
+@media (max-width:640px){.next-grid{grid-template-columns:1fr}}
+/* ---------- 記事 ---------- */
+.article{max-width:46em;margin-inline:auto;padding-block:40px 24px}
+.article .a-head .k{font-family:var(--mono);font-size:12px;color:var(--gold-ink);letter-spacing:.1em}
+.article h1{font-size:clamp(25px,3.4vw,34px);margin-block:8px 14px}
+.article .a-lead{font-size:16px;color:var(--muted)}
+.article .a-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.article h2{font-size:22px;margin-block:44px 14px;padding-top:4px}
+.article h3{font-size:17px;margin-block:26px 8px}
+.article p{font-size:15.5px}
+.article p + p{margin-top:14px}
+.article ul,.article ol{padding-left:1.3em;display:grid;gap:6px;margin:12px 0}
+.article li{font-size:15px}
+.point{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:16px 18px;margin-block:20px;font-size:14.5px}
+.point b{display:block;margin-bottom:4px}
+.figure{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 12px;margin-block:22px}
+.figure .f-title{font-weight:700;font-size:14.5px}
+.figure .f-sub{font-size:12.5px;color:var(--muted)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-block:10px 4px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.chart-svg{display:block;width:100%;height:auto;overflow:visible}
+.chart-svg .grid-l{stroke:var(--line);stroke-width:1}
+.chart-svg .base-l{stroke:var(--muted);stroke-width:1}
+.chart-svg .ref-l{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:5 4}
+.chart-svg .ax{fill:var(--muted);font-family:"JetBrains Mono",monospace;font-size:11px}
+.chart-svg .cat{fill:var(--ink);font-size:12.5px;font-weight:700}
+.chart-svg .cat2{fill:var(--muted);font-size:11.5px}
+.chart-svg .val{fill:var(--ink);font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:600}
+.chart-svg .ref-t{fill:var(--ink);font-size:11px}
+.chart-svg .b-is{fill:var(--s-is)}
+.chart-svg .b-oos{fill:var(--s-oos)}
+.chart-svg .bar{transition:opacity .15s}
+.chart-svg g.cg:hover .bar{opacity:.85}
+.chart-svg .hit{fill:transparent}
+.f-note{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.7}
+.data-tbl{overflow-x:auto;margin-block:16px}
+.data-tbl table{border-collapse:collapse;width:100%;min-width:460px;font-size:13.5px;background:var(--surface)}
+.data-tbl th,.data-tbl td{padding:10px 12px;border:1px solid var(--line);text-align:left}
+.data-tbl th{background:var(--surface-2);font-size:12.5px;color:var(--muted);font-weight:700}
+.data-tbl td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.data-tbl .ng{color:var(--down)}
+.verdict{font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.v-ok{background:var(--ok-soft);color:var(--ok)}
+.v-ng{background:var(--wip-soft);color:var(--muted)}
+.checklist{list-style:none;padding:0 !important}
+.checklist li{padding-left:1.8em;position:relative}
+.checklist li::before{content:"";position:absolute;left:0;top:.45em;width:13px;height:13px;border:1.5px solid var(--gold);border-radius:3px}
+.a-nav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px}
+.a-nav a,.a-nav span{display:block;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;text-decoration:none;background:var(--surface);font-size:14px}
+.a-nav small{display:block;font-size:11.5px;color:var(--muted)}
+.a-nav a:hover{border-color:var(--gold)}
+.a-nav .next{text-align:right}
+.a-nav span{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="prbar">当サイトはアフィリエイト広告（PR）を含みます。掲載しているEA・インジケーターは利益を保証するものではありません。</div>
+<header class="site-header">
+  <div class="wrap hd">
+    <a class="logo" href="./"><img class="logo-mark" src="logo-mark.png" alt="" width="36" height="36"><span><b>さうざーFX</b><small>GOLD EA LAB</small></span></a>
+    <button class="menu-btn" type="button" aria-expanded="false">メニュー</button>
+    <nav class="gnav" aria-label="メインメニュー"><a href="./">ホーム</a><a href="fx-basics.html">FX入門</a><a href="course.html">EA講座</a><a href="products.html" aria-current="page">商品一覧</a><a href="blog.html">コラム</a><a href="about.html">運営者</a><a class="nav-x" href="https://x.com/alex767_fx" target="_blank" rel="noopener">X @alex767_fx</a></nav>
+  </div>
+</header>
+<main>
+<div class="wrap" style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="products.html">商品一覧</a> <span aria-hidden="true">/</span> <span>天眼金龍</span></nav></div>
+<div class="wrap detail">
+  <div style="display:grid;gap:18px">
+    <figure class="banner"><img src="tengan-banner.jpg" alt="天眼金龍 TripleMA-ASTシステム【ゴールド専用】のバナー。v1.4バックテスト実績（2022年〜2026年9月）：初期証拠金100万円、総損益+2,458,794円、プロフィットファクター1.72、最大ドローダウン23.62%（証拠金ベース）、取引回数271回" width="1672" height="941"><figcaption>バナーの実績は、固定ロット0.1で行ったv1.4のバックテスト結果です（<a href="#v14-results">詳細</a>）。過去のデータによる結果で、将来の成果を保証するものではありません。</figcaption></figure>
+    <div class="spec-wrap"><table class="spec">
+      <tr><th>商品名</th><td>天眼金龍 -TripleMA-ASTシステム【ゴールド専用】</td></tr>
+      <tr><th>バージョン</th><td class="num">v1.4</td></tr>
+      <tr><th>対応銘柄・時間足</th><td>XAUUSD・H1（1時間足）</td></tr>
+      <tr><th>プラットフォーム</th><td>MetaTrader 5（MT5対応のブローカー全般）</td></tr>
+      <tr><th>取引スタイル</th><td>トレンドフォロー（ロング・ショート両方）。設定でロングのみにも切り替え可能</td></tr>
+      <tr><th>エントリー頻度</th><td>月5件程度</td></tr>
+      <tr><th>同時保有</th><td>1ポジション（初期設定）</td></tr>
+      <tr><th>損切り</th><td>ATR（14）× 1.5 の動的ストップロス</td></tr>
+      <tr><th>利益確定</th><td>TP1（損切り幅の2.5倍）で30%を決済し、損切りを建値へ移動。残りはTP2（6倍）まで</td></tr>
+      <tr><th>その他の決済</th><td>SuperTrendが反転したら全決済。TP1後24時間たっても決済されない場合は残りを決済</td></tr>
+      <tr><th>ロット</th><td>固定ロット（初期0.1）／AutoLot（口座残高の一定%をリスクにする複利運用）</td></tr>
+      <tr><th>販売</th><td>GogoJungle（商品ID <span class="num">78813</span>）</td></tr>
+    </table></div>
+  </div>
+  <aside class="buybox">
+    <span class="chip st-sale" style="justify-self:start">販売中 ・ v1.4</span>
+    <h1 style="font-size:clamp(24px,3vw,32px)">天眼金龍</h1>
+    <p class="fullname">TripleMA-ASTシステム【ゴールド専用】</p>
+    <p>TripleMAとSuperTrendの二重フィルターで、上昇はロング、下降はショートでトレンドに乗るEAです。エントリーは月5件程度に絞り、トレンドが出た場面だけを狙います。</p>
+    <div class="actions">
+      <a class="btn btn-gold" href="https://www.gogojungle.co.jp/systemtrade/fx/78813" target="_blank" rel="noopener">GogoJungleで購入する</a>
+      <a class="btn btn-ghost" href="beginners.html">導入の流れを見る</a>
+    </div>
+    <p class="note">購入・ダウンロード・お支払いはGogoJungleで行います。価格と最新の成績は販売ページに掲載しています。</p>
+  </aside>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Features</div><h2>3つの特徴</h2></div></div>
+    <div class="feats">
+      <div class="feat"><h3>トレンドの転換で入る</h3><p>相場の変動幅に合わせて感度が変わるAdaptive SuperTrendを使い、向きが変わったところでエントリーします。上向きならロング、下向きならショートです。</p></div>
+      <div class="feat"><h3>3本のMAで方向をそろえる</h3><p>21EMAと50EMAの並び、200EMAに対する価格の位置、短期MAの傾きが、すべてトレンドの向きと一致したときだけ入ります。急すぎる傾きの「高値づかみ」も避けます。</p></div>
+      <div class="feat"><h3>利益を残しながら伸ばす</h3><p>損切り幅の2.5倍で30%を利益確定し、残りは損切りを建値に移して6倍まで狙います。トレンドが反転したら、SuperTrendの転換で残りも決済します。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="v14-results">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Backtest</div><h2>v1.4のバックテスト結果</h2></div><p>2022年〜現在 ・ XAUUSD H1 ・ 固定ロット0.1 ・ 初期証拠金100万円 ・ MT5ストラテジーテスター（ヒストリー品質99%）</p></div>
+    <div class="stats">
+      <div class="stat"><span class="s-label">総損益</span><span class="s-val">+2,458,794<small>円</small></span><span class="s-sub">初期証拠金に対して +245.9%</span></div>
+      <div class="stat"><span class="s-label">プロフィットファクター</span><span class="s-val">1.72</span><span class="s-sub">総利益 5,876,652円 ÷ 総損失 3,417,858円</span></div>
+      <div class="stat"><span class="s-label">最大ドローダウン</span><span class="s-val">22.70<small>%</small></span><span class="s-sub">残高ベース（証拠金ベースは23.62%）</span></div>
+      <div class="stat"><span class="s-label">取引数</span><span class="s-val">271</span><span class="s-sub">ロング162回・ショート109回</span></div>
+      <div class="stat"><span class="s-label">勝率</span><span class="s-val">32.47<small>%</small></span><span class="s-sub">ロング36.42%・ショート26.61%</span></div>
+      <div class="stat"><span class="s-label">平均損益比</span><span class="s-val">3.58</span><span class="s-sub">平均利益 66,780円 ÷ 平均損失 18,677円</span></div>
+    </div>
+
+    <div class="prose" style="margin-top:28px">
+      <h3 style="font-size:18px;margin-bottom:8px">この結果の読み方</h3>
+      <p>勝率は約3割で、10回のうち7回近くは負けます。それでも利益が残るのは、1回の勝ちが負けの約3.6倍あるからです。小さく負けて、トレンドに乗れたときに大きく取る、トレンドフォロー型の典型的な成績です。</p>
+      <p>その代わり、負けが続く期間は避けられません。この期間の最大連敗は<b>20回</b>（合計−383,523円）、連続した損失の最大は−634,893円（11回）でした。運用を始めたあとに連敗が続いても慌てないように、この数字を前提に資金とロットを決めてください。</p>
+    </div>
+
+    <div class="data-tbl" style="max-width:52em">
+      <table style="min-width:0">
+        <thead><tr><th>項目</th><th>値</th></tr></thead>
+        <tbody>
+          <tr><td>リカバリーファクター</td><td class="n">3.72</td></tr>
+          <tr><td>シャープレシオ</td><td class="n">2.66</td></tr>
+          <tr><td>期待利得（1取引あたり）</td><td class="n">9,073円</td></tr>
+          <tr><td>最大の勝ちトレード ／ 負けトレード</td><td class="n">372,640円 ／ −132,001円</td></tr>
+          <tr><td>最大連勝 ／ 最大連敗</td><td class="n">4回 ／ 20回</td></tr>
+          <tr><td>1か月あたりの取引数</td><td class="n">約4.8回</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="banner" style="margin-top:24px">
+      <img src="tengan-v14-report.jpg" alt="MT5ストラテジーテスターのバックテスト結果画面。天眼金龍v1.4、2022年から現在まで" width="1400" height="738" loading="lazy">
+      <figcaption>MT5ストラテジーテスターの結果画面。時間帯別の取引で20時（サーバー時間）が0件なのは、初期設定の時間帯除外によるものです。バックテストは過去のデータによる結果で、将来の成果を保証するものではありません。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Logic</div><h2>エントリーまでの判定</h2></div><p>1時間足が確定するたびに、次の条件を確認します。</p></div>
+    <ol class="flow" style="padding:0;margin:0">
+      <li><span class="k">CHECK 1</span><b>SuperTrend転換</b><span>Adaptive SuperTrendの向きが切り替わる（上向きなら買い、下向きなら売り）</span></li>
+      <li><span class="k">CHECK 2</span><b>MAの並びと位置</b><span>21EMAと50EMAの並び、200EMAに対する価格の位置が、どちらも同じ向き</span></li>
+      <li><span class="k">CHECK 3</span><b>傾きと時間帯</b><span>21EMAの傾きが行き過ぎていない。除外している時間帯ではない</span></li>
+      <li><span class="k">ENTRY</span><b>確定足で発注</b><span>損切りとTP2を同時に設定してエントリー</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Update</div><h2>v1.4の変更点</h2></div><p>v1.4の検証結果は<a href="#v14-results">このページの上</a>に掲載しています。新しい検証は順次追加します。</p></div>
+    <ul class="prose" style="padding-left:1.2em;display:grid;gap:8px;margin:0">
+      <li>エントリーを「SuperTrendの転換 × MAの並び」の1つの条件に整理</li>
+      <li>MAの傾きフィルターを、ロングとショートで対称に判定するように変更</li>
+      <li>値動きが荒れやすい時間帯を除外する設定を追加（初期設定はサーバー時間20時）</li>
+      <li>TP1達成後、一定時間たっても決済されない残りポジションを決済する機能を追加</li>
+      <li>EAを再起動しても、保有中のポジションの管理を引き継げるように改善</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">FAQ</div><h2>よくある質問</h2></div></div>
+    <div class="faq">
+      <details><summary>どの口座で使えますか？</summary><p>MT5でXAUUSD（ゴールド）を取引できる口座で動作します。業者によって銘柄名が「XAUUSD」以外になっている場合があるため、詳しい対応条件は販売ページをご確認ください。</p></details>
+      <details><summary>最小ロットで使えますか？</summary><p>動作はしますが、最小ロット（多くの口座で0.01lot）では、TP1での一部決済ができず、TP1で全量が決済されます。TP2まで狙う設計を活かすには、最小ロットの2倍以上（0.02lot以上）で運用してください。</p></details>
+      <details><summary>ロングだけで運用できますか？</summary><p>できます。パラメータの「LongOnly」をtrueにすると、ショートのエントリーを行いません。</p></details>
+      <details><summary>パソコンを付けっぱなしにする必要がありますか？</summary><p>EAはMT5が起動している間だけ動きます。24時間動かすにはVPS（仮想サーバー）の利用をおすすめします。手順は<a href="beginners.html">EAの導入手順</a>で説明しています。</p></details>
+      <details><summary>必ず利益が出ますか？</summary><p>いいえ。相場の状況によって連敗や資金の減少が起こります。バックテストは過去のデータでの結果で、将来の成績を保証するものではありません。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap"><div class="alert"><b>ご注意</b>　FX・CFD取引は元本を超える損失が生じる可能性があります。EAの利用は、内容とリスクを理解したうえでご自身の判断で行ってください。</div></div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ft">
+      <div class="about-ft">
+        <a class="logo" href="./"><img class="logo-mark" src="logo-mark.png" alt="" width="36" height="36"><span><b>さうざーFX</b><small>GOLD EA LAB</small></span></a>
+        <p>XAUUSD（ゴールド）を中心に、EAとインジケーターを開発しています。</p>
+      </div>
+      <div><h4>商品</h4><ul>
+        <li><a href="products.html">商品一覧</a></li>
+        <li><a href="tengan-kinryu.html">天眼金龍</a></li>
+        <li><a href="products.html#indicators">インジケーター</a></li></ul></div>
+      <div><h4>サポート</h4><ul>
+        <li><a href="fx-basics.html">FX入門</a></li>
+        <li><a href="course.html">EA講座</a></li>
+        <li><a href="beginners.html">EAの導入手順</a></li>
+        <li><a href="blog.html">コラム</a></li>
+        <li><a href="about.html">運営者情報</a></li></ul></div>
+      <div><h4>規約・ポリシー</h4><ul>
+        <li><a href="legal.html#disclaimer">免責事項</a></li>
+        <li><a href="legal.html#ad">広告の表記について</a></li>
+        <li><a href="legal.html#privacy">プライバシーポリシー</a></li></ul></div>
+    </div>
+    <p class="risk">FX・CFD取引は元本を超える損失が生じる可能性があります。掲載しているバックテストや運用実績は過去のもので、将来の成果を保証するものではありません。取引はご自身の判断と責任で行ってください。</p>
+    <div class="ft-bottom"><span>© 2026 さうざーFX</span><span>当サイトの文章・画像の無断転載を禁じます</span></div>
+  </div>
+</footer>
+<script>
+(function(){
+  var h=document.querySelector('.site-header'),b=document.querySelector('.menu-btn');
+  if(h&&b){b.addEventListener('click',function(){var o=h.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'閉じる':'メニュー';});}
+  var f=document.querySelector('.filters');
+  if(f){
+    var cards=[].slice.call(document.querySelectorAll('[data-type]')),cnt=document.querySelector('.count');
+    function apply(v){
+      var n=0;
+      cards.forEach(function(c){var show=v==='all'||c.dataset.type===v||(v==='sale'&&c.dataset.status==='sale');c.hidden=!show;if(show)n++;});
+      if(cnt)cnt.textContent=n+'件の商品';
+      [].forEach.call(document.querySelectorAll('.grp'),function(g){g.hidden=!g.querySelector('[data-type]:not([hidden])');});
+    }
+    f.addEventListener('click',function(e){
+      var t=e.target.closest('button');if(!t)return;
+      [].forEach.call(f.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===t?'true':'false');});
+      apply(t.dataset.f);
+    });
+    apply('all');
+  }
+})();
+</script>
+</body>
+</html>

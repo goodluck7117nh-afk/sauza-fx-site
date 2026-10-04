@@ -1,0 +1,4 @@
+[build]
+  # dist/ をそのまま公開する（ビルド処理なし）
+  publish = "dist"
+  command = ""

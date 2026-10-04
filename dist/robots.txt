@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sauza-fx.netlify.app/sitemap.xml

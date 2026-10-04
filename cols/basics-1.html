@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CHAPTER 1｜海外FXとは？国内FXとの違いを徹底解説【初心者向け】</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Share+Tech+Mono&display=swap');
+:root{--gold:#C9A84C;--gold-light:#E8C96A;--gold-dim:#8B7035;--dark:#0A0A0F;--dark2:#111118;--dark3:#1A1A24;--dark4:#222230;--text:#E8E4D8;--text-dim:#9A9485;--accent:#4CADE8;--green:#4CE8A8;--red:#E84C6A;--orange:#E8A84C;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--dark);color:var(--text);font-family:'Noto Sans JP',sans-serif;line-height:1.9;font-size:15px;}
+.hero{background:var(--dark2);border-bottom:1px solid var(--gold-dim);padding:56px 24px 44px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(201,168,76,0.1) 0%,transparent 70%);}
+.chapter-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,0.12);border:1px solid var(--gold-dim);padding:6px 20px;border-radius:2px;margin-bottom:18px;}
+.chapter-num{font-family:'Share Tech Mono',monospace;font-size:24px;color:var(--gold-light);}
+.chapter-label{font-size:11px;color:var(--text-dim);letter-spacing:0.1em;}
+.hero h1{font-family:'Noto Serif JP',serif;font-size:clamp(20px,4vw,32px);font-weight:700;line-height:1.5;margin-bottom:10px;}
+.hero h1 em{font-style:normal;color:var(--gold-light);}
+.hero-sub{font-size:13px;color:var(--text-dim);}
+.container{max-width:680px;margin:0 auto;padding:0 20px;}
+section{padding:40px 0 28px;border-bottom:1px solid rgba(201,168,76,0.12);}
+section:last-child{border-bottom:none;}
+.section-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.3em;color:var(--gold);margin-bottom:6px;}
+.section-title{font-family:'Noto Serif JP',serif;font-size:clamp(17px,2.5vw,22px);font-weight:600;color:var(--text);margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid var(--gold-dim);}
+.sub-title{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:600;color:var(--gold-light);margin:24px 0 12px;}
+p{margin-bottom:14px;color:var(--text-dim);}
+p strong{color:var(--text);}
+.point-box{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:18px 20px;margin:16px 0;font-size:13px;color:var(--text-dim);}
+.point-box .point-title{font-weight:700;color:var(--gold-light);font-size:14px;margin-bottom:8px;}
+.info-box{background:rgba(76,173,232,0.06);border-left:3px solid var(--accent);border-radius:0 4px 4px 0;padding:14px 16px;margin:16px 0;font-size:13px;color:var(--text-dim);}
+.warn-box{background:rgba(232,168,76,0.06);border-left:3px solid var(--orange);border-radius:0 4px 4px 0;padding:14px 16px;margin:16px 0;font-size:13px;color:var(--text-dim);}
+.green-box{background:rgba(76,232,168,0.06);border-left:3px solid var(--green);border-radius:0 4px 4px 0;padding:14px 16px;margin:16px 0;font-size:13px;color:var(--text-dim);}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0;}
+.compare-table th{background:var(--dark4);color:var(--gold);font-family:'Share Tech Mono',monospace;font-size:10px;padding:10px 14px;text-align:center;border-bottom:1px solid var(--gold-dim);}
+.compare-table th:first-child{text-align:left;}
+.compare-table td{padding:11px 14px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--text-dim);}
+.compare-table td:first-child{text-align:left;color:var(--text);font-weight:500;}
+.compare-table tr.hl td{background:rgba(201,168,76,0.05);}
+.compare-table .good{color:var(--green);}
+.compare-table .bad{color:var(--red);}
+.compare-table .mid{color:var(--orange);}
+.merit-list{display:flex;flex-direction:column;gap:12px;margin:16px 0;}
+.merit-item{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--dark3);border-radius:6px;border:1px solid rgba(255,255,255,0.05);}
+.merit-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.merit-text strong{color:var(--text);font-size:14px;display:block;margin-bottom:4px;}
+.merit-text span{color:var(--text-dim);font-size:13px;line-height:1.8;}
+.quiz-box{background:var(--dark3);border:1px solid var(--gold-dim);border-radius:8px;padding:22px;margin:20px 0;}
+.quiz-q{font-size:15px;font-weight:700;color:var(--text);margin-bottom:14px;}
+.quiz-choices{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.quiz-choice{padding:10px 14px;background:var(--dark4);border-radius:4px;font-size:13px;color:var(--text-dim);cursor:pointer;border:1px solid rgba(255,255,255,0.06);transition:all 0.2s;}
+.quiz-choice:hover{border-color:var(--gold-dim);color:var(--text);}
+.quiz-choice.correct{border-color:var(--green);background:rgba(76,232,168,0.08);color:var(--green);}
+.quiz-choice.wrong{border-color:var(--red);background:rgba(232,76,106,0.06);color:var(--red);}
+.quiz-answer{display:none;padding:12px 14px;background:rgba(76,232,168,0.06);border-left:3px solid var(--green);border-radius:0 4px 4px 0;font-size:13px;color:var(--text-dim);margin-top:8px;}
+.nav-box{display:flex;justify-content:space-between;align-items:center;padding:20px 0;margin-top:8px;}
+.nav-btn{display:inline-block;padding:10px 24px;border:1px solid var(--gold-dim);border-radius:4px;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gold);text-decoration:none;letter-spacing:0.1em;}
+footer{background:var(--dark2);border-top:1px solid var(--gold-dim);padding:28px 24px;text-align:center;margin-top:60px;}
+.footer-brand{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gold-dim);letter-spacing:0.2em;}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:6px 0 0;}
+.cnav{font-family:'Share Tech Mono',monospace;font-size:10px;padding:4px 12px;border-radius:2px;border:1px solid var(--gold-dim);color:var(--gold-dim);}
+.cnav.active{background:rgba(201,168,76,0.15);color:var(--gold-light);border-color:var(--gold);}
+</style>
+<link href="favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="apple-touch-icon.png" rel="apple-touch-icon"/></head>
+<body><div id="sauza-topbar" style="background:#0B0E12;border-bottom:1px solid #2A2F36;font-family:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',system-ui,sans-serif;position:relative;z-index:50">
+<div style="max-width:960px;margin:0 auto;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px">
+<a href="./" style="color:#D9A84A;text-decoration:none;font-weight:700;letter-spacing:.04em;display:flex;align-items:center;gap:8px"><img alt="" height="28" src="logo-mark.png" style="border-radius:6px;display:block" width="28"/>さうざーFX</a>
+<span style="display:flex;gap:16px;flex-wrap:wrap"><a href="blog.html" style="color:#ECEDEA;text-decoration:none">← コラム一覧</a><a href="products.html" style="color:#9BA3AA;text-decoration:none">商品一覧</a></span>
+</div><div style="max-width:960px;margin:0 auto;padding:0 16px 10px;font-size:12px;line-height:1.7;color:#B9B2A2">海外FX業者の多くは、日本の金融庁に登録していません。トラブルの際に日本の法律で保護されない場合があります。利用するかどうかは、リスクを理解したうえでご判断ください。</div>
+</div>
+<div class="hero">
+<div class="container">
+<div style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold-dim);margin-bottom:12px;">さうざーFX ／ 海外FX基礎知識ガイド</div>
+<div class="chapter-badge">
+<span class="chapter-num">01</span>
+<span class="chapter-label">CHAPTER</span>
+</div>
+<h1>海外FXとは？<br/><em>国内FXとの違い</em>を徹底解説</h1>
+<div class="hero-sub">初心者でも10分でわかる｜海外FX入門の第一歩</div>
+<div class="chapter-nav">
+<span class="cnav active">CH.1 海外FXとは</span>
+<span class="cnav">CH.2 ゴールドの特徴</span>
+<span class="cnav">CH.3 MT5の使い方</span>
+<span class="cnav">CH.4 レバレッジ計算</span>
+<span class="cnav">CH.5 ゼロカット</span>
+<span class="cnav">CH.6 EA入門</span>
+<span class="cnav">CH.7 口座開設</span>
+</div>
+</div>
+</div>
+<div class="container">
+<!-- そもそもFXとは -->
+<section>
+<div class="section-label">BASICS</div>
+<div class="section-title">そもそもFXって何？</div>
+<p>FX（Foreign Exchange）とは<strong>外国為替取引</strong>のことです。簡単に言うと、<strong>「通貨を売買して差額で利益を狙う」</strong>取引です。</p>
+<div class="point-box">
+<div class="point-title">わかりやすい例え</div>
+      1ドル＝150円のときに1万ドルを買う（150万円分）<br/>
+      → その後1ドル＝155円になったときに売る<br/>
+      → 差額5円 × 1万ドル＝<strong style="color:var(--green);">5万円の利益</strong>
+</div>
+<p>FXは株と違い、<strong>24時間（土日除く）取引できる</strong>のが大きな特徴です。また、通貨だけでなく<strong>ゴールド（XAUUSD）や原油などのCFD商品</strong>も取引できます。</p>
+<div class="info-box"><strong style="color:var(--accent);">CFDとは：</strong> 差金決済取引（Contract For Difference）の略。実際に商品を保有せず、価格差だけをやり取りする取引形態。FXも広義ではCFDの一種です。</div>
+</section>
+<!-- 国内vs海外 -->
+<section>
+<div class="section-label">COMPARISON</div>
+<div class="section-title">国内FXと海外FXの違い</div>
+<p>日本には「国内FX」と「海外FX」の2種類があります。大きな違いはいくつかありますが、<strong>海外FXの最大の特徴はレバレッジの高さとゼロカット保証</strong>です。</p>
+<table class="compare-table">
+<thead>
+<tr><th>比較項目</th><th>国内FX</th><th>海外FX（Vantage）</th></tr>
+</thead>
+<tbody>
+<tr class="hl">
+<td>最大レバレッジ</td>
+<td class="bad">25倍</td>
+<td class="good">500倍</td>
+</tr>
+<tr>
+<td>追証（追加証拠金）</td>
+<td class="bad">あり</td>
+<td class="good">なし（ゼロカット）</td>
+</tr>
+<tr class="hl">
+<td>金融庁登録</td>
+<td class="good">あり</td>
+<td class="mid">なし（海外ライセンス）</td>
+</tr>
+<tr>
+<td>取引商品の種類</td>
+<td class="mid">通貨ペアのみ</td>
+<td class="good">通貨・ゴールド・原油・株など1,000種類以上</td>
+</tr>
+<tr class="hl">
+<td>口座開設ボーナス</td>
+<td class="bad">ほぼなし</td>
+<td class="good">あり（最大¥15,000）</td>
+</tr>
+<tr>
+<td>EA（自動売買）</td>
+<td class="mid">制限あり</td>
+<td class="good">自由に使える</td>
+</tr>
+<tr class="hl">
+<td>スプレッド</td>
+<td class="good">狭い傾向</td>
+<td class="mid">やや広め（口座タイプによる）</td>
+</tr>
+</tbody>
+</table>
+<div class="warn-box"><strong style="color:var(--orange);">注意：</strong> 海外FX業者は金融庁に登録していませんが、利用すること自体は違法ではありません。ただし万が一業者が倒産した場合、国内業者に比べて補償が手厚くないリスクがあります。信頼できる実績ある業者を選ぶことが重要です。</div>
+</section>
+<!-- 海外FXのメリット -->
+<section>
+<div class="section-label">MERITS</div>
+<div class="section-title">海外FXの5つのメリット</div>
+<div class="merit-list">
+<div class="merit-item">
+<div class="merit-icon">⚡</div>
+<div class="merit-text">
+<strong>レバレッジ最大500倍</strong>
+<span>国内の25倍に対して最大500倍。少ない資金で大きなポジションを持てます。もちろんリスクも大きくなるため、適切なロット管理が必須です。</span>
+</div>
+</div>
+<div class="merit-item">
+<div class="merit-icon">🛡️</div>
+<div class="merit-text">
+<strong>ゼロカット保証（追証なし）</strong>
+<span>口座残高がマイナスになっても追加入金を求められません。入金額以上を失うリスクがゼロです。国内FXでは急激な相場変動で多額の追証が発生したケースがあります。</span>
+</div>
+</div>
+<div class="merit-item">
+<div class="merit-icon">🥇</div>
+<div class="merit-text">
+<strong>ゴールドなど豊富な取引商品</strong>
+<span>FX通貨ペアだけでなく、XAUUSD（ゴールド）・原油・株価指数・仮想通貨など1,000種類以上の商品が取引できます。</span>
+</div>
+</div>
+<div class="merit-item">
+<div class="merit-icon">🤖</div>
+<div class="merit-text">
+<strong>EA（自動売買）が自由に使える</strong>
+<span>MT4/MT5のEAを制限なく稼働できます。国内業者ではEAの使用を制限しているところもあります。</span>
+</div>
+</div>
+<div class="merit-item">
+<div class="merit-icon">🎁</div>
+<div class="merit-text">
+<strong>口座開設・入金ボーナスが豊富</strong>
+<span>新規口座開設ボーナス・入金ボーナスなど、トレード資金を増やせるキャンペーンが充実しています。国内業者ではこのような施策は法律で禁止されています。</span>
+</div>
+</div>
+</div>
+</section>
+<!-- レバレッジとリスク -->
+<section>
+<div class="section-label">LEVERAGE</div>
+<div class="section-title">レバレッジとは？わかりやすく解説</div>
+<p>レバレッジとは<strong>「手元の資金を何倍にも増やして取引できる仕組み」</strong>です。「てこの原理」のレバー（lever）が語源です。</p>
+<div class="sub-title">レバレッジ500倍の場合</div>
+<div style="background:var(--dark3);border-radius:6px;padding:20px;margin:16px 0;font-size:13px;">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+<div style="padding:14px;background:var(--dark4);border-radius:4px;text-align:center;">
+<div style="font-size:11px;color:var(--text-dim);margin-bottom:6px;">実際の証拠金</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:22px;color:var(--gold-light);font-weight:700;">$200</div>
+<div style="font-size:11px;color:var(--text-dim);margin-top:4px;">（約¥30,000）</div>
+</div>
+<div style="padding:14px;background:var(--dark4);border-radius:4px;text-align:center;">
+<div style="font-size:11px;color:var(--text-dim);margin-bottom:6px;">取引できる金額</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:22px;color:var(--green);font-weight:700;">$100,000</div>
+<div style="font-size:11px;color:var(--text-dim);margin-top:4px;">（$200 × 500倍）</div>
+</div>
+</div>
+<div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);font-size:12px;color:var(--text-dim);">
+        ※ $100,000の取引に必要な証拠金が$200（0.1lot / レバ500倍の場合）
+      </div>
+</div>
+<div class="warn-box"><strong style="color:var(--orange);">レバレッジの両刃性：</strong> レバレッジは利益を拡大するだけでなく、損失も同様に拡大します。例えばレバレッジ500倍で取引し、価格が0.2%動いただけで証拠金が吹き飛びます。<strong style="color:var(--text);">適切なロット管理（1トレードのリスクを残高の1〜2%以内）</strong>が最も重要です。</div>
+</section>
+<!-- Vantageについて -->
+<section>
+<div class="section-label">RECOMMENDED BROKER</div>
+<div class="section-title">なぜVantageを推奨するのか</div>
+<p>海外FX業者は数多くありますが、天眼TripleMA-ASTシステムは<strong>Vantage MT5専用</strong>として開発しています。推奨理由は以下の通りです。</p>
+<div class="merit-list">
+<div class="merit-item">
+<div class="merit-icon">✅</div>
+<div class="merit-text">
+<strong>MT5に完全対応</strong>
+<span>天眼EAはMT5専用です。VantageはMT5口座を提供しており、EAの稼働に最適な環境が整っています。</span>
+</div>
+</div>
+<div class="merit-item">
+<div class="merit-icon">✅</div>
+<div class="merit-text">
+<strong>XAUUSDのスプレッドが安定</strong>
+<span>ゴールド取引に特化したEAを動かすうえで、スプレッドの安定性は重要です。</span>
+</div>
+</div>
+<div class="merit-item">
+<div class="merit-icon">✅</div>
+<div class="merit-text">
+<strong>ゼロカット保証</strong>
+<span>口座残高がマイナスになっても追証なし。分割入金戦略と組み合わせることで最悪ケースでも総資金の10%以内の損失に抑えられます。</span>
+</div>
+</div>
+<div class="merit-item">
+<div class="merit-icon">✅</div>
+<div class="merit-text">
+<strong>最低入金$50〜・レバ最大500倍</strong>
+<span>少額から始められ、デモ口座も無料で開設できます。まずデモで練習してからライブへ移行できます。</span>
+</div>
+</div>
+</div>
+
+</section>
+<!-- 確認クイズ -->
+<section>
+<div class="section-label">QUIZ</div>
+<div class="section-title">理解度チェック</div>
+<p>CHAPTER 1の内容をクイズで確認しましょう。</p>
+<div class="quiz-box">
+<div class="quiz-q">Q1. 海外FXのゼロカット保証とはどういう意味ですか？</div>
+<div class="quiz-choices">
+<div class="quiz-choice" onclick="answer(this, false)">A. 損失がゼロになる保証</div>
+<div class="quiz-choice" onclick="answer(this, true)">B. 口座残高がマイナスになっても追加入金を求められない</div>
+<div class="quiz-choice" onclick="answer(this, false)">C. スプレッドがゼロになる</div>
+</div>
+<div class="quiz-answer" id="ans1">
+        正解！ゼロカットとは「口座残高がマイナスになっても、その損失分を業者が負担してくれる仕組み」です。国内FXでは証拠金がマイナスになると追証（追加入金）が発生しますが、海外FXのゼロカット保証があれば入金額以上を失うことはありません。
+      </div>
+</div>
+<div class="quiz-box">
+<div class="quiz-q">Q2. レバレッジ500倍で$200を証拠金に入れた場合、取引できる最大金額はいくらですか？</div>
+<div class="quiz-choices">
+<div class="quiz-choice" onclick="answer2(this, false)">A. $1,000</div>
+<div class="quiz-choice" onclick="answer2(this, false)">B. $10,000</div>
+<div class="quiz-choice" onclick="answer2(this, true)">C. $100,000</div>
+</div>
+<div class="quiz-answer" id="ans2">
+        正解！$200 × 500倍 = $100,000の取引が可能です。ただし取引できる金額が大きいほどリスクも大きくなるため、適切なロット管理が必須です。
+      </div>
+</div>
+</section>
+<!-- 次章予告 -->
+<section>
+<div class="section-label">NEXT CHAPTER</div>
+<div class="section-title">次回：CHAPTER 2｜ゴールド（XAUUSD）の特徴</div>
+<p>次のチャプターでは、天眼EAが専門とする<strong>ゴールド（XAUUSD）</strong>について詳しく解説します。なぜゴールドはFXトレーダーに人気なのか、どんな特徴があるのかを学びましょう。</p>
+<div class="green-box">
+<strong style="color:var(--green);">CHAPTER 2の内容：</strong><br/>
+      ゴールドの基本知識 ／ 価格に影響する要因 ／ 取引時間帯の特徴 ／ なぜXAUUSDが選ばれるのか
+    </div>
+</section>
+</div>
+<footer>
+<div class="footer-brand">さうざーFX ／ 海外FX基礎知識ガイド CHAPTER 1</div>
+<div style="font-size:11px;color:var(--text-dim);margin-top:6px;">※本記事は情報提供を目的としており、投資助言ではありません。投資判断はご自身の責任で行ってください。</div>
+</footer>
+<script>
+function answer(el, correct){
+  const choices = el.parentElement.querySelectorAll('.quiz-choice');
+  choices.forEach(c => c.style.pointerEvents='none');
+  el.classList.add(correct ? 'correct' : 'wrong');
+  document.getElementById('ans1').style.display = correct ? 'block' : 'block';
+  document.getElementById('ans1').textContent = correct
+    ? '✅ 正解！ゼロカットとは「口座残高がマイナスになっても追加入金を求められない仕組み」です。入金額以上を失うリスクがゼロになります。'
+    : '❌ 不正解。損失がゼロになるわけではなく、口座残高がマイナスになっても追証が発生しないという意味です。';
+  document.getElementById('ans1').style.borderLeftColor = correct ? 'var(--green)' : 'var(--red)';
+  document.getElementById('ans1').style.background = correct ? 'rgba(76,232,168,0.06)' : 'rgba(232,76,106,0.06)';
+}
+function answer2(el, correct){
+  const choices = el.parentElement.querySelectorAll('.quiz-choice');
+  choices.forEach(c => c.style.pointerEvents='none');
+  el.classList.add(correct ? 'correct' : 'wrong');
+  document.getElementById('ans2').style.display = 'block';
+  document.getElementById('ans2').textContent = correct
+    ? '✅ 正解！$200 × 500倍 = $100,000の取引が可能です。ただしリスクも500倍になるため、適切なロット管理が最重要です。'
+    : '❌ 不正解。$200 × 500 = $100,000が正解です。レバレッジは証拠金を何倍に増やして取引できるかを示します。';
+  document.getElementById('ans2').style.borderLeftColor = correct ? 'var(--green)' : 'var(--red)';
+  document.getElementById('ans2').style.background = correct ? 'rgba(76,232,168,0.06)' : 'rgba(232,76,106,0.06)';
+}
+</script>
+</body>
+</html>
