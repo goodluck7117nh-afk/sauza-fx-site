@@ -271,11 +271,17 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .grp-h::after{content:"";flex:1;height:1px;background:var(--line)}
 .st-free{background:#123A2A;color:#6FE0A8}
 .free-band{display:grid;grid-template-columns:1.1fr .9fr;gap:0;background:linear-gradient(135deg,#12261D,#0E1114);border:1px solid #2A5A44;border-radius:var(--radius);overflow:hidden;text-decoration:none;color:inherit}
-.free-band:hover{border-color:#6FE0A8}
+
 .free-band img{width:100%;height:100%;object-fit:cover;display:block}
 .free-band .fb{padding:26px 28px;display:grid;gap:10px;align-content:center}
 .free-band h3{font-size:24px}
 .free-band p{font-size:14px;color:#BDB6A6}
+.fb-list{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:8px}
+.fb-list a{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 14px;border:1px solid #2A5A44;border-radius:10px;text-decoration:none;color:inherit;background:rgba(0,0,0,.25)}
+.fb-list a:hover{border-color:#6FE0A8}
+.fb-list b{font-family:'JetBrains Mono',monospace;font-size:13px;color:#ECEDEA}
+.fb-list span{font-size:12.5px;color:#9FD9BC}
+.fb-list a::after{content:"→";color:#6FE0A8}
 .dl-box{background:var(--surface);border:1px solid #2A5A44;border-radius:var(--radius);padding:24px;display:grid;gap:14px}
 .dl-box .btn-dl{background:linear-gradient(180deg,#5FD39A,#2E9E6E);border-color:#2E9E6E;color:#07140D;font-size:16px;padding:14px 22px}
 .dl-box .terms{font-size:12px;color:var(--muted);line-height:1.7}
@@ -466,15 +472,19 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 
 <section class="section" style="padding-bottom:0">
   <div class="wrap">
-    <a class="free-band" href="sr-autolevels.html">
-      <img src="sr-card.jpg" alt="SR_AutoLevelsでサポート・レジスタンスが自動描画されたゴールドのチャート" width="800" height="448">
+    <div class="free-band">
+      <img src="ob-card.jpg" alt="SR_AutoLevels・Million_DowTrend・Million_OrderBlockを同時に表示したゴールドのチャート" width="800" height="448">
       <div class="fb">
         <span class="chip st-free" style="justify-self:start">無料公開中</span>
-        <h3>SR_AutoLevels</h3>
-        <p>重要なサポート・レジスタンスを自動で引くMT5インジケーターを、無料で配布しています。H1・H4・日足のラインを重ねて表示し、何度も止められた価格帯をタッチ回数で示します。</p>
-        <span class="btn btn-primary btn-sm" style="justify-self:start">無料でダウンロード →</span>
+        <h3>MT5インジケーター 3種</h3>
+        <p>トレンド、節目、注文が集まった場所。チャートを読むための3つのインジケーターを、登録不要・無料で配布しています。</p>
+        <ul class="fb-list">
+          <li><a href="sr-autolevels.html"><b>SR_AutoLevels</b><span>サポレジを自動で引く</span></a></li>
+          <li><a href="dow-trend.html"><b>Million_DowTrend</b><span>ダウ理論でトレンドを判定</span></a></li>
+          <li><a href="order-block.html"><b>Million_OrderBlock</b><span>オーダーブロックを自動検出</span></a></li>
+        </ul>
       </div>
-    </a>
+    </div>
   </div>
 </section>
 
@@ -612,6 +622,16 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
     <p class="sub">高値・安値の切り上げと切り下げを自動判定し、トレンドの継続と転換をチャート上に表示します。H1・H4・日足のトレンドを一覧で確認できます。</p>
     <div class="row"><span class="tag">MULTI</span><span class="tag">ALL</span><span class="tag">MT5</span></div>
     <div class="pact"><a class="btn btn-primary btn-sm" href="dow-trend.html">無料でダウンロード</a></div>
+  </div>
+</article><article class="pcard" data-type="ind" data-status="free">
+  <a href="order-block.html" tabindex="-1" aria-hidden="true"><span class="thumb"><img src="ob-card.jpg" alt="Million_OrderBlockのバナー" loading="lazy" width="800" height="450"></span></a>
+  <div class="pb">
+    <div class="row"><span class="chip st-free">無料公開</span><span class="tag">インジケーター</span></div>
+    <h3><a href="order-block.html">Million_OrderBlock</a></h3>
+    <p class="sub">オーダーブロック自動検出</p>
+    <p class="sub">強い値動きが始まった場所（オーダーブロック）を自動で見つけて箱で表示し、価格が抜けたら消します。上位足のOBも重ねて表示。</p>
+    <div class="row"><span class="tag">MULTI</span><span class="tag">ALL</span><span class="tag">MT5</span></div>
+    <div class="pact"><a class="btn btn-primary btn-sm" href="order-block.html">無料でダウンロード</a></div>
   </div>
 </article></div>
   </div>

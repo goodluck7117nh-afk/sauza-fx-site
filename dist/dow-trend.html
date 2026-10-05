@@ -271,11 +271,17 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .grp-h::after{content:"";flex:1;height:1px;background:var(--line)}
 .st-free{background:#123A2A;color:#6FE0A8}
 .free-band{display:grid;grid-template-columns:1.1fr .9fr;gap:0;background:linear-gradient(135deg,#12261D,#0E1114);border:1px solid #2A5A44;border-radius:var(--radius);overflow:hidden;text-decoration:none;color:inherit}
-.free-band:hover{border-color:#6FE0A8}
+
 .free-band img{width:100%;height:100%;object-fit:cover;display:block}
 .free-band .fb{padding:26px 28px;display:grid;gap:10px;align-content:center}
 .free-band h3{font-size:24px}
 .free-band p{font-size:14px;color:#BDB6A6}
+.fb-list{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:8px}
+.fb-list a{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 14px;border:1px solid #2A5A44;border-radius:10px;text-decoration:none;color:inherit;background:rgba(0,0,0,.25)}
+.fb-list a:hover{border-color:#6FE0A8}
+.fb-list b{font-family:'JetBrains Mono',monospace;font-size:13px;color:#ECEDEA}
+.fb-list span{font-size:12.5px;color:#9FD9BC}
+.fb-list a::after{content:"→";color:#6FE0A8}
 .dl-box{background:var(--surface);border:1px solid #2A5A44;border-radius:var(--radius);padding:24px;display:grid;gap:14px}
 .dl-box .btn-dl{background:linear-gradient(180deg,#5FD39A,#2E9E6E);border-color:#2E9E6E;color:#07140D;font-size:16px;padding:14px 22px}
 .dl-box .terms{font-size:12px;color:var(--muted);line-height:1.7}
@@ -533,6 +539,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
     <div class="sec-head"><div><div class="eyebrow">Next</div><h2>あわせて使う</h2></div></div>
     <div class="next-grid" style="max-width:52em">
       <a class="next-card" href="sr-autolevels.html"><span class="k">FREE</span><b>SR_AutoLevels</b><span>重要なサポート・レジスタンスを自動で引く無料インジケーター。押し安値・戻り高値と重なる節目の確認に。</span></a>
+      <a class="next-card" href="order-block.html"><span class="k">FREE</span><b>Million_OrderBlock</b><span>トレンドの向きに合ったオーダーブロックで、戻りを待つ場所を探せます。</span></a>
       <a class="next-card" href="fx-11.html"><span class="k">LEARN</span><b>FX入門 第11章</b><span>ローソク足、時間足、ダウ理論の基本を解説しています。</span></a>
     </div>
   </div>

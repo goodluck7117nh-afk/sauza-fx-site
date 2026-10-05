@@ -268,11 +268,17 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .grp-h::after{content:"";flex:1;height:1px;background:var(--line)}
 .st-free{background:#123A2A;color:#6FE0A8}
 .free-band{display:grid;grid-template-columns:1.1fr .9fr;gap:0;background:linear-gradient(135deg,#12261D,#0E1114);border:1px solid #2A5A44;border-radius:var(--radius);overflow:hidden;text-decoration:none;color:inherit}
-.free-band:hover{border-color:#6FE0A8}
+
 .free-band img{width:100%;height:100%;object-fit:cover;display:block}
 .free-band .fb{padding:26px 28px;display:grid;gap:10px;align-content:center}
 .free-band h3{font-size:24px}
 .free-band p{font-size:14px;color:#BDB6A6}
+.fb-list{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:8px}
+.fb-list a{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 14px;border:1px solid #2A5A44;border-radius:10px;text-decoration:none;color:inherit;background:rgba(0,0,0,.25)}
+.fb-list a:hover{border-color:#6FE0A8}
+.fb-list b{font-family:'JetBrains Mono',monospace;font-size:13px;color:#ECEDEA}
+.fb-list span{font-size:12.5px;color:#9FD9BC}
+.fb-list a::after{content:"→";color:#6FE0A8}
 .dl-box{background:var(--surface);border:1px solid #2A5A44;border-radius:var(--radius);padding:24px;display:grid;gap:14px}
 .dl-box .btn-dl{background:linear-gradient(180deg,#5FD39A,#2E9E6E);border-color:#2E9E6E;color:#07140D;font-size:16px;padding:14px 22px}
 .dl-box .terms{font-size:12px;color:var(--muted);line-height:1.7}
@@ -585,6 +591,9 @@ PRODUCTS = [
     dict(id="dow", name="Million_DowTrend", sub="ダウ理論トレンド判定", type="ind", status="free",
          sym="MULTI", tf="ALL", kind="dow", seed=29, detail="dow-trend.html", img="dow-card.jpg",
          desc="高値・安値の切り上げと切り下げを自動判定し、トレンドの継続と転換をチャート上に表示します。H1・H4・日足のトレンドを一覧で確認できます。"),
+    dict(id="ob", name="Million_OrderBlock", sub="オーダーブロック自動検出", type="ind", status="free",
+         sym="MULTI", tf="ALL", kind="sr", seed=31, detail="order-block.html", img="ob-card.jpg",
+         desc="強い値動きが始まった場所（オーダーブロック）を自動で見つけて箱で表示し、価格が抜けたら消します。上位足のOBも重ねて表示。"),
 ]
 
 def pcard(p):
@@ -755,15 +764,19 @@ def index_body():
 
 <section class="section" style="padding-bottom:0">
   <div class="wrap">
-    <a class="free-band" href="sr-autolevels.html">
-      <img src="sr-card.jpg" alt="SR_AutoLevelsでサポート・レジスタンスが自動描画されたゴールドのチャート" width="800" height="448">
+    <div class="free-band">
+      <img src="ob-card.jpg" alt="SR_AutoLevels・Million_DowTrend・Million_OrderBlockを同時に表示したゴールドのチャート" width="800" height="448">
       <div class="fb">
         <span class="chip st-free" style="justify-self:start">無料公開中</span>
-        <h3>SR_AutoLevels</h3>
-        <p>重要なサポート・レジスタンスを自動で引くMT5インジケーターを、無料で配布しています。H1・H4・日足のラインを重ねて表示し、何度も止められた価格帯をタッチ回数で示します。</p>
-        <span class="btn btn-primary btn-sm" style="justify-self:start">無料でダウンロード →</span>
+        <h3>MT5インジケーター 3種</h3>
+        <p>トレンド、節目、注文が集まった場所。チャートを読むための3つのインジケーターを、登録不要・無料で配布しています。</p>
+        <ul class="fb-list">
+          <li><a href="sr-autolevels.html"><b>SR_AutoLevels</b><span>サポレジを自動で引く</span></a></li>
+          <li><a href="dow-trend.html"><b>Million_DowTrend</b><span>ダウ理論でトレンドを判定</span></a></li>
+          <li><a href="order-block.html"><b>Million_OrderBlock</b><span>オーダーブロックを自動検出</span></a></li>
+        </ul>
       </div>
-    </a>
+    </div>
   </div>
 </section>
 
@@ -1584,7 +1597,111 @@ def dow_body():
     <div class="sec-head"><div><div class="eyebrow">Next</div><h2>あわせて使う</h2></div></div>
     <div class="next-grid" style="max-width:52em">
       <a class="next-card" href="sr-autolevels.html"><span class="k">FREE</span><b>SR_AutoLevels</b><span>重要なサポート・レジスタンスを自動で引く無料インジケーター。押し安値・戻り高値と重なる節目の確認に。</span></a>
+      <a class="next-card" href="order-block.html"><span class="k">FREE</span><b>Million_OrderBlock</b><span>トレンドの向きに合ったオーダーブロックで、戻りを待つ場所を探せます。</span></a>
       <a class="next-card" href="fx-11.html"><span class="k">LEARN</span><b>FX入門 第11章</b><span>ローソク足、時間足、ダウ理論の基本を解説しています。</span></a>
+    </div>
+  </div>
+</section>'''
+
+def ob_body():
+    dl = "downloads/Million_OrderBlock_v100.ex5"
+    return '''<div class="wrap" style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="products.html#indicators">インジケーター</a> <span aria-hidden="true">/</span> <span>Million_OrderBlock</span></nav></div>''' + f'''
+<div class="wrap detail">
+  <div style="display:grid;gap:18px">
+    <figure class="shot"><img src="ob-h1.jpg" alt="Million_OrderBlockをXAUUSDの1時間足に表示した画面。売りオーダーブロックの赤い箱と、H4・日足のオーダーブロックの点線の枠" width="1600" height="775"><figcaption>XAUUSD 1時間足での表示例（SR_AutoLevels・Million_DowTrendと同時に表示）。塗りつぶしの箱が1時間足のOB、点線の枠がH4・日足のOB。「×5」は価格が戻ってきた回数です。</figcaption></figure>
+  </div>
+  <aside class="dl-box" id="download">
+    <span class="chip st-free" style="justify-self:start">無料公開 ・ v1.00</span>
+    <h1 style="font-size:clamp(24px,3vw,32px)">Million_OrderBlock</h1>
+    <p class="fullname" style="font-size:13px;color:var(--muted);margin-top:-6px">オーダーブロック自動検出インジケーター（MT5）</p>
+    <p>強い値動きが始まる直前の足（オーダーブロック）を自動で見つけ、箱で表示します。価格が終値で反対側を抜けたら消えるので、いまも生きている場所だけが残ります。</p>
+    <a class="btn btn-dl" href="{dl}" download>無料でダウンロード（.ex5）</a>
+    <ul class="terms" style="margin:0;padding-left:1.1em">
+      <li>MetaTrader 5用です。登録やメールアドレスの入力は不要です。</li>
+      <li>個人での利用は自由です。再配布・販売・改変品の配布はご遠慮ください。</li>
+      <li>売買を推奨するものではなく、利益を保証するものでもありません。</li>
+    </ul>
+  </aside>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Features</div><h2>できること</h2></div></div>
+    <div class="feats">
+      <div class="feat"><h3>強い動きの起点を見つける</h3><p>3本以内にATRの1.5倍以上動き、直近10本の高値（安値）を終値で更新した動きだけを対象に、その直前の逆向きの足をOBとします。小さな動きは拾いません。</p></div>
+      <div class="feat"><h3>割れたOBは消える</h3><p>買いOBは終値で下端を割ったら、売りOBは終値で上端を超えたら消えます。戻ってきた回数を「×2」のように表示するので、何度試されたかも分かります。</p></div>
+      <div class="feat"><h3>上位足のOBも重ねる</h3><p>1時間足チャートではH4と日足、4時間足チャートでは日足のOBを点線の枠で重ねます。表示は現在値に近いものだけ（片側3つまで）に絞ります。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">How to read</div><h2>表示の読み方</h2></div></div>
+    <div class="data-tbl" style="max-width:52em">
+      <table style="min-width:0">
+        <thead><tr><th>表示</th><th>意味</th></tr></thead>
+        <tbody>
+          <tr><td>買いOB（緑の箱）</td><td>強い上昇が始まる直前の陰線。価格が戻ると、買いが入りやすい場所</td></tr>
+          <tr><td>売りOB（赤の箱）</td><td>強い下落が始まる直前の陽線。価格が戻ると、売りが入りやすい場所</td></tr>
+          <tr><td>[H4] [D1]</td><td>上位足で見つかったOB（点線の枠）</td></tr>
+          <tr><td>×2</td><td>OBができたあと、価格が2回戻ってきた</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:13px;max-width:46em">確定した足だけで判定するため、あとから表示が変わることはありません。確定足がOBに戻ってきたときに通知することもできます。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Example</div><h2>4時間足での表示</h2></div><p>下降トレンドでは、戻りの上に売りOBが並びます。日足のOB（点線）と重なる場所は、より意識されやすい価格帯です。</p></div>
+    <figure class="shot"><img src="ob-h4.jpg" alt="Million_OrderBlockをXAUUSDの4時間足に表示した画面。下降トレンドの戻りに売りオーダーブロックが並んでいる" width="1600" height="775" loading="lazy"><figcaption><b>4時間足</b>：4時間足のOB（塗りつぶし）と日足のOB（点線の枠）。SR_AutoLevelsのラインと重なる場所に注目。</figcaption></figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Combine</div><h2>3つを組み合わせて読む</h2></div></div>
+    <ol class="steps" style="padding:0;margin:0">
+      <li><div><b>方向：Million_DowTrend</b><p>上位足と同じ向きのトレンドかを確かめます。下降トレンドなら売りOB、上昇トレンドなら買いOBを見ます。</p></div></li>
+      <li><div><b>場所：Million_OrderBlock</b><p>トレンドと同じ向きのOBまで、価格が戻ってくるのを待ちます。OBの外側が、見方が間違っていたと判断する目安になります。</p></div></li>
+      <li><div><b>目標：SR_AutoLevels</b><p>進む先にある強いサポレジが、利益確定の目安です。損切りまでの幅と比べて、十分な距離があるかを確かめます。</p></div></li>
+    </ol>
+    <p class="muted" style="font-size:13px;max-width:46em;margin-top:14px">この組み合わせは相場を読むための考え方で、機械的に売買して利益が出ることを確かめたものではありません。最終的な判断は、ご自身で行ってください。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Install</div><h2>導入のしかた</h2></div></div>
+    <ol class="steps" style="padding:0;margin:0">
+      <li><div><b>ファイルをダウンロードする</b><p>上のボタンから <code>Million_OrderBlock_v100.ex5</code> をダウンロードします。</p></div></li>
+      <li><div><b>MT5のフォルダに入れる</b><p>MT5の「ファイル」→「データフォルダを開く」から <code>MQL5\\Indicators</code> にファイルを置きます。</p></div></li>
+      <li><div><b>MT5を再起動する</b><p>ナビゲーターの「インディケータ」に Million_OrderBlock が表示されます。</p></div></li>
+      <li><div><b>チャートに付ける</b><p>チャートへドラッグして「OK」を押せば完了です。どの時間足でも使えます。</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">FAQ</div><h2>よくある質問</h2></div></div>
+    <div class="faq">
+      <details><summary>本当に無料ですか？</summary><p>はい、無料です。登録やメールアドレスの入力もいりません。</p></details>
+      <details><summary>OBが多すぎる・少なすぎるときは？</summary><p>設定の「OBと認める値幅（ATR倍率）」を大きくすると強い動きだけ、小さくすると多くのOBを拾います。表示数は「表示数（片側）」で変えられます。</p></details>
+      <details><summary>上位足のOBが表示されません</summary><p>H4・日足のデータを読み込むまで、少し時間がかかることがあります。表示されないときは、時間足を一度切り替えてください。</p></details>
+      <details><summary>OBに戻ったら必ず反発しますか？</summary><p>いいえ。OBは過去に注文が集まった場所で、反発を保証するものではありません。損切りの位置や取引量は、<a href="fx-12.html">FX入門 第12章</a>の考え方を参考に、ご自身で決めてください。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Next</div><h2>あわせて使う</h2></div></div>
+    <div class="next-grid" style="max-width:52em">
+      <a class="next-card" href="dow-trend.html"><span class="k">FREE</span><b>Million_DowTrend</b><span>ダウ理論でトレンドを判定。どちら向きのOBを見るかが決まります。</span></a>
+      <a class="next-card" href="sr-autolevels.html"><span class="k">FREE</span><b>SR_AutoLevels</b><span>重要なサポレジを自動で引く。利益確定の目安に。</span></a>
     </div>
   </div>
 </section>'''
@@ -1602,6 +1719,7 @@ PAGES = [
     ("about.html", "運営者情報｜さうざーFX", "さうざーFXの運営者情報。", "about", about_body),
     ("sr-autolevels.html", "SR_AutoLevels（無料）｜さうざーFX", "重要なサポート・レジスタンスを自動で引くMT5インジケーターを無料配布。H1・H4・日足のラインを重ねて表示。", "products", sr_body),
     ("dow-trend.html", "Million_DowTrend（無料）｜さうざーFX", "ダウ理論で高値・安値の切り上げと切り下げを自動判定するMT5インジケーターを無料配布。H1・H4・日足のトレンドを一覧表示。", "products", dow_body),
+    ("order-block.html", "Million_OrderBlock（無料）｜さうざーFX", "オーダーブロックを自動で検出し、割れるまで表示するMT5インジケーターを無料配布。H4・日足のOBも重ねて表示。", "products", ob_body),
     ("legal.html", "免責事項・プライバシーポリシー｜さうざーFX", "免責事項、広告表記、プライバシーポリシー。", "", legal_body),
 ]
 
@@ -1620,6 +1738,11 @@ def build():
     for c in cols:
         for d in ("dist", "artifact"):
             shutil.copy(c, os.path.join(ROOT, d, os.path.basename(c)))
+    dl_src = os.path.join(ROOT, "downloads")
+    if os.path.isdir(dl_src):
+        os.makedirs(os.path.join(ROOT, "dist", "downloads"), exist_ok=True)
+        for f in _g.glob(os.path.join(dl_src, "*.ex5")):
+            shutil.copy(f, os.path.join(ROOT, "dist", "downloads", os.path.basename(f)))
     if SITE_URL:
         from datetime import date
         urls = [p[0] for p in PAGES] + [os.path.basename(c) for c in cols if c.endswith(".html")]
