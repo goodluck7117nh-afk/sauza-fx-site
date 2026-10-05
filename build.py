@@ -848,7 +848,7 @@ def index_body():
       <div><div class="eyebrow">Columns</div><h2>おすすめの記事</h2></div>
       <a class="more-link" href="blog.html">コラム一覧へ →</a>
     </div>
-    <div class="posts">{post_card("EA講座", "期間を分けて確かめる", "バックテストの成績が良くても、その期間に合わせただけかもしれません。調整に使っていない期間で確かめる方法です。", "course-oos.html")}{post_card("基礎知識", "ゴールド（XAUUSD）の特徴", "価格を動かす要因と、動きやすい時間帯。通貨ペアとの違いを整理します。", "basics-2.html")}{post_card("基礎知識", "レバレッジ・ロット・証拠金の計算", "何ロットで入ればよいかを、自分で計算できるようにします。", "basics-4.html")}</div>
+    <div class="posts">{post_card("開発記録", "3つのインジケーターを組み合わせても、勝てなかった", "ダウ理論×オーダーブロック×サポレジのEAを2020年から検証。PF 0.89の結果と、そこから分かったこと。", "course-devlog-signal.html")}{post_card("EA講座", "PF・最大DD・勝率・損益比", "勝率3割でも利益が出る理由。天眼金龍の数字を例に、4つの数字の読み方を説明します。", "course-metrics.html")}{post_card("EA講座", "期間を分けて確かめる", "バックテストの成績が良くても、その期間に合わせただけかもしれません。調整に使っていない期間で確かめる方法です。", "course-oos.html")}</div>
   </div>
 </section>'''
 
@@ -1123,7 +1123,7 @@ def legal_body():
       <h2>広告の表記について</h2>
       <p>当サイトはアフィリエイトプログラムを利用しています。記事内のリンクから商品やサービスに申し込まれた場合、運営者に報酬が支払われることがあります。</p>
       <p>広告を含むページには、その旨を表示しています。紹介する内容は、運営者が実際に検証・利用したうえで判断しています。</p>
-      <p>EA講座の本文には業者の名前を出していません。検証に使っている口座は、紹介報酬の有無を明記したうえで、EA講座の第10章にまとめています。</p>
+      <p>EA講座の本文には業者の名前を出していません。</p>
     </div>
     <div id="privacy">
       <h2>プライバシーポリシー</h2>
@@ -1155,26 +1155,61 @@ COURSE = [
     ("PART 3", "口座の選び方", "同じEAでも、口座の条件で成績が変わります。", [
         (8, "ゴールドEAに向く口座の条件", "スプレッド、銘柄名、最小ロット、約定", None),
         (9, "国内口座と海外口座の違い", "金融庁の登録、レバレッジ、税金", None),
-        (10, "さうざーFXが検証に使っている口座", "業者名を出すのはこのページだけ。紹介報酬の有無も明記します", None),
     ]),
     ("PART 4", "成績の読み方", "販売ページの数字を、自分で確かめられるようになるための章です。", [
-        (11, "PF・最大DD・勝率・損益比", "4つの数字が表していること", None),
-        (12, "バックテストはなぜ良く見えるのか", "過剰最適化とカーブフィッティング", None),
-        (13, "期間を分けて確かめる", "調整に使っていない期間でも同じ結果が出るか", ARTICLE_FILE),
-        (14, "販売ページで確かめること", "購入前に見る10の項目", None),
+        (10, "PF・最大DD・勝率・損益比", "4つの数字が表していること", "course-metrics.html"),
+        (11, "バックテストはなぜ良く見えるのか", "過剰最適化とカーブフィッティング", "course-backtest.html"),
+        (12, "期間を分けて確かめる", "調整に使っていない期間でも同じ結果が出るか", ARTICLE_FILE),
+        (13, "販売ページで確かめること", "購入前に見る10の項目", "course-checklist.html"),
     ]),
     ("PART 5", "資金と運用", "動かし始めてから迷うことを先に決めておきます。", [
-        (15, "証拠金とロットの決め方", "最小ロットのせいで複利が効かない問題", None),
-        (16, "ドローダウン中にやること", "触ってよいこと、触ってはいけないこと", None),
-        (17, "止めどきの決め方", "感情ではなく、事前に決めた数字で止める", None),
-        (18, "複数のEAを組み合わせる", "相関が低い組み合わせで資金曲線をならす", None),
+        (14, "証拠金とロットの決め方", "最小ロットのせいで複利が効かない問題", None),
+        (15, "ドローダウン中にやること", "触ってよいこと、触ってはいけないこと", None),
+        (16, "止めどきの決め方", "感情ではなく、事前に決めた数字で止める", None),
+        (17, "複数のEAを組み合わせる", "相関が低い組み合わせで資金曲線をならす", None),
     ]),
     ("PART 6", "さうざーFXの開発記録", "うまくいかなかった検証も含めて、開発の経過を公開します。", [
-        (19, "22の手法を検証して、残ったのは2つ", "有名な手法をゴールドで試した結果", None),
-        (20, "買いと売りを分けて検証する", "ロングとショートの成績を別々に確かめる理由", None),
-        (21, "実運用で確認していること", "バックテストと実際の注文がずれていないかを確かめる", None),
+        (18, "22の手法を検証して、残ったのは2つ", "有名な手法をゴールドで試した結果", None),
+        (19, "買いと売りを分けて検証する", "ロングとショートの成績を別々に確かめる理由", None),
+        (20, "実運用で確認していること", "バックテストと実際の注文がずれていないかを確かめる", None),
+        (21, "3つのインジケーターを組み合わせても、勝てなかった", "ダウ理論×オーダーブロック×サポレジのEAを検証した結果", "course-devlog-signal.html"),
     ]),
 ]
+
+def course_flat():
+    return [x for c in COURSE for x in c[3]]
+
+def course_nav(no):
+    flat = course_flat()
+    idx = [x[0] for x in flat].index(no)
+    def side(x, cls, label):
+        if x is None:
+            return ""
+        t = f"第{x[0]}章 {x[1]}"
+        if x[3]:
+            return f'<a class="{cls}" href="{x[3]}"><small>{label}</small>{t}{" →" if cls else ""}</a>'
+        return f'<span><small>{label}</small>{t}（準備中）</span>'
+    prev = flat[idx-1] if idx > 0 else None
+    nxt = flat[idx+1] if idx + 1 < len(flat) else None
+    right = side(nxt, "next", "次の章") if nxt else f'<a class="next" href="course.html"><small>講座の目次へ</small>EA講座 全{len(flat)}章 →</a>'
+    return f'<nav class="a-nav" aria-label="前後の章">{side(prev, "", "前の章")}{right}</nav>'
+
+def course_article(slug):
+    c = COURSE_TEXT[slug]
+    tags = "".join(f'<span class="tag">{t}</span>' for t in c["tags"])
+    return f'''<div class="wrap">
+  <div style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="course.html">EA講座</a> <span aria-hidden="true">/</span> <span>第{c["no"]}章</span></nav></div>
+  <article class="article">
+    <header class="a-head">
+      <span class="k">{c["part"]} ／ 第{c["no"]}章</span>
+      <h1>{c["title"]}</h1>
+      <p class="a-lead">{c["lead"]}</p>
+      <div class="a-meta">{tags}</div>
+    </header>
+{c["body"]}
+    {course_nav(c["no"])}
+  </article>
+</div>'''
 
 def course_body():
     total = sum(len(c[3]) for c in COURSE)
@@ -1204,7 +1239,7 @@ def course_body():
       <h3>この講座で守ること</h3>
       <ul>
         <li>「稼げる」とは書きません。過去の成績は将来の成績を約束しません。</li>
-        <li>本文には業者の名前を出しません。口座の名前を出すのは第10章だけです。</li>
+        <li>本文には業者の名前を出しません。</li>
         <li>紹介報酬が発生するリンクには、その旨を明記します。</li>
       </ul>
     </aside>
@@ -1263,10 +1298,10 @@ def pf_chart():
 
 def article_body():
     return f'''<div class="wrap">
-  <div style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="course.html">EA講座</a> <span aria-hidden="true">/</span> <span>第13章</span></nav></div>
+  <div style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="course.html">EA講座</a> <span aria-hidden="true">/</span> <span>第12章</span></nav></div>
   <article class="article">
     <header class="a-head">
-      <span class="k">PART 4 成績の読み方 ／ 第13章</span>
+      <span class="k">PART 4 成績の読み方 ／ 第12章</span>
       <h1>期間を分けて確かめる</h1>
       <p class="a-lead">バックテストの成績が良くても、それはパラメータをその期間に合わせた結果かもしれません。調整に使っていない期間でも同じ結果が出るかを確かめる方法を、例を使って説明します。</p>
       <div class="a-meta"><span class="tag">XAUUSD</span><span class="tag">H1</span><span class="tag">バックテスト</span></div>
@@ -1330,14 +1365,12 @@ def article_body():
       <li>期間ごと・年ごとの成績で、極端に良い年だけが全体を引き上げていないか</li>
     </ul>
 
-    <nav class="a-nav" aria-label="前後の章">
-      <span><small>前の章</small>第12章 バックテストはなぜ良く見えるのか（準備中）</span>
-      <a class="next" href="course.html"><small>講座の目次へ</small>EA講座 全21章 →</a>
-    </nav>
+    {course_nav(12)}
   </article>
 </div>'''
 
 from basics_content import STEPS as FX_STEPS, CHAPTERS as FX_CHAPTERS
+from course_content import CHAPTERS as COURSE_TEXT
 
 def fx_slug(no):
     return f"fx-{no:02d}.html"
@@ -1714,6 +1747,7 @@ PAGES = [
     ("fx-basics.html", "FX入門｜さうざーFX", "FXをまったく知らない方が一から学べる入門講座。しくみ、お金の計算、注文、損切り、税金まで全15章。", "fx", fx_basics_body),
     *[(fx_slug(c["no"]), f'{c["title"]}｜FX入門 第{c["no"]}章｜さうざーFX', c["lead"][:110], "fx", (lambda c=c: fx_article_body(c))) for c in FX_CHAPTERS],
     ("course.html", "EA講座｜さうざーFX", "EAの選び方、動かし方、成績の読み方、止めどきを章ごとに学べる講座。", "course", course_body),
+    *[(slug, f'{c["title"]}｜EA講座 第{c["no"]}章｜さうざーFX', c["lead"][:110], "course", (lambda slug=slug: course_article(slug))) for slug, c in COURSE_TEXT.items()],
     ("course-oos.html", "期間を分けて確かめる｜EA講座｜さうざーFX", "バックテストを調整期間と確認期間に分けて、過剰最適化を見抜く方法。", "course", article_body),
     ("blog.html", "コラム｜さうざーFX", "FXとゴールドの基礎知識。", "blog", blog_body),
     ("about.html", "運営者情報｜さうざーFX", "さうざーFXの運営者情報。", "about", about_body),

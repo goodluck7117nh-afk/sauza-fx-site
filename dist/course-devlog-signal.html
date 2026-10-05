@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>免責事項・プライバシーポリシー｜さうざーFX</title>
-<meta name="description" content="免責事項、広告表記、プライバシーポリシー。">
+<title>3つのインジケーターを組み合わせても、勝てなかった｜EA講座 第21章｜さうざーFX</title>
+<meta name="description" content="トレンド、オーダーブロック、サポレジ。それぞれ意味のある3つの道具を組み合わせれば、勝てるサインになるはず。そう考えてEAを作り、2020年からのバックテストで確かめました。結果はPF 0.89の負けでした。">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta property="og:title" content="免責事項・プライバシーポリシー｜さうざーFX">
-<meta property="og:description" content="免責事項、広告表記、プライバシーポリシー。">
+<meta property="og:title" content="3つのインジケーターを組み合わせても、勝てなかった｜EA講座 第21章｜さうざーFX">
+<meta property="og:description" content="トレンド、オーダーブロック、サポレジ。それぞれ意味のある3つの道具を組み合わせれば、勝てるサインになるはず。そう考えてEAを作り、2020年からのバックテストで確かめました。結果はPF 0.89の負けでした。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="さうざーFX">
 <meta property="og:image" content="https://sauza-fx.netlify.app/og-image.jpg">
@@ -446,45 +446,80 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
   <div class="wrap hd">
     <a class="logo" href="./"><img class="logo-mark" src="logo-mark.png" alt="" width="36" height="36"><span><b>さうざーFX</b><small>GOLD EA LAB</small></span></a>
     <button class="menu-btn" type="button" aria-expanded="false">メニュー</button>
-    <nav class="gnav" aria-label="メインメニュー"><a href="./">ホーム</a><a href="fx-basics.html">FX入門</a><a href="course.html">EA講座</a><a href="products.html">商品一覧</a><a href="blog.html">コラム</a><a href="about.html">運営者</a><a class="nav-x" href="https://x.com/alex767_fx" target="_blank" rel="noopener">X @alex767_fx</a></nav>
+    <nav class="gnav" aria-label="メインメニュー"><a href="./">ホーム</a><a href="fx-basics.html">FX入門</a><a href="course.html" aria-current="page">EA講座</a><a href="products.html">商品一覧</a><a href="blog.html">コラム</a><a href="about.html">運営者</a><a class="nav-x" href="https://x.com/alex767_fx" target="_blank" rel="noopener">X @alex767_fx</a></nav>
   </div>
 </header>
 <main>
-<div class="page-head"><div class="wrap">
-  <nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <span>免責事項・プライバシーポリシー</span></nav>
-  <h1>免責事項・プライバシーポリシー</h1>
-  <p>当サイトをご利用いただく前にお読みください。</p>
-</div></div>
-<section class="section">
-  <div class="wrap legal">
-    <div id="disclaimer">
-      <h2>免責事項</h2>
-      <ul>
-        <li>当サイトの情報は、投資判断の参考として提供するものです。特定の金融商品の売買を勧誘するものではありません。</li>
-        <li>掲載しているバックテストや運用実績は過去のもので、将来の成果を保証するものではありません。</li>
-        <li>FX・CFD取引はレバレッジを伴い、元本を超える損失が生じる可能性があります。取引はご自身の判断と責任で行ってください。</li>
-        <li>当サイトの情報を利用したことで生じた損害について、運営者は責任を負いかねます。</li>
-        <li>掲載内容は予告なく変更することがあります。</li>
-      </ul>
-    </div>
-    <div id="ad">
-      <h2>広告の表記について</h2>
-      <p>当サイトはアフィリエイトプログラムを利用しています。記事内のリンクから商品やサービスに申し込まれた場合、運営者に報酬が支払われることがあります。</p>
-      <p>広告を含むページには、その旨を表示しています。紹介する内容は、運営者が実際に検証・利用したうえで判断しています。</p>
-      <p>EA講座の本文には業者の名前を出していません。</p>
-    </div>
-    <div id="privacy">
-      <h2>プライバシーポリシー</h2>
-      <p>当サイトでは、アクセス状況の把握のためにGoogleアナリティクスを利用しています。Googleアナリティクスはデータ収集のためにCookieを使用しますが、個人を特定する情報は含まれません。Cookieはブラウザの設定で無効にできます。</p>
-      <p>また、アフィリエイトプログラムでは、成果の計測のためにCookieが使用されることがあります。</p>
-      <p>お問い合わせでいただいた情報は、回答のためにのみ使用し、法令に基づく場合を除いて第三者に提供しません。</p>
-    </div>
-    <div id="copyright">
-      <h2>著作権</h2>
-      <p>当サイトに掲載している文章、画像、図表の著作権は運営者に帰属します。無断での転載・複製はご遠慮ください。</p>
-    </div>
-  </div>
-</section>
+<div class="wrap">
+  <div style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="course.html">EA講座</a> <span aria-hidden="true">/</span> <span>第21章</span></nav></div>
+  <article class="article">
+    <header class="a-head">
+      <span class="k">PART 6 さうざーFXの開発記録 ／ 第21章</span>
+      <h1>3つのインジケーターを組み合わせても、勝てなかった</h1>
+      <p class="a-lead">トレンド、オーダーブロック、サポレジ。それぞれ意味のある3つの道具を組み合わせれば、勝てるサインになるはず。そう考えてEAを作り、2020年からのバックテストで確かめました。結果はPF 0.89の負けでした。</p>
+      <div class="a-meta"><span class="tag">開発記録</span><span class="tag">XAUUSD</span><span class="tag">H1</span><span class="tag">検証結果</span></div>
+    </header>
+
+    <h2>考えたこと</h2>
+    <p>さうざーFXでは、3つの無料インジケーターを作りました。</p>
+    <ul>
+      <li><a href="dow-trend.html">Million_DowTrend</a>：ダウ理論で、いまが上昇か下降かを判定する</li>
+      <li><a href="order-block.html">Million_OrderBlock</a>：強い動きが始まった場所（オーダーブロック）を見つける</li>
+      <li><a href="sr-autolevels.html">SR_AutoLevels</a>：何度も止められた価格帯（サポレジ）を引く</li>
+    </ul>
+    <p>方向はダウ理論で決め、オーダーブロックまで戻ったら入り、サポレジで利益を確定する。裁量トレードでよく使われる組み合わせです。3つがそろったときだけ取引すれば、勝率が上がるのではないかと考えました。</p>
+
+    <h2>ルール</h2>
+    <p>あいまいさを残さないよう、すべてを数字で決めました。売りの場合です（買いは逆）。</p>
+    <ol>
+      <li><b>トレンド</b>：1時間足と4時間足が、どちらも下降トレンド</li>
+      <li><b>エントリー</b>：確定した足が売りのオーダーブロックに戻り、陰線で終わったら、次の足の始値で売る</li>
+      <li><b>損切り</b>：オーダーブロックの上端 ＋ ATR×0.2</li>
+      <li><b>利確</b>：損切り幅の2倍以上離れた、最初のサポレジ。なければ損切り幅の2.5倍</li>
+      <li><b>時間決済</b>：48本（2日）たっても決済されなければ、その時点で決済</li>
+    </ol>
+    <p>ポジションは同時に1つまで。判定はすべて確定した足で行い、その時点で見えていたデータだけを使います。</p>
+
+    <h2>結果</h2>
+    <p>XAUUSD 1時間足、2020年1月〜2026年9月、初期資金100万円、0.1ロット固定でテストしました。</p>
+    <div class="data-tbl"><table style="min-width:0">
+      <thead><tr><th>項目</th><th>数字</th></tr></thead>
+      <tbody>
+        <tr><td>純利益</td><td class="n ng">−175,478円</td></tr>
+        <tr><td>プロフィットファクター</td><td class="n ng">0.89</td></tr>
+        <tr><td>最大ドローダウン</td><td class="n">33.11%（有効証拠金では34.04%）</td></tr>
+        <tr><td>取引回数</td><td class="n">119回（買い73回・売り46回）</td></tr>
+        <tr><td>勝率</td><td class="n">28.57%（買い31.51%・売り23.91%）</td></tr>
+        <tr><td>平均利益 ／ 平均損失</td><td class="n">41,521円 ／ 18,673円（2.22倍）</td></tr>
+        <tr><td>最大連敗</td><td class="n">10回</td></tr>
+      </tbody>
+    </table></div>
+    <figure class="figure" style="margin-inline:0">
+      <div class="f-title">資金の推移（2020年1月〜2026年9月）</div>
+      <img src="msig-equity.jpg" alt="資金曲線。2020年夏から2023年秋まで下がり続け、その後は増減を繰り返している" width="1600" height="740" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block">
+      <p class="f-note">青が残高、緑が有効証拠金。MT5ストラテジーテスターの結果です。</p>
+    </figure>
+
+    <h2>何が起きていたか</h2>
+    <h3>勝率が、損益ゼロの勝率に届かなかった</h3>
+    <p>損益比2.22倍のとき、損益ゼロの勝率は31.1%です（<a href="course-metrics.html">第10章</a>）。実際の勝率は28.57%で、わずかに足りませんでした。3つの条件をそろえても、勝率は上がらなかったということです。</p>
+    <h3>売りが特に弱かった</h3>
+    <p>売りの勝率は23.91%で、買いの31.51%より大きく下でした。この期間のゴールドは長い上昇が続いたので、下降トレンドと判定しても、すぐに上昇に戻る場面が多かったと考えられます。</p>
+    <h3>時期によって成績がまったく違った</h3>
+    <p>資金は2020年夏から2023年秋まで、ほぼ下がり続けました。その後は増減を繰り返しています。2023年秋以降だけを切り出せば、勝てるEAに見えたかもしれません（<a href="course-backtest.html">第11章</a>）。</p>
+    <h3>損切りが近すぎた可能性</h3>
+    <p>損切りは、オーダーブロックのすぐ外に置きました。多くの人が意識する場所のすぐ外は、一時的に価格が突き抜けて、損切りだけをして戻る動きが起きやすい場所でもあります。</p>
+
+    <h2>分かったこと</h2>
+    <div class="point"><b>条件を重ねても、優位性は生まれない</b>意味のある条件を3つ重ねると、取引の回数は減ります。しかし、それぞれの条件に優位性がなければ、組み合わせても優位性は生まれません。「たくさんの根拠がそろったから強いサイン」という考え方は、確かめてみると成り立たないことがあります。</div>
+    <p>このEAは販売しません。3つのインジケーターは、相場の状況を整理する道具として無料で配布しています。売買のサインとしてではなく、自分の判断を助ける地図として使ってください。</p>
+
+    <h2>これから</h2>
+    <p>損切りの余裕、利確の距離、上位足の条件などを変えて、期間を分けて確かめる予定です（<a href="course-oos.html">第12章</a>の方法）。2020〜2023年で設定を決め、2024年以降の調整に使っていない期間で同じように勝てるかを見ます。結果は、うまくいかなかった場合も含めて、このページに追記します。</p>
+
+    <nav class="a-nav" aria-label="前後の章"><span><small>前の章</small>第20章 実運用で確認していること（準備中）</span><a class="next" href="course.html"><small>講座の目次へ</small>EA講座 全21章 →</a></nav>
+  </article>
+</div>
 </main>
 <footer class="site-footer">
   <div class="wrap">
