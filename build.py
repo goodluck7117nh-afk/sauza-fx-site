@@ -675,6 +675,7 @@ FOOTER = f'''<footer class="site-footer">
 def page(title, desc, active, body, full=True):
     og_img = f'<meta property="og:image" content="{SITE_URL}/og-image.jpg">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:site" content="@alex767_fx">\n' if SITE_URL else ""
     head = (f'<title>{title}</title>\n<meta name="description" content="{html.escape(desc)}">\n'
+            '<meta name="google-site-verification" content="5RZODcMDMSxBqs8Hcgdo66tgC3iY5gCuBLuaA2rTpys">\n'
             f'<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">\n<link rel="apple-touch-icon" href="apple-touch-icon.png">\n'
             f'<meta property="og:title" content="{html.escape(title)}">\n<meta property="og:description" content="{html.escape(desc)}">\n<meta property="og:type" content="website">\n<meta property="og:site_name" content="さうざーFX">\n{og_img}'
             f'{FONTS}\n<style>{CSS}</style>\n')
