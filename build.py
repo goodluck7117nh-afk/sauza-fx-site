@@ -1758,6 +1758,22 @@ PAGES = [
     ("legal.html", "免責事項・プライバシーポリシー｜さうざーFX", "免責事項、広告表記、プライバシーポリシー。", "", legal_body),
 ]
 
+GA_ID = "G-N7FQE874X9"
+GA_SNIPPET = (
+    f'<!-- Google tag (gtag.js) -->\n<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>\n'
+    "<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n"
+    f"  gtag('js', new Date());\n  gtag('config', '{GA_ID}');\n"
+    "  document.addEventListener('click', function (e) {\n"
+    "    var a = e.target.closest && e.target.closest('a[href$=\".ex5\"]');\n"
+    "    if (a) gtag('event', 'file_download', {file_name: a.getAttribute('href').split('/').pop(), link_url: a.href});\n"
+    "  });\n</script>\n")
+
+def add_ga(path):
+    t = open(path, encoding="utf-8").read()
+    if GA_ID in t or "</head>" not in t:
+        return
+    open(path, "w", encoding="utf-8").write(t.replace("</head>", GA_SNIPPET + "</head>", 1))
+
 def build():
     for d in ("dist", "artifact"):
         os.makedirs(os.path.join(ROOT, d), exist_ok=True)
@@ -1773,6 +1789,9 @@ def build():
     for c in cols:
         for d in ("dist", "artifact"):
             shutil.copy(c, os.path.join(ROOT, d, os.path.basename(c)))
+    # 公開用（dist）だけにアクセス解析を入れる（プレビューには入れない）
+    for f in _g.glob(os.path.join(ROOT, "dist", "*.html")):
+        add_ga(f)
     dl_src = os.path.join(ROOT, "downloads")
     if os.path.isdir(dl_src):
         os.makedirs(os.path.join(ROOT, "dist", "downloads"), exist_ok=True)

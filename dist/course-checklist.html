@@ -440,6 +440,18 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .a-nav .next{text-align:right}
 .a-nav span{color:var(--muted)}
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N7FQE874X9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N7FQE874X9');
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href$=".ex5"]');
+    if (a) gtag('event', 'file_download', {file_name: a.getAttribute('href').split('/').pop(), link_url: a.href});
+  });
+</script>
 </head>
 <body>
 <div class="prbar">当サイトはアフィリエイト広告（PR）を含みます。掲載しているEA・インジケーターは利益を保証するものではありません。</div>
