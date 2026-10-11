@@ -9,6 +9,8 @@ import os, random, html
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE_URL = "https://sauza-fx.netlify.app"  # 独自ドメインが決まったら "https://example.com" のように入れる（SNS用の画像に使う）
 GGJ_URL = "https://www.gogojungle.co.jp/systemtrade/fx/78813"
+SR_GGJ = "https://www.gogojungle.co.jp/tools/indicators/87837"
+OB_GGJ = "https://www.gogojungle.co.jp/tools/indicators/87873"
 X_URL = "https://x.com/alex767_fx"
 
 # ------------------------------------------------------------------ CSS
@@ -582,16 +584,16 @@ PRODUCTS = [
     dict(id="lh-vis", name="LiquidityHunter Visualizer", sub="流動性狩りの検出インジケーター", type="ind", status="prep",
          sym="XAUUSD・BTCUSD", tf="M5", kind="hunt", seed=43,
          desc="LiquidityHunterと同じロジックで、レンジのボックス、損切りを巻き込んだ下抜け、反発のサインを発注なしで表示します。"),
-    dict(id="lowadx-vis", name="LowADX Breakout インジケーター", sub="低ADXブレイクアウトの確認用", type="ind", status="prep",
-         sym="XAUUSD", tf="H1", kind="breakout", seed=47,
-         desc="ADXが低い状態と20本の高値・安値のチャネルを表示し、ブレイクアウトの候補をチャート上で確認できます。"),
-    dict(id="sr", name="SR_AutoLevels", sub="サポレジ自動描画インジケーター", type="ind", status="free",
+    dict(id="gold-breakout", name="SAUZER GOLD BREAKOUT", sub="サウザー ゴールドブレイクアウト", type="ind", status="sale",
+         sym="XAUUSD", tf="H1", kind="breakout", seed=47, url="https://www.gogojungle.co.jp/tools/indicators/87892",
+         desc="ADXが低い静かな相場から、20本の高値・安値のチャネルを抜けた瞬間をサインとアラートでお知らせします。確定足で判定するのでサインは後から消えません。"),
+    dict(id="sr", name="SR_AutoLevels", sub="サポレジ自動描画インジケーター", type="ind", status="sale", url=SR_GGJ,
          sym="MULTI", tf="H1・H4・D1", kind="sr", seed=17, detail="sr-autolevels.html", img="sr-card.jpg",
          desc="重要なサポート・レジスタンスを自動で引き、タッチ回数と出来高スパイクの実績をラベルで表示します。H1・H4・日足を重ねて表示。"),
-    dict(id="dow", name="Million_DowTrend", sub="ダウ理論トレンド判定", type="ind", status="free",
+    dict(id="dow", name="Million_DowTrend", sub="ダウ理論トレンド判定", type="ind", status="prep",
          sym="MULTI", tf="ALL", kind="dow", seed=29, detail="dow-trend.html", img="dow-card.jpg",
          desc="高値・安値の切り上げと切り下げを自動判定し、トレンドの継続と転換をチャート上に表示します。H1・H4・日足のトレンドを一覧で確認できます。"),
-    dict(id="ob", name="Million_OrderBlock", sub="オーダーブロック自動検出", type="ind", status="free",
+    dict(id="ob", name="Million_OrderBlock", sub="オーダーブロック自動検出", type="ind", status="sale", url=OB_GGJ,
          sym="MULTI", tf="ALL", kind="sr", seed=31, detail="order-block.html", img="ob-card.jpg",
          desc="強い値動きが始まった場所（オーダーブロック）を自動で見つけて箱で表示し、価格が抜けたら消します。上位足のOBも重ねて表示。"),
 ]
@@ -602,8 +604,12 @@ def pcard(p):
     name_html = f'<a href="{p["detail"]}">{p["name"]}</a>' if p.get("detail") else p["name"]
     if p["status"] == "sale" and p.get("detail"):
         act = f'<a class="btn btn-primary btn-sm" href="{p["detail"]}">詳細を見る</a>'
+    elif p["status"] == "sale" and p.get("url"):
+        act = f'<a class="btn btn-primary btn-sm" href="{p["url"]}" target="_blank" rel="noopener">GogoJungleで見る</a>'
     elif p["status"] == "free" and p.get("detail"):
         act = f'<a class="btn btn-primary btn-sm" href="{p["detail"]}">無料でダウンロード</a>'
+    elif p.get("detail"):
+        act = f'<a class="btn btn-sm" href="{p["detail"]}">詳細を見る</a>'
     else:
         act = '<span class="btn btn-sm" aria-disabled="true">公開までお待ちください</span>'
     typ = "EA" if p["type"] == "ea" else "インジケーター"
@@ -768,9 +774,9 @@ def index_body():
     <div class="free-band">
       <img src="ob-card.jpg" alt="SR_AutoLevels・Million_DowTrend・Million_OrderBlockを同時に表示したゴールドのチャート" width="800" height="448">
       <div class="fb">
-        <span class="chip st-free" style="justify-self:start">無料公開中</span>
+        <span class="chip st-sale" style="justify-self:start">GogoJungleで販売中</span>
         <h3>MT5インジケーター 3種</h3>
-        <p>トレンド、節目、注文が集まった場所。チャートを読むための3つのインジケーターを、登録不要・無料で配布しています。</p>
+        <p>トレンド、節目、注文が集まった場所。チャートを読むためのインジケーターです。SR_AutoLevelsとMillion_OrderBlockをGogoJungleで販売しています（Million_DowTrendは準備中）。</p>
         <ul class="fb-list">
           <li><a href="sr-autolevels.html"><b>SR_AutoLevels</b><span>サポレジを自動で引く</span></a></li>
           <li><a href="dow-trend.html"><b>Million_DowTrend</b><span>ダウ理論でトレンドを判定</span></a></li>
@@ -824,7 +830,7 @@ def index_body():
   <div class="wrap">
     <div class="sec-head">
       <div><div class="eyebrow">Indicators</div><h2>インジケーター</h2></div>
-      <p>EAと同じロジックをチャート上に表示するインジケーターも準備しています。EAの動きの確認や、裁量トレードの補助に使えます。</p>
+      <p>裁量トレードのためのサインツールです。第1弾のSAUZER GOLD BREAKOUTをGogoJungleで販売しています。</p>
     </div>
     <div class="grid">{"".join(pcard(p) for p in PRODUCTS if p["type"] == "ind")}</div>
   </div>
@@ -1444,21 +1450,22 @@ def fx_article_body(c):
 </div>'''
 
 def sr_body():
-    dl = "downloads/SR_AutoLevels_v120.ex5"
+    BTN = f'<a class="btn btn-dl" href="{SR_GGJ}" target="_blank" rel="noopener">GogoJungleの販売ページへ</a>'
+    FAQ = '<details><summary>どこで購入できますか？</summary><p>GogoJungleで販売しています。価格と購入方法は販売ページでご確認ください。</p></details>'
     return '''<div class="wrap" style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="products.html#indicators">インジケーター</a> <span aria-hidden="true">/</span> <span>SR_AutoLevels</span></nav></div>''' + f'''
 <div class="wrap detail">
   <div style="display:grid;gap:18px">
     <figure class="shot"><img src="sr-h1.jpg" alt="SR_AutoLevelsをXAUUSDの1時間足に表示した画面。H1の実線、H4の破線、日足の点線のサポート・レジスタンスと、タッチ回数のラベル" width="1600" height="778"><figcaption>XAUUSD 1時間足での表示例。実線がH1、破線がH4のライン。日足のラインは「[D1]」と表示。水色の点は出来高スパイク。</figcaption></figure>
   </div>
   <aside class="dl-box" id="download">
-    <span class="chip st-free" style="justify-self:start">無料公開 ・ v1.20</span>
+    <span class="chip st-sale" style="justify-self:start">GogoJungleで販売中</span>
     <h1 style="font-size:clamp(24px,3vw,32px)">SR_AutoLevels</h1>
     <p class="fullname" style="font-size:13px;color:var(--muted);margin-top:-6px">重要サポレジ自動描画インジケーター（MT5）</p>
     <p>過去の高値・安値から、何度も意識された価格帯を自動で探して水平線を引きます。ラインごとにタッチ回数と出来高スパイクの実績を表示するので、どの線が強いかがひと目で分かります。</p>
-    <a class="btn btn-dl" href="{dl}" download>無料でダウンロード（.ex5）</a>
+    {BTN}
     <ul class="terms" style="margin:0;padding-left:1.1em">
-      <li>MetaTrader 5用です。登録やメールアドレスの入力は不要です。</li>
-      <li>個人での利用は自由です。再配布・販売・改変品の配布はご遠慮ください。</li>
+      <li>MetaTrader 5用です。購入とダウンロードはGogoJungleで行います。</li>
+      <li>ご購入者ご本人の利用に限ります。再配布・転売はご遠慮ください。</li>
       <li>売買を推奨するものではなく、利益を保証するものでもありません。</li>
     </ul>
   </aside>
@@ -1510,7 +1517,7 @@ def sr_body():
   <div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">Install</div><h2>導入のしかた</h2></div></div>
     <ol class="steps" style="padding:0;margin:0">
-      <li><div><b>ファイルをダウンロードする</b><p>上のボタンから <code>SR_AutoLevels_v120.ex5</code> をダウンロードします。</p></div></li>
+      <li><div><b>GogoJungleで購入してダウンロードする</b><p>上のボタンから販売ページへ進み、購入後にマイページからファイル（.ex5）をダウンロードします。</p></div></li>
       <li><div><b>MT5のフォルダに入れる</b><p>MT5の「ファイル」→「データフォルダを開く」から <code>MQL5\\Indicators</code> にファイルを置きます。</p></div></li>
       <li><div><b>MT5を再起動する</b><p>ナビゲーターの「インディケータ」に SR_AutoLevels が表示されます。</p></div></li>
       <li><div><b>チャートに付ける</b><p>チャートへドラッグして「OK」を押せば完了です。1時間足のチャートがおすすめです。</p></div></li>
@@ -1522,7 +1529,7 @@ def sr_body():
   <div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">FAQ</div><h2>よくある質問</h2></div></div>
     <div class="faq">
-      <details><summary>本当に無料ですか？</summary><p>はい、無料です。登録やメールアドレスの入力もいりません。</p></details>
+      {FAQ}
       <details><summary>ゴールド以外でも使えますか？</summary><p>使えます。銘柄を問わず動きます。ただし、初期設定はXAUUSDの1時間足で調整しています。</p></details>
       <details><summary>ラインが表示されません</summary><p>H4・日足のデータを読み込むまで、数秒から数十秒かかることがあります。表示されないときは、時間足を一度切り替えてください。</p></details>
       <details><summary>このラインで売買すれば勝てますか？</summary><p>ラインは「過去に意識された価格帯」を示すもので、将来の値動きを保証するものではありません。損切りの位置や取引量は、<a href="fx-12.html">FX入門 第12章</a>の考え方を参考に、ご自身で決めてください。</p></details>
@@ -1541,21 +1548,22 @@ def sr_body():
 </section>'''
 
 def dow_body():
-    dl = "downloads/Million_DowTrend_v303.ex5"
+    BTN = '<span class="btn btn-dl" aria-disabled="true">販売準備中</span>'
+    FAQ = '<details><summary>いつ使えるようになりますか？</summary><p>現在、配布を停止しています。GogoJungleでの販売を準備中です。公開したらXでお知らせします。</p></details>'
     return '''<div class="wrap" style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="products.html#indicators">インジケーター</a> <span aria-hidden="true">/</span> <span>Million_DowTrend</span></nav></div>''' + f'''
 <div class="wrap detail">
   <div style="display:grid;gap:18px">
     <figure class="shot"><img src="dow-h4.jpg" alt="Million_DowTrendをXAUUSDの4時間足に表示した画面。高値と安値にHH・HL・LH・LLのラベル、戻り高値と直近安値のライン、左下にH1・H4・日足のトレンド一覧" width="1600" height="773"><figcaption>XAUUSD 4時間足での表示例。山と谷にHH・HL・LH・LLのラベル、点線で波の流れ、黄色の破線が戻り高値と直近安値。左下のパネルで各時間足のトレンドを確認できます。</figcaption></figure>
   </div>
   <aside class="dl-box" id="download">
-    <span class="chip st-free" style="justify-self:start">無料公開 ・ v3.03</span>
+    <span class="chip st-prep" style="justify-self:start">準備中</span>
     <h1 style="font-size:clamp(24px,3vw,32px)">Million_DowTrend</h1>
     <p class="fullname" style="font-size:13px;color:var(--muted);margin-top:-6px">ダウ理論トレンド判定インジケーター（MT5）</p>
     <p>高値と安値の切り上げ・切り下げを自動で判定し、いまが上昇トレンドか下降トレンドかをチャート上に表示します。トレンドが変わる価格（押し安値・戻り高値）も線で示します。</p>
-    <a class="btn btn-dl" href="{dl}" download>無料でダウンロード（.ex5）</a>
+    {BTN}
     <ul class="terms" style="margin:0;padding-left:1.1em">
-      <li>MetaTrader 5用です。登録やメールアドレスの入力は不要です。</li>
-      <li>個人での利用は自由です。再配布・販売・改変品の配布はご遠慮ください。</li>
+      <li>MetaTrader 5用です。購入とダウンロードはGogoJungleで行います。</li>
+      <li>ご購入者ご本人の利用に限ります。再配布・転売はご遠慮ください。</li>
       <li>売買を推奨するものではなく、利益を保証するものでもありません。</li>
     </ul>
   </aside>
@@ -1605,7 +1613,7 @@ def dow_body():
   <div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">Install</div><h2>導入のしかた</h2></div></div>
     <ol class="steps" style="padding:0;margin:0">
-      <li><div><b>ファイルをダウンロードする</b><p>上のボタンから <code>Million_DowTrend_v303.ex5</code> をダウンロードします。</p></div></li>
+      <li><div><b>販売開始後に入手する</b><p>GogoJungleでの販売開始後、購入してマイページからファイル（.ex5）をダウンロードします。</p></div></li>
       <li><div><b>MT5のフォルダに入れる</b><p>MT5の「ファイル」→「データフォルダを開く」から <code>MQL5\\Indicators</code> にファイルを置きます。</p></div></li>
       <li><div><b>MT5を再起動する</b><p>ナビゲーターの「インディケータ」に Million_DowTrend が表示されます。</p></div></li>
       <li><div><b>チャートに付ける</b><p>チャートへドラッグして「OK」を押せば完了です。どの時間足でも使えます。</p></div></li>
@@ -1617,7 +1625,7 @@ def dow_body():
   <div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">FAQ</div><h2>よくある質問</h2></div></div>
     <div class="faq">
-      <details><summary>本当に無料ですか？</summary><p>はい、無料です。登録やメールアドレスの入力もいりません。</p></details>
+      {FAQ}
       <details><summary>あとから表示が変わる（リペイントする）ことはありますか？</summary><p>ありません。山と谷は左右5本の足が確定してから決まり、転換も確定した足の終値で判定します。そのぶん、表示は実際の山・谷から数本遅れます。</p></details>
       <details><summary>波が細かすぎる・大きすぎるときは？</summary><p>設定の「スイング判定の左右バー数」を大きくすると大きな波だけ、小さくすると細かい波も拾います。「最小の波の大きさ」でも調整できます。</p></details>
       <details><summary>ゴールド以外でも使えますか？</summary><p>使えます。銘柄や時間足を問わず動きます。</p></details>
@@ -1630,29 +1638,30 @@ def dow_body():
   <div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">Next</div><h2>あわせて使う</h2></div></div>
     <div class="next-grid" style="max-width:52em">
-      <a class="next-card" href="sr-autolevels.html"><span class="k">FREE</span><b>SR_AutoLevels</b><span>重要なサポート・レジスタンスを自動で引く無料インジケーター。押し安値・戻り高値と重なる節目の確認に。</span></a>
-      <a class="next-card" href="order-block.html"><span class="k">FREE</span><b>Million_OrderBlock</b><span>トレンドの向きに合ったオーダーブロックで、戻りを待つ場所を探せます。</span></a>
+      <a class="next-card" href="sr-autolevels.html"><span class="k">INDICATOR</span><b>SR_AutoLevels</b><span>重要なサポート・レジスタンスを自動で引くインジケーター。押し安値・戻り高値と重なる節目の確認に。</span></a>
+      <a class="next-card" href="order-block.html"><span class="k">INDICATOR</span><b>Million_OrderBlock</b><span>トレンドの向きに合ったオーダーブロックで、戻りを待つ場所を探せます。</span></a>
       <a class="next-card" href="fx-11.html"><span class="k">LEARN</span><b>FX入門 第11章</b><span>ローソク足、時間足、ダウ理論の基本を解説しています。</span></a>
     </div>
   </div>
 </section>'''
 
 def ob_body():
-    dl = "downloads/Million_OrderBlock_v100.ex5"
+    BTN = f'<a class="btn btn-dl" href="{OB_GGJ}" target="_blank" rel="noopener">GogoJungleの販売ページへ</a>'
+    FAQ = '<details><summary>どこで購入できますか？</summary><p>GogoJungleで販売しています。価格と購入方法は販売ページでご確認ください。</p></details>'
     return '''<div class="wrap" style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="products.html#indicators">インジケーター</a> <span aria-hidden="true">/</span> <span>Million_OrderBlock</span></nav></div>''' + f'''
 <div class="wrap detail">
   <div style="display:grid;gap:18px">
     <figure class="shot"><img src="ob-h1.jpg" alt="Million_OrderBlockをXAUUSDの1時間足に表示した画面。売りオーダーブロックの赤い箱と、H4・日足のオーダーブロックの点線の枠" width="1600" height="775"><figcaption>XAUUSD 1時間足での表示例（SR_AutoLevels・Million_DowTrendと同時に表示）。塗りつぶしの箱が1時間足のOB、点線の枠がH4・日足のOB。「×5」は価格が戻ってきた回数です。</figcaption></figure>
   </div>
   <aside class="dl-box" id="download">
-    <span class="chip st-free" style="justify-self:start">無料公開 ・ v1.00</span>
+    <span class="chip st-sale" style="justify-self:start">GogoJungleで販売中</span>
     <h1 style="font-size:clamp(24px,3vw,32px)">Million_OrderBlock</h1>
     <p class="fullname" style="font-size:13px;color:var(--muted);margin-top:-6px">オーダーブロック自動検出インジケーター（MT5）</p>
     <p>強い値動きが始まる直前の足（オーダーブロック）を自動で見つけ、箱で表示します。価格が終値で反対側を抜けたら消えるので、いまも生きている場所だけが残ります。</p>
-    <a class="btn btn-dl" href="{dl}" download>無料でダウンロード（.ex5）</a>
+    {BTN}
     <ul class="terms" style="margin:0;padding-left:1.1em">
-      <li>MetaTrader 5用です。登録やメールアドレスの入力は不要です。</li>
-      <li>個人での利用は自由です。再配布・販売・改変品の配布はご遠慮ください。</li>
+      <li>MetaTrader 5用です。購入とダウンロードはGogoJungleで行います。</li>
+      <li>ご購入者ご本人の利用に限ります。再配布・転売はご遠慮ください。</li>
       <li>売買を推奨するものではなく、利益を保証するものでもありません。</li>
     </ul>
   </aside>
@@ -1710,7 +1719,7 @@ def ob_body():
   <div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">Install</div><h2>導入のしかた</h2></div></div>
     <ol class="steps" style="padding:0;margin:0">
-      <li><div><b>ファイルをダウンロードする</b><p>上のボタンから <code>Million_OrderBlock_v100.ex5</code> をダウンロードします。</p></div></li>
+      <li><div><b>GogoJungleで購入してダウンロードする</b><p>上のボタンから販売ページへ進み、購入後にマイページからファイル（.ex5）をダウンロードします。</p></div></li>
       <li><div><b>MT5のフォルダに入れる</b><p>MT5の「ファイル」→「データフォルダを開く」から <code>MQL5\\Indicators</code> にファイルを置きます。</p></div></li>
       <li><div><b>MT5を再起動する</b><p>ナビゲーターの「インディケータ」に Million_OrderBlock が表示されます。</p></div></li>
       <li><div><b>チャートに付ける</b><p>チャートへドラッグして「OK」を押せば完了です。どの時間足でも使えます。</p></div></li>
@@ -1722,7 +1731,7 @@ def ob_body():
   <div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">FAQ</div><h2>よくある質問</h2></div></div>
     <div class="faq">
-      <details><summary>本当に無料ですか？</summary><p>はい、無料です。登録やメールアドレスの入力もいりません。</p></details>
+      {FAQ}
       <details><summary>OBが多すぎる・少なすぎるときは？</summary><p>設定の「OBと認める値幅（ATR倍率）」を大きくすると強い動きだけ、小さくすると多くのOBを拾います。表示数は「表示数（片側）」で変えられます。</p></details>
       <details><summary>上位足のOBが表示されません</summary><p>H4・日足のデータを読み込むまで、少し時間がかかることがあります。表示されないときは、時間足を一度切り替えてください。</p></details>
       <details><summary>OBに戻ったら必ず反発しますか？</summary><p>いいえ。OBは過去に注文が集まった場所で、反発を保証するものではありません。損切りの位置や取引量は、<a href="fx-12.html">FX入門 第12章</a>の考え方を参考に、ご自身で決めてください。</p></details>
@@ -1734,8 +1743,8 @@ def ob_body():
   <div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">Next</div><h2>あわせて使う</h2></div></div>
     <div class="next-grid" style="max-width:52em">
-      <a class="next-card" href="dow-trend.html"><span class="k">FREE</span><b>Million_DowTrend</b><span>ダウ理論でトレンドを判定。どちら向きのOBを見るかが決まります。</span></a>
-      <a class="next-card" href="sr-autolevels.html"><span class="k">FREE</span><b>SR_AutoLevels</b><span>重要なサポレジを自動で引く。利益確定の目安に。</span></a>
+      <a class="next-card" href="dow-trend.html"><span class="k">INDICATOR</span><b>Million_DowTrend</b><span>ダウ理論でトレンドを判定。どちら向きのOBを見るかが決まります。</span></a>
+      <a class="next-card" href="sr-autolevels.html"><span class="k">INDICATOR</span><b>SR_AutoLevels</b><span>重要なサポレジを自動で引く。利益確定の目安に。</span></a>
     </div>
   </div>
 </section>'''
@@ -1752,9 +1761,9 @@ PAGES = [
     ("course-oos.html", "期間を分けて確かめる｜EA講座｜さうざーFX", "バックテストを調整期間と確認期間に分けて、過剰最適化を見抜く方法。", "course", article_body),
     ("blog.html", "コラム｜さうざーFX", "FXとゴールドの基礎知識。", "blog", blog_body),
     ("about.html", "運営者情報｜さうざーFX", "さうざーFXの運営者情報。", "about", about_body),
-    ("sr-autolevels.html", "SR_AutoLevels（無料）｜さうざーFX", "重要なサポート・レジスタンスを自動で引くMT5インジケーターを無料配布。H1・H4・日足のラインを重ねて表示。", "products", sr_body),
-    ("dow-trend.html", "Million_DowTrend（無料）｜さうざーFX", "ダウ理論で高値・安値の切り上げと切り下げを自動判定するMT5インジケーターを無料配布。H1・H4・日足のトレンドを一覧表示。", "products", dow_body),
-    ("order-block.html", "Million_OrderBlock（無料）｜さうざーFX", "オーダーブロックを自動で検出し、割れるまで表示するMT5インジケーターを無料配布。H4・日足のOBも重ねて表示。", "products", ob_body),
+    ("sr-autolevels.html", "SR_AutoLevels｜さうざーFX", "重要なサポート・レジスタンスを自動で引くMT5インジケーター（GogoJungleで販売中）。H1・H4・日足のラインを重ねて表示。", "products", sr_body),
+    ("dow-trend.html", "Million_DowTrend｜さうざーFX", "ダウ理論で高値・安値の切り上げと切り下げを自動判定するMT5インジケーター（準備中）。H1・H4・日足のトレンドを一覧表示。", "products", dow_body),
+    ("order-block.html", "Million_OrderBlock｜さうざーFX", "オーダーブロックを自動で検出し、割れるまで表示するMT5インジケーター（GogoJungleで販売中）。H4・日足のOBも重ねて表示。", "products", ob_body),
     ("legal.html", "免責事項・プライバシーポリシー｜さうざーFX", "免責事項、広告表記、プライバシーポリシー。", "", legal_body),
 ]
 
