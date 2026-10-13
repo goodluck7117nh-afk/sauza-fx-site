@@ -11,6 +11,12 @@ SITE_URL = "https://sauza-fx.netlify.app"  # 独自ドメインが決まった�
 GGJ_URL = "https://www.gogojungle.co.jp/systemtrade/fx/78813"
 SR_GGJ = "https://www.gogojungle.co.jp/tools/indicators/87837"
 OB_GGJ = "https://www.gogojungle.co.jp/tools/indicators/87873"
+# GogoJungleアフィリエイトリンク（承認サイト：sauza-fx.netlify.app、2026-10-13取得）
+# 購入ボタン・商品カードはこちらを使う。特商法ページなどの表記は通常URLのまま
+GGJ_AFF = "https://www.gogojungle.co.jp/re/l05vHZRvlamcX44"      # 天眼金龍
+GB_AFF  = "https://www.gogojungle.co.jp/re/Xxiwn9apWG43ba1"      # SAUZER GOLD BREAKOUT
+SR_AFF  = "https://www.gogojungle.co.jp/re/ax4ylXsfCb5Z2bX"      # SR_AutoLevels
+OB_AFF  = "https://www.gogojungle.co.jp/re/btm7U1UKajopPSg"      # Million_OrderBlock
 X_URL = "https://x.com/alex767_fx"
 
 # ------------------------------------------------------------------ CSS
@@ -561,7 +567,7 @@ STATUS = {"free": ("無料公開", "st-free"), "sale": ("販売中", "st-sale"),
           "prep": ("準備中", "st-prep"), "dev": ("開発中", "st-dev")}
 PRODUCTS = [
     dict(id="tengan", name="天眼金龍", sub="TripleMA-ASTシステム【ゴールド専用】", type="ea", status="sale",
-         sym="XAUUSD", tf="H1", kind="trend", seed=7, detail="tengan-kinryu.html", url=GGJ_URL,
+         sym="XAUUSD", tf="H1", kind="trend", seed=7, detail="tengan-kinryu.html", url=GGJ_AFF,
          desc="TripleMAとSuperTrendの二重フィルターで、上昇はロング、下降はショートでトレンドに乗るEAです。", img="tengan-card.jpg"),
     dict(id="lh", name="LiquidityHunter GOLD", sub="ボックス × 流動性狩り × 反発", type="ea", status="fwd",
          sym="XAUUSD", tf="M5", kind="hunt", seed=3,
@@ -585,15 +591,15 @@ PRODUCTS = [
          sym="XAUUSD・BTCUSD", tf="M5", kind="hunt", seed=43,
          desc="LiquidityHunterと同じロジックで、レンジのボックス、損切りを巻き込んだ下抜け、反発のサインを発注なしで表示します。"),
     dict(id="gold-breakout", name="SAUZER GOLD BREAKOUT", sub="サウザー ゴールドブレイクアウト", type="ind", status="sale",
-         sym="XAUUSD", tf="H1", kind="breakout", seed=47, url="https://www.gogojungle.co.jp/tools/indicators/87892",
+         sym="XAUUSD", tf="H1", kind="breakout", seed=47, url=GB_AFF,
          desc="ADXが低い静かな相場から、20本の高値・安値のチャネルを抜けた瞬間をサインとアラートでお知らせします。確定足で判定するのでサインは後から消えません。"),
-    dict(id="sr", name="SR_AutoLevels", sub="サポレジ自動描画インジケーター", type="ind", status="sale", url=SR_GGJ,
+    dict(id="sr", name="SR_AutoLevels", sub="サポレジ自動描画インジケーター", type="ind", status="sale", url=SR_AFF,
          sym="MULTI", tf="H1・H4・D1", kind="sr", seed=17, detail="sr-autolevels.html", img="sr-card.jpg",
          desc="重要なサポート・レジスタンスを自動で引き、タッチ回数と出来高スパイクの実績をラベルで表示します。H1・H4・日足を重ねて表示。"),
     dict(id="dow", name="Million_DowTrend", sub="ダウ理論トレンド判定", type="ind", status="prep",
          sym="MULTI", tf="ALL", kind="dow", seed=29, detail="dow-trend.html", img="dow-card.jpg",
          desc="高値・安値の切り上げと切り下げを自動判定し、トレンドの継続と転換をチャート上に表示します。H1・H4・日足のトレンドを一覧で確認できます。"),
-    dict(id="ob", name="Million_OrderBlock", sub="オーダーブロック自動検出", type="ind", status="sale", url=OB_GGJ,
+    dict(id="ob", name="Million_OrderBlock", sub="オーダーブロック自動検出", type="ind", status="sale", url=OB_AFF,
          sym="MULTI", tf="ALL", kind="sr", seed=31, detail="order-block.html", img="ob-card.jpg",
          desc="強い値動きが始まった場所（オーダーブロック）を自動で見つけて箱で表示し、価格が抜けたら消します。上位足のOBも重ねて表示。"),
 ]
@@ -904,7 +910,7 @@ def tengan_body():
     <p class="fullname">TripleMA-ASTシステム【ゴールド専用】</p>
     <p>{t["desc"]}エントリーは月5件程度に絞り、トレンドが出た場面だけを狙います。</p>
     <div class="actions">
-      <a class="btn btn-gold" href="{GGJ_URL}" target="_blank" rel="noopener">GogoJungleで購入する</a>
+      <a class="btn btn-gold" href="{GGJ_AFF}" target="_blank" rel="noopener">GogoJungleで購入する</a>
       <a class="btn btn-ghost" href="beginners.html">導入の流れを見る</a>
     </div>
     <p class="note">購入・ダウンロード・お支払いはGogoJungleで行います。価格と最新の成績は販売ページに掲載しています。</p>
@@ -1450,7 +1456,7 @@ def fx_article_body(c):
 </div>'''
 
 def sr_body():
-    BTN = f'<a class="btn btn-dl" href="{SR_GGJ}" target="_blank" rel="noopener">GogoJungleの販売ページへ</a>'
+    BTN = f'<a class="btn btn-dl" href="{SR_AFF}" target="_blank" rel="noopener">GogoJungleの販売ページへ</a>'
     FAQ = '<details><summary>どこで購入できますか？</summary><p>GogoJungleで販売しています。価格と購入方法は販売ページでご確認ください。</p></details>'
     return '''<div class="wrap" style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="products.html#indicators">インジケーター</a> <span aria-hidden="true">/</span> <span>SR_AutoLevels</span></nav></div>''' + f'''
 <div class="wrap detail">
@@ -1646,7 +1652,7 @@ def dow_body():
 </section>'''
 
 def ob_body():
-    BTN = f'<a class="btn btn-dl" href="{OB_GGJ}" target="_blank" rel="noopener">GogoJungleの販売ページへ</a>'
+    BTN = f'<a class="btn btn-dl" href="{OB_AFF}" target="_blank" rel="noopener">GogoJungleの販売ページへ</a>'
     FAQ = '<details><summary>どこで購入できますか？</summary><p>GogoJungleで販売しています。価格と購入方法は販売ページでご確認ください。</p></details>'
     return '''<div class="wrap" style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="products.html#indicators">インジケーター</a> <span aria-hidden="true">/</span> <span>Million_OrderBlock</span></nav></div>''' + f'''
 <div class="wrap detail">
