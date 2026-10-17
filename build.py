@@ -17,6 +17,7 @@ GGJ_AFF = "https://www.gogojungle.co.jp/re/l05vHZRvlamcX44"      # 天眼金龍
 GB_AFF  = "https://www.gogojungle.co.jp/re/Xxiwn9apWG43ba1"      # SAUZER GOLD BREAKOUT
 SR_AFF  = "https://www.gogojungle.co.jp/re/ax4ylXsfCb5Z2bX"      # SR_AutoLevels
 OB_AFF  = "https://www.gogojungle.co.jp/re/btm7U1UKajopPSg"      # Million_OrderBlock
+TPC_AFF = "https://www.gogojungle.co.jp/re/rWLl46C7ZdC0qDP"      # 天眼プロコントローラー（GGJ 88341）
 X_URL = "https://x.com/alex767_fx"
 
 # ------------------------------------------------------------------ CSS
@@ -261,6 +262,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .hero-logo img{position:relative;width:min(100%,460px);height:auto;display:block;mix-blend-mode:lighten}
 .feature-wide{display:grid;grid-template-columns:1.15fr .85fr;gap:0;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
 .feature-wide:hover{border-color:var(--gold)}
+.tpc-band{display:grid;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.tpc-band:hover{border-color:var(--gold)}
+.tpc-band img{width:100%;height:auto;display:block}
+.tpc-band-b{display:flex;gap:18px;align-items:center;justify-content:space-between;padding:18px 22px}
+.tpc-band-b b{font-size:18px}
+.tpc-band-b p{font-size:13.5px;color:var(--muted);margin-top:6px;max-width:52em}
+@media (max-width:640px){.tpc-band-b{flex-direction:column;align-items:flex-start}}
 .feature-wide img{width:100%;height:100%;object-fit:cover;display:block}
 .fw-body{padding:24px 26px;display:grid;gap:10px;align-content:start}
 .fw-body h3{font-size:26px}
@@ -569,6 +577,9 @@ PRODUCTS = [
     dict(id="tengan", name="天眼金龍", sub="TripleMA-ASTシステム【ゴールド専用】", type="ea", status="sale",
          sym="XAUUSD", tf="H1", kind="trend", seed=7, detail="tengan-kinryu.html", url=GGJ_AFF,
          desc="TripleMAとSuperTrendの二重フィルターで、上昇はロング、下降はショートでトレンドに乗るEAです。", img="tengan-card.jpg"),
+    dict(id="tpc", name="天眼（てんがん）プロコントローラー", sub="通貨強弱・注目ペア・資金管理を1画面で", type="ind", label="ツール", status="sale",
+         sym="FX・GOLD・指数", tf="ALL", kind="trend", seed=53, detail="tengan-pro.html", url=TPC_AFF, img="tpc-banner-s.jpg",
+         desc="地合い、ドルと金、次の重要指標、8通貨の強弱と注目ペアを1画面で整理し、注文もパネルから出せるMT5用パネルです。新規注文はボタンを押したときだけです。"),
     dict(id="lh", name="LiquidityHunter GOLD", sub="ボックス × 流動性狩り × 反発", type="ea", status="fwd",
          sym="XAUUSD", tf="M5", kind="hunt", seed=3,
          desc="レンジの下抜けで損切りを巻き込んだあとの反発を狙うEAです。デモ口座でフォワード検証を続けています。"),
@@ -606,7 +617,7 @@ PRODUCTS = [
 
 def pcard(p):
     st, cls = STATUS[p["status"]]
-    tlabel = ("EA" if p["type"] == "ea" else "INDICATOR") + f" / {p['sym']} {p['tf']}"
+    tlabel = ("EA" if p["type"] == "ea" else "TOOL" if p.get("label") == "ツール" else "INDICATOR") + f" / {p['sym']} {p['tf']}"
     name_html = f'<a href="{p["detail"]}">{p["name"]}</a>' if p.get("detail") else p["name"]
     if p["status"] == "sale" and p.get("detail"):
         act = f'<a class="btn btn-primary btn-sm" href="{p["detail"]}">詳細を見る</a>'
@@ -618,7 +629,7 @@ def pcard(p):
         act = f'<a class="btn btn-sm" href="{p["detail"]}">詳細を見る</a>'
     else:
         act = '<span class="btn btn-sm" aria-disabled="true">公開までお待ちください</span>'
-    typ = "EA" if p["type"] == "ea" else "インジケーター"
+    typ = p.get("label") or ("EA" if p["type"] == "ea" else "インジケーター")
     tags = f'<span class="tag">{p["sym"]}</span><span class="tag">{p["tf"]}</span><span class="tag">MT5</span>'
     t = (f'<span class="thumb"><img src="{p["img"]}" alt="{p["name"]}のバナー" loading="lazy" width="800" height="450"></span>'
          if p.get("img") else thumb(p["kind"], tlabel, p["seed"]))
@@ -754,7 +765,7 @@ def post_card(cat, title, desc, href=None):
 # ------------------------------------------------------------------ 各ページ
 def index_body():
     t = PRODUCTS[0]
-    pick = "".join(pcard(p) for p in PRODUCTS[1:5])
+    pick = "".join(pcard(p) for p in PRODUCTS if p["id"] in ("lh", "lh-btc", "lh-nk", "junbari"))
     return f'''<div class="hero-band">
 <div class="wrap hero">
   <div>
@@ -790,6 +801,20 @@ def index_body():
         </ul>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section feature-sec">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">New</div><h2>新登場</h2></div><a class="more-link" href="tengan-pro.html">詳しく見る →</a></div>
+    <a class="tpc-band" href="tengan-pro.html">
+      <img src="tpc-banner-s.jpg" alt="天眼プロコントローラー（MT5対応）。相場の整理×手動発注を1つのパネルで。見て、判断して、押すだけ。" width="900" height="450">
+      <div class="tpc-band-b">
+        <div><span class="chip st-sale">販売中</span> <b>天眼（てんがん）プロコントローラー</b>
+        <p>地合い、ドルと金、次の重要指標、8通貨の強弱と注目ペアを1画面で整理。発注前に損失と利益を円で確かめられます。新規注文はボタンを押したときだけで、表示は売買の推奨や値動きの予測ではありません。</p></div>
+        <span class="btn btn-primary btn-sm">詳細を見る →</span>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -838,7 +863,7 @@ def index_body():
       <div><div class="eyebrow">Indicators</div><h2>インジケーター</h2></div>
       <p>裁量トレードのためのサインツールです。第1弾のSAUZER GOLD BREAKOUTをGogoJungleで販売しています。</p>
     </div>
-    <div class="grid">{"".join(pcard(p) for p in PRODUCTS if p["type"] == "ind")}</div>
+    <div class="grid">{"".join(pcard(p) for p in PRODUCTS if p["type"] == "ind" and p["id"] != "tpc")}</div>
   </div>
 </section>
 
@@ -1553,6 +1578,108 @@ def sr_body():
   </div>
 </section>'''
 
+def tpc_body():
+    return '''<div class="wrap" style="padding-top:28px"><nav class="crumb" aria-label="パンくずリスト"><a href="./">ホーム</a> <span aria-hidden="true">/</span> <a href="products.html#indicators">ツール</a> <span aria-hidden="true">/</span> <span>天眼プロコントローラー</span></nav></div>''' + f'''
+<div class="wrap" style="padding-top:20px"><img src="tpc-banner.jpg" alt="天眼プロコントローラー（MT5対応）。相場の整理×手動発注を1つのパネルで。見て、判断して、押すだけ。" width="1774" height="887" style="width:100%;height:auto;display:block;border-radius:var(--radius);border:1px solid var(--line)"></div>
+<div class="wrap detail">
+  <div style="display:grid;gap:18px">
+    <figure class="shot"><img src="tpc-main.jpg" alt="天眼プロコントローラーの画面。上半分が注文（成行・指値・逆指値、SL・TP、資金％のロット計算、損失と利益の円表示、BUY・SELL、建値へ・半分決済）、下半分が地合い・ドル・金・次の重要指標のタイル、8通貨の強弱、注目ペア、主要マーケット" width="1200" height="907"><figcaption>XAUUSD 1時間足での表示例。上半分が注文、下半分が相場の整理です（画面はv2.20）。</figcaption></figure>
+  </div>
+  <aside class="dl-box" id="download" style="border-color:var(--line)">
+    <span class="chip st-sale" style="justify-self:start">GogoJungleで販売中</span>
+    <h1 style="font-size:clamp(24px,3vw,32px)">天眼（てんがん）プロコントローラー</h1>
+    <p class="fullname" style="font-size:13px;color:var(--muted);margin-top:-6px">通貨強弱・注目ペア・資金管理を1画面で（MT5）</p>
+    <p>チャートの上に置くパネルです。地合い（リスクオン／オフ）、ドルの強さと金、次の重要指標、8通貨の強弱と注目ペアを1画面で整理します。注文もパネルから出せて、発注前に損失と利益を円で確かめられます。</p>
+    <p style="font-size:14px">先着20本は<b>1,000円</b>。21本目から5,000円、71本目から10,000円に上がります。</p>
+    <a class="btn btn-dl" href="{TPC_AFF}" target="_blank" rel="noopener">GogoJungleの販売ページへ</a>
+    <ul class="terms" style="margin:0;padding-left:1.1em">
+      <li>MetaTrader 5用です。購入とダウンロードはGogoJungleで行います。</li>
+      <li>自分から新規エントリーはしません。注文はボタンを押したときだけです。</li>
+      <li>自動で動かすのはSLの管理（1Rで建値・ATRトレール）だけで、MT5を起動している間だけ働きます。</li>
+      <li>表示は相場の整理で、売買の推奨や値動きの予測ではありません。はじめはデモ口座で操作を確かめてください。</li>
+    </ul>
+  </aside>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Features</div><h2>できること</h2></div><p>上半分が注文、下半分が相場の整理です。</p></div>
+    <div class="feats">
+      <div class="feat"><h3>4つのタイルで地合いをつかむ</h3><p>地合い（リスクオン／オフ）、ドルの強さとドル指数、金の方向とドルとの相関、次の重要指標とその指標が普段の何倍動くかを並べて表示します。</p></div>
+      <div class="feat"><h3>8通貨の強弱</h3><p>8通貨の強さを横棒で表示します。右端の▲▼は直近4本の向きです。いま、どの通貨が買われ、どの通貨が売られているかを整理できます。</p></div>
+      <div class="feat"><h3>注目ペアを5つ</h3><p>直近24時間の動きを取引コスト（スプレッド）で割り、上位5ペアを★で表示します。名前をクリックすると、そのペアのチャートに切り替わります。</p></div>
+      <div class="feat"><h3>損失と利益を円で確認</h3><p>SLはpt・ATR・直近の高安、TPはpt・RR・ATRで決められます。「資金の1%」のように決めるとロットを自動で計算し、買いと売りそれぞれの損失・利益を円で表示します。</p></div>
+      <div class="feat"><h3>注文と決済をパネルから</h3><p>成行・指値・逆指値（ライン）に対応。建値へ、半分決済、買いだけ・売りだけの決済、待機注文の削除、全決済もボタンひとつです。</p></div>
+      <div class="feat"><h3>指標の結果と発表後15分</h3><p>「詳細」を押すと、下半分が経済指標（日本時間）と、発表後15分の金・ドル円・ユーロ・ダウ・ドル指数の動きに切り替わります。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Screens</div><h2>画面の切り替え</h2></div></div>
+    <div style="display:grid;gap:28px">
+      <figure class="shot"><img src="tpc-info.jpg" alt="詳細ボタンを押した画面。下半分に経済指標の結果と予定、発表後15分の値動きが表示されている" width="1200" height="907" loading="lazy"><figcaption><b>詳細</b>：経済指標の結果・予定と、発表後15分の値動き（変化率）を表示します。</figcaption></figure>
+      <figure class="shot" style="max-width:600px"><img src="tpc-mini.jpg" alt="縮小した画面。GOLD・ドル円・ユーロドル・BTC・日経平均・NYダウ・NASDAQの価格と方向だけが表示されている" width="862" height="431" loading="lazy"><figcaption><b>縮小</b>：7銘柄の価格と方向だけを表示し、チャートを広く使えます。</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Evidence</div><h2>表示の根拠</h2></div><p>2010〜2026年のデータで、さうざーFXが検証した結果です。</p></div>
+    <div class="data-tbl" style="max-width:52em">
+      <table style="min-width:0">
+        <thead><tr><th>表示</th><th>検証で分かったこと</th></tr></thead>
+        <tbody>
+          <tr><td>注目ペア</td><td>よく動いたペアは、次の24時間もよく動く傾向（順位相関0.61〜0.69）。上位5ペアは平均の約1.8倍動いた</td></tr>
+          <tr><td>地合い</td><td>株高の日は円・フランが売られ、豪ドル・NZドルが買われやすい（同じ日の相関：円−0.41〜−0.49、豪ドル+0.32〜+0.51）</td></tr>
+          <tr><td>金とドル</td><td>同じ日の相関は各年−0.42〜−0.60。翌日以降を予測する力はなかった</td></tr>
+          <tr><td>ドルの強弱</td><td>パネルのUSD強弱とドル指数の相関は0.90。ドル指数がない口座でも使える</td></tr>
+          <tr><td>次の重要指標</td><td>普段と比べた値動き：FOMC約5倍、米雇用統計約2倍、米CPI約1.8倍</td></tr>
+          <tr><td>通貨強弱</td><td>強い通貨がそのまま強いままでいる効果は確認できなかった。そのため「いまの状態」の整理として表示している</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:13px;max-width:46em">どれも「どれだけ動きやすいか」「いまどうなっているか」を整理するためのもので、上がるか下がるかを当てるものではありません。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Install</div><h2>導入のしかた</h2></div></div>
+    <ol class="steps" style="padding:0;margin:0">
+      <li><div><b>GogoJungleで購入してダウンロードする</b><p>上のボタンから販売ページへ進み、購入後にマイページからファイル（.ex5）をダウンロードします。</p></div></li>
+      <li><div><b>MT5のフォルダに入れる</b><p>MT5の「ファイル」→「データフォルダを開く」から <code>MQL5\\Experts</code> にファイルを置きます。発注ボタンを使うため、エキスパートアドバイザとして動きます。</p></div></li>
+      <li><div><b>MT5を再起動してチャートに付ける</b><p>ナビゲーターの「エキスパートアドバイザ」から、チャートへドラッグします。ボタンで注文を出すには「アルゴリズム取引を許可」にチェックを入れてください。</p></div></li>
+      <li><div><b>デモ口座で試す</b><p>はじめはデモ口座で、ロットの計算や決済ボタンの動きを確かめてから使ってください。</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">FAQ</div><h2>よくある質問</h2></div></div>
+    <div class="faq">
+      <details><summary>自動で売買しますか？</summary><p>いいえ。新しい注文を出すのは、ボタンを押したときだけです。自動で動かすのはSLの管理（1Rで建値、ATRトレールのどちらか1つ）だけで、MT5を起動している間だけ働きます。</p></details>
+      <details><summary>ゴールド以外でも使えますか？</summary><p>使えます。パネル上の銘柄欄に入力して「切替」を押すと、チャートの銘柄が変わります。XAUUSD・EURUSD・BTCUSDで動作を確かめています。</p></details>
+      <details><summary>上がるか下がるかが分かりますか？</summary><p>いいえ。表示は「いまの状態」と「動きやすさ」の整理で、値動きの向きを予測するものではありません。損切りの位置や取引量は、<a href="fx-12.html">FX入門 第12章</a>の考え方を参考に、ご自身で決めてください。</p></details>
+      <details><summary>どこで購入できますか？</summary><p>GogoJungleで販売しています。価格と残りの本数は販売ページでご確認ください。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Next</div><h2>あわせて読む</h2></div></div>
+    <div class="next-grid" style="max-width:52em">
+      <a class="next-card" href="fx-basics.html"><span class="k">LEARN</span><b>FX入門（全15章）</b><span>ロットや損切りの考え方を、FXの基本から順番に学べます。</span></a>
+      <a class="next-card" href="sr-autolevels.html"><span class="k">INDICATOR</span><b>SR_AutoLevels</b><span>重要なサポート・レジスタンスを自動で引くインジケーター。指値ラインの目安に。</span></a>
+    </div>
+  </div>
+</section>'''
+
+
 def dow_body():
     BTN = '<span class="btn btn-dl" aria-disabled="true">販売準備中</span>'
     FAQ = '<details><summary>いつ使えるようになりますか？</summary><p>現在、配布を停止しています。GogoJungleでの販売を準備中です。公開したらXでお知らせします。</p></details>'
@@ -1768,6 +1895,7 @@ PAGES = [
     ("blog.html", "コラム｜さうざーFX", "FXとゴールドの基礎知識。", "blog", blog_body),
     ("about.html", "運営者情報｜さうざーFX", "さうざーFXの運営者情報。", "about", about_body),
     ("sr-autolevels.html", "SR_AutoLevels｜さうざーFX", "重要なサポート・レジスタンスを自動で引くMT5インジケーター（GogoJungleで販売中）。H1・H4・日足のラインを重ねて表示。", "products", sr_body),
+    ("tengan-pro.html", "天眼プロコントローラー｜さうざーFX", "地合い、ドルと金、次の重要指標、8通貨の強弱と注目ペアを1画面で整理し、注文もできるMT5用パネル（GogoJungleで販売中）。", "products", tpc_body),
     ("dow-trend.html", "Million_DowTrend｜さうざーFX", "ダウ理論で高値・安値の切り上げと切り下げを自動判定するMT5インジケーター（準備中）。H1・H4・日足のトレンドを一覧表示。", "products", dow_body),
     ("order-block.html", "Million_OrderBlock｜さうざーFX", "オーダーブロックを自動で検出し、割れるまで表示するMT5インジケーター（GogoJungleで販売中）。H4・日足のOBも重ねて表示。", "products", ob_body),
     ("legal.html", "免責事項・プライバシーポリシー｜さうざーFX", "免責事項、広告表記、プライバシーポリシー。", "", legal_body),

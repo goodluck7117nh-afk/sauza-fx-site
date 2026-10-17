@@ -257,6 +257,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .hero-logo img{position:relative;width:min(100%,460px);height:auto;display:block;mix-blend-mode:lighten}
 .feature-wide{display:grid;grid-template-columns:1.15fr .85fr;gap:0;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
 .feature-wide:hover{border-color:var(--gold)}
+.tpc-band{display:grid;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.tpc-band:hover{border-color:var(--gold)}
+.tpc-band img{width:100%;height:auto;display:block}
+.tpc-band-b{display:flex;gap:18px;align-items:center;justify-content:space-between;padding:18px 22px}
+.tpc-band-b b{font-size:18px}
+.tpc-band-b p{font-size:13.5px;color:var(--muted);margin-top:6px;max-width:52em}
+@media (max-width:640px){.tpc-band-b{flex-direction:column;align-items:flex-start}}
 .feature-wide img{width:100%;height:100%;object-fit:cover;display:block}
 .fw-body{padding:24px 26px;display:grid;gap:10px;align-content:start}
 .fw-body h3{font-size:26px}
@@ -498,6 +505,20 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
         </ul>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section feature-sec">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">New</div><h2>新登場</h2></div><a class="more-link" href="tengan-pro.html">詳しく見る →</a></div>
+    <a class="tpc-band" href="tengan-pro.html">
+      <img src="tpc-banner-s.jpg" alt="天眼プロコントローラー（MT5対応）。相場の整理×手動発注を1つのパネルで。見て、判断して、押すだけ。" width="900" height="450">
+      <div class="tpc-band-b">
+        <div><span class="chip st-sale">販売中</span> <b>天眼（てんがん）プロコントローラー</b>
+        <p>地合い、ドルと金、次の重要指標、8通貨の強弱と注目ペアを1画面で整理。発注前に損失と利益を円で確かめられます。新規注文はボタンを押したときだけで、表示は売買の推奨や値動きの予測ではありません。</p></div>
+        <span class="btn btn-primary btn-sm">詳細を見る →</span>
+      </div>
+    </a>
   </div>
 </section>
 
